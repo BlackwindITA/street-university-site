@@ -21,7 +21,8 @@ Tre motivi, in ordine di urgenza:
 |---|---|
 | `index.html` | tutta la pagina: HTML + CSS inline, **nessuna richiesta a terzi** (niente font, CDN, analytics) |
 | `img/` | grafiche derivate da `STORE_ASSETS/google_play/` del repo del gioco |
-| `CNAME` | il dominio personalizzato, letto da GitHub Pages |
+| `CNAME` | il dominio personalizzato, letto da GitHub Pages. Contiene **`www.streetuniversitygame.com`**, non l'apex: è la forma che Epic ha verificato, e l'apex ci reindirizza sopra da solo |
+| `privacy/index.html` | la privacy policy, **copia identica** di `index.html` del repo `street-university-beta-devices` |
 
 La pagina è bilingue **EN/IT**: con JavaScript attivo compare il selettore e si vede una lingua
 sola; senza JavaScript si vedono entrambe, una sotto l'altra. Non si rompe mai.
@@ -49,7 +50,11 @@ Il titolo del gioco vive **dentro** l'immagine dell'eroe: per questo l'`<h1>` de
 
 ## Attenzione
 
-- La **privacy policy** NON sta qui: vive nel repo `street-university-beta-devices` ed è
-  l'URL già depositato presso Google Play e App Store Connect. Non spostarla.
+- ⚠️ **La privacy policy esiste in DUE copie identiche e vanno tenute allineate a mano**:
+  qui in `privacy/index.html` (serve a Epic, che vuole i suoi URL sul dominio verificato) e
+  in `index.html` del repo `street-university-beta-devices`, che è l'URL **già depositato**
+  presso Google Play e App Store Connect e per questo non si sposta. Quando ne cambi una,
+  copia il file sull'altra: sono byte per byte lo stesso documento.
+  Da collassare un giorno in una sola, facendo redirigere quella vecchia.
 - Il record DNS `TXT` di Epic e i record `MX` di iCloud stanno su **Cloudflare**: toccare i
   record `A`/`CNAME` del sito non deve mai toccare quelli della posta.
