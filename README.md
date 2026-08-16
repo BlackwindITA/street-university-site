@@ -35,9 +35,16 @@ Commit e push su `main`. GitHub Pages ricostruisce da sé in un paio di minuti.
 
 ## Immagini
 
-Rigenerate dal repo del gioco (non modificarle a mano qui):
-screenshot `tablet_10` 2560×1440 ridotti 2:1 con filtro BOX a 1280×720 e salvati in WebP q88;
-`feature_graphic_1024x500.png` in WebP q90; `icon_512.png` ridotta a 256/180/64 px.
+Tutte derivate dagli asset del repo del gioco — non modificarle a mano qui, si rigenerano:
+
+| File | Da dove viene |
+|---|---|
+| `img/hero.webp` | **composizione**: `assets/ui/menu_bg/tetto_alba.png` (1920×800, il tetto all'alba coi due piccioni) con sopra `assets/ui/menu_logo.png` scalato a 768 px con LANCZOS e centrato nel cielo a y=117. Il logo è arte a risoluzione piena, con dettagli da 1 px: **non** è pixel art da ingrandire col nearest |
+| `img/logo-256.png`, `apple-touch-icon.png`, `favicon-64.png` | `iOS/icon.png` (il gatto che dorme di SU-366), ridotta a 256/180/64 px |
+| `img/shot-*.webp` | screenshot `STORE_ASSETS/google_play/screenshots/tablet_10` 2560×1440, ridotti 2:1 con filtro BOX a 1280×720, WebP q88 |
+
+Il titolo del gioco vive **dentro** l'immagine dell'eroe: per questo l'`<h1>` della pagina è
+`sr-only`, presente per lettori di schermo e motori di ricerca ma non disegnato due volte.
 
 ## Attenzione
 

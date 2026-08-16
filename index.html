@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Street University — a cartoon street-survival roguelike</title>
-<meta name="description" content="Street University is a cartoon street-survival roguelike by Ivan Bianco, independent developer, Italy. Thirty-minute runs, upgrade cards, and cats. For Windows, macOS, Android and iOS.">
+<meta name="description" content="Street University is a cartoon street-survival roguelike by Ivan Bianco (Divano_Prime), independent developer, Italy. Thirty-minute runs, upgrade cards, and cats. For Windows, macOS, Android and iOS.">
 <link rel="canonical" href="https://streetuniversitygame.com/">
 <link rel="icon" type="image/png" href="./img/favicon-64.png">
 <link rel="apple-touch-icon" href="./img/apple-touch-icon.png">
@@ -38,17 +38,25 @@
   img{max-width:100%; height:auto; display:block}
 
   /* ---- testata ---- */
-  header{padding:48px 0 8px; text-align:center}
-  .logo{width:112px; height:112px; margin:0 auto 18px; border-radius:22px; box-shadow:var(--shadow)}
-  h1{
-    margin:0; font-size:clamp(2rem,7vw,3.1rem); line-height:1.05;
-    letter-spacing:.06em; text-transform:uppercase; font-weight:800;
+  header{padding:30px 0 8px; text-align:center}
+  /* l'eroe porta gia' il titolo disegnato: l'h1 resta per lettori di schermo e motori */
+  .sr-only{
+    position:absolute; width:1px; height:1px; padding:0; margin:-1px;
+    overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0;
   }
-  .tagline{margin:14px auto 0; max-width:34em; font-size:1.12rem; color:var(--muted)}
-  .byline{margin:18px 0 0; font-size:.95rem; color:var(--muted)}
+  .hero{width:100%; border-radius:14px; box-shadow:var(--shadow)}
+  /* l'icona del gatto scavalca il bordo basso dell'eroe, come un distintivo */
+  .logo{
+    width:104px; height:104px; margin:-58px auto 0; position:relative;
+    border-radius:24px; border:4px solid var(--bg); box-shadow:var(--shadow);
+  }
+  /* su schermo stretto l'eroe e' basso: un distintivo da 104 px se lo mangerebbe */
+  @media (max-width:560px){
+    .logo{width:76px; height:76px; margin:-42px auto 0; border-radius:18px; border-width:3px}
+  }
+  .tagline{margin:20px auto 0; max-width:34em; font-size:1.12rem; color:var(--muted)}
+  .byline{margin:16px 0 0; font-size:.95rem; color:var(--muted)}
   .byline strong{color:var(--fg); font-weight:600}
-
-  .hero{margin:34px 0 0; border-radius:14px; overflow:hidden; box-shadow:var(--shadow)}
 
   /* ---- barra lingua (compare solo con JS attivo) ---- */
   .langbar{display:flex; gap:8px; justify-content:center; margin:34px 0 0}
@@ -105,11 +113,11 @@
 <div class="wrap">
 
   <header>
-    <img class="logo" src="./img/logo-256.png" width="256" height="256" alt="Street University">
-    <h1>Street University</h1>
+    <img class="hero" src="./img/hero.webp" width="1920" height="800" alt="Street University — the game logo on a city rooftop at dawn, with two pigeons on the parapet">
+    <img class="logo" src="./img/logo-256.png" width="256" height="256" alt="Street University app icon: a sleeping ginger cat">
+    <h1 class="sr-only">Street University</h1>
     <p class="tagline">A cartoon street-survival roguelike: thirty-minute runs, upgrade cards, and cats.</p>
-    <p class="byline">An independent game by <strong>Ivan Bianco</strong> &middot; Italy</p>
-    <img class="hero" src="./img/hero.webp" width="1024" height="500" alt="Street University: a homeless man, a cat and a police officer on a city street at night">
+    <p class="byline">An independent game by <strong>Ivan Bianco</strong> &middot; Divano_Prime &middot; Italy</p>
   </header>
 
   <nav class="langbar" hidden>
@@ -157,7 +165,7 @@
       <a href="mailto:info@streetuniversitygame.com">info@streetuniversitygame.com</a>.</p>
 
     <h2>Who makes it</h2>
-    <p>Street University is designed, written and drawn by <strong>Ivan Bianco</strong>, an independent developer based in Italy, and published under the package name <code>com.divano.streetuniversity</code>. There is no studio, no publisher and no team: it is one person and a lot of cats.</p>
+    <p>Street University is designed, written and drawn by <strong>Ivan Bianco</strong>, an independent developer based in Italy, publishing under the name <strong>Divano_Prime</strong> and the package name <code>com.divano.streetuniversity</code>. There is no studio, no publisher and no team: it is one person and a lot of cats.</p>
   </div>
 
   <!-- ============================= ITALIANO ============================= -->
@@ -198,7 +206,7 @@
       <a href="mailto:info@streetuniversitygame.com">info@streetuniversitygame.com</a>.</p>
 
     <h2>Chi lo fa</h2>
-    <p>Street University è ideato, scritto e disegnato da <strong>Ivan Bianco</strong>, sviluppatore indipendente in Italia, e pubblicato col nome pacchetto <code>com.divano.streetuniversity</code>. Non c'è uno studio, non c'è un editore e non c'è una squadra: c'è una persona e parecchi gatti.</p>
+    <p>Street University è ideato, scritto e disegnato da <strong>Ivan Bianco</strong>, sviluppatore indipendente in Italia, che pubblica col nome <strong>Divano_Prime</strong> e col nome pacchetto <code>com.divano.streetuniversity</code>. Non c'è uno studio, non c'è un editore e non c'è una squadra: c'è una persona e parecchi gatti.</p>
   </div>
 
   <hr>
@@ -234,7 +242,7 @@
       <a href="https://blackwindita.github.io/street-university-beta-devices/">Privacy Policy</a>
       <a href="mailto:info@streetuniversitygame.com">info@streetuniversitygame.com</a>
     </div>
-    <p>Street University &mdash; <code>com.divano.streetuniversity</code></p>
+    <p>Street University &mdash; Divano_Prime &mdash; <code>com.divano.streetuniversity</code></p>
     <p>&copy; 2026 Ivan Bianco. All rights reserved. Street University is a work of fiction: any resemblance to real bins is coincidental.</p>
   </footer>
 
