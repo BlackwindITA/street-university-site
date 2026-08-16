@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Street University — a cartoon street-survival roguelike</title>
+<meta name="description" content="Street University is a cartoon street-survival roguelike by Ivan Bianco, independent developer, Italy. Thirty-minute runs, upgrade cards, and cats. For Windows, macOS, Android and iOS.">
+<link rel="canonical" href="https://streetuniversitygame.com/">
+<link rel="icon" type="image/png" href="./img/favicon-64.png">
+<link rel="apple-touch-icon" href="./img/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Street University">
+<meta property="og:description" content="A cartoon street-survival roguelike: 30-minute runs, upgrade cards, and cats.">
+<meta property="og:url" content="https://streetuniversitygame.com/">
+<meta property="og:image" content="https://streetuniversitygame.com/img/hero.webp">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+  :root{
+    --bg:#f7f5f0; --fg:#1c1a17; --muted:#5c574f; --rule:#d9d3c7;
+    --accent:#b4531a; --card:#ffffff; --tag-bg:#efe9dd; --shadow:0 2px 10px rgba(28,26,23,.08);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#16151a; --fg:#ece9e3; --muted:#a09a90; --rule:#34313a;
+      --accent:#ff9d5c; --card:#1f1e25; --tag-bg:#26242d; --shadow:0 2px 14px rgba(0,0,0,.5);
+    }
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--fg);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    font-size:17px; line-height:1.65;
+  }
+  .wrap{max-width:900px; margin:0 auto; padding:0 20px}
+  a{color:var(--accent)}
+  a:hover{text-decoration:none}
+  img{max-width:100%; height:auto; display:block}
+
+  /* ---- testata ---- */
+  header{padding:48px 0 8px; text-align:center}
+  .logo{width:112px; height:112px; margin:0 auto 18px; border-radius:22px; box-shadow:var(--shadow)}
+  h1{
+    margin:0; font-size:clamp(2rem,7vw,3.1rem); line-height:1.05;
+    letter-spacing:.06em; text-transform:uppercase; font-weight:800;
+  }
+  .tagline{margin:14px auto 0; max-width:34em; font-size:1.12rem; color:var(--muted)}
+  .byline{margin:18px 0 0; font-size:.95rem; color:var(--muted)}
+  .byline strong{color:var(--fg); font-weight:600}
+
+  .hero{margin:34px 0 0; border-radius:14px; overflow:hidden; box-shadow:var(--shadow)}
+
+  /* ---- barra lingua (compare solo con JS attivo) ---- */
+  .langbar{display:flex; gap:8px; justify-content:center; margin:34px 0 0}
+  .langbar button{
+    font:inherit; font-size:.9rem; padding:7px 16px; cursor:pointer;
+    background:var(--tag-bg); color:var(--muted); border:1px solid var(--rule); border-radius:999px;
+  }
+  .langbar button[aria-pressed="true"]{background:var(--accent); border-color:var(--accent); color:#fff; font-weight:600}
+  @media (prefers-color-scheme: dark){ .langbar button[aria-pressed="true"]{color:#1a1207} }
+
+  /* ---- corpo ---- */
+  main{padding:8px 0 0}
+  .lang > h2:first-of-type{margin-top:34px}
+  h2{
+    margin:46px 0 4px; font-size:.86rem; letter-spacing:.16em; text-transform:uppercase;
+    color:var(--accent); font-weight:700;
+  }
+  h2 + p{margin-top:10px}
+  h3{margin:32px 0 2px; font-size:1.28rem; line-height:1.3}
+  p{margin:14px 0}
+  .lead{font-size:1.14rem}
+  .note{color:var(--muted); font-size:.96rem}
+  hr{border:0; border-top:1px solid var(--rule); margin:52px 0}
+  .langlabel{
+    display:inline-block; margin:52px 0 -20px; padding:3px 12px; border-radius:999px;
+    background:var(--tag-bg); color:var(--muted); font-size:.78rem; letter-spacing:.12em; text-transform:uppercase;
+  }
+  .js-on .langlabel{display:none}
+
+  /* ---- schede e liste ---- */
+  .cards{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:14px; margin:22px 0}
+  .card{background:var(--card); border:1px solid var(--rule); border-radius:12px; padding:16px 18px}
+  .card h4{margin:0 0 6px; font-size:1rem}
+  .card p{margin:0; font-size:.96rem; color:var(--muted)}
+  ul.plain{list-style:none; padding:0; margin:16px 0; display:flex; flex-wrap:wrap; gap:8px}
+  ul.plain li{
+    background:var(--tag-bg); border:1px solid var(--rule); border-radius:999px;
+    padding:5px 14px; font-size:.9rem; color:var(--muted);
+  }
+
+  /* ---- galleria ---- */
+  .shots{display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:16px; margin:24px 0 0}
+  figure{margin:0}
+  figure img{border-radius:10px; border:1px solid var(--rule); box-shadow:var(--shadow)}
+  figcaption{margin-top:8px; font-size:.88rem; color:var(--muted); text-align:center}
+
+  /* ---- piede ---- */
+  footer{margin:64px 0 0; padding:28px 0 56px; border-top:1px solid var(--rule); color:var(--muted); font-size:.92rem}
+  footer p{margin:8px 0}
+  .footlinks{display:flex; flex-wrap:wrap; gap:8px 22px; margin:0 0 16px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <img class="logo" src="./img/logo-256.png" width="256" height="256" alt="Street University">
+    <h1>Street University</h1>
+    <p class="tagline">A cartoon street-survival roguelike: thirty-minute runs, upgrade cards, and cats.</p>
+    <p class="byline">An independent game by <strong>Ivan Bianco</strong> &middot; Italy</p>
+    <img class="hero" src="./img/hero.webp" width="1024" height="500" alt="Street University: a homeless man, a cat and a police officer on a city street at night">
+  </header>
+
+  <nav class="langbar" hidden>
+    <button type="button" data-lang="en" aria-pressed="true">English</button>
+    <button type="button" data-lang="it" aria-pressed="false">Italiano</button>
+  </nav>
+
+  <main>
+
+  <!-- ============================= ENGLISH ============================= -->
+  <span class="langlabel">English</span>
+  <div class="lang" data-lang="en">
+
+    <h2>The game</h2>
+    <p class="lead">Street University is a cartoon survival roguelike about three very bad days, played entirely for laughs. You are homeless in a city that would rather you weren't, you have thirty minutes, and a cat.</p>
+
+    <h3>The run</h3>
+    <p>Thirty real minutes are three days on the street. Beg at the traffic lights, busk with a kazoo, dig through bins, nap on a bench, wash in a public toilet, and watch hunger, energy and hygiene drain while you do it. Every dawn the city gets meaner: more police, higher prices, stingier passers-by, and absurd daily events like the bin men's strike or the mayor's visit.</p>
+    <p>At minute thirty, the big raid arrives. It always does. A clearance squad faster than you floods the streets, and every run ends the same way. The only questions are how long you last and what you scored.</p>
+
+    <h3>Cards and superpowers</h3>
+    <p>Living on the street is how you level up: begging, busking, bin-diving, sleeping and knocking people over with cats all earn experience. Every level deals you three upgrade cards — iron stomach, street charisma, rubber soles, sixth sense and more. Push one all the way and a juggler drops into town to pelt you with pins; take him down, grab the golden card, and your upgrade is crowned an active superpower with its own recharge.</p>
+
+    <h3>Between runs</h3>
+    <p>Your score turns into cans, and cans buy permanent upgrades at the shack: a starting float, a bottomless appetite, a shopkeeper's discount, a card reroll, a veto, a loyal cat already in your arms. Feats unlock new cards, new superpowers, new characters and endless mode, where the raid is not the end but the start: waves of manhunt and truce, thicker every time, until they finally get you.</p>
+
+    <h3>The city</h3>
+    <p>Eight districts, from the market to the slums to the hill, and a subway to move between them. Real weather with heat and cold waves, day and night, cats to pick up and throw, and a cast of street villains after your corner: the bin man, the cat lady, the junkie, the night gang, and a rival tramp who will chase you across town for fifteen dollars.</p>
+
+    <h2>What you will not find</h2>
+    <div class="cards">
+      <div class="card"><h4>No ads</h4><p>Not one, anywhere in the game.</p></div>
+      <div class="card"><h4>No in-app purchases</h4><p>Nothing to buy inside the game.</p></div>
+      <div class="card"><h4>No account to create</h4><p>Solo play works completely offline.</p></div>
+      <div class="card"><h4>No data selling</h4><p>Saves and settings stay on your device.</p></div>
+    </div>
+    <p class="note">Hand-drawn pixel art, a soundtrack you can leave on, and eight languages: English, Italian, French, Spanish, German, Russian, Simplified Chinese and Brazilian Portuguese.</p>
+    <p>Nobody dies in Street University. You collapse, you get nicked, you lose your ninth life like a cat — and then you go again, because this time you know where the good bins are.</p>
+
+    <h2>Platforms</h2>
+    <ul class="plain"><li>Windows</li><li>macOS</li><li>Android</li><li>iOS</li></ul>
+
+    <h2>Beta</h2>
+    <p>Street University is in <strong>closed beta</strong> and is not on sale yet. If you would like to try it, or if you are already a tester and something broke, write to
+      <a href="mailto:info@streetuniversitygame.com">info@streetuniversitygame.com</a>.</p>
+
+    <h2>Who makes it</h2>
+    <p>Street University is designed, written and drawn by <strong>Ivan Bianco</strong>, an independent developer based in Italy, and published under the package name <code>com.divano.streetuniversity</code>. There is no studio, no publisher and no team: it is one person and a lot of cats.</p>
+  </div>
+
+  <!-- ============================= ITALIANO ============================= -->
+  <span class="langlabel">Italiano</span>
+  <div class="lang" data-lang="it" hidden>
+
+    <h2>Il gioco</h2>
+    <p class="lead">Street University è un roguelike di sopravvivenza in stile cartone animato su tre giornate storte, e si prende sul ridere dall'inizio alla fine. Sei un senzatetto in una città che preferirebbe non vederti, hai trenta minuti e un gatto.</p>
+
+    <h3>La partita</h3>
+    <p>Trenta minuti veri sono tre giorni di strada. Chiedi l'elemosina al semaforo, suona il kazoo, fruga nei bidoni, dormi su una panchina, lavati in un bagno pubblico — e intanto fame, energia e igiene calano. A ogni alba la città diventa più cattiva: più polizia, prezzi più alti, passanti più tirchi, ed eventi del giorno assurdi come lo sciopero dei netturbini o la visita del sindaco.</p>
+    <p>Al trentesimo minuto arriva la retata. Arriva sempre. Una squadra di sgombero più veloce di te riempie le strade, e ogni partita finisce allo stesso modo. Le uniche domande sono quanto duri e quanto hai fatto.</p>
+
+    <h3>Carte e superpoteri</h3>
+    <p>Si sale di livello vivendo per strada: elemosina, musica, bidoni, sonno e gente buttata a terra a gattate danno tutti esperienza. A ogni livello ti arrivano tre carte potenziamento — stomaco di ferro, carisma da marciapiede, suole di gomma, sesto senso e altre. Portane una fino in fondo e in città piomba un giullare che ti bersaglia di birilli: stendilo, prenditi la carta d'oro, e il potenziamento diventa un superpotere attivo con la sua ricarica.</p>
+
+    <h3>Fra una partita e l'altra</h3>
+    <p>Il punteggio diventa lattine, e le lattine comprano migliorie permanenti alla baracca: un gruzzolo iniziale, un appetito senza fondo, lo sconto del negoziante, il cambio di una carta, un veto, un gatto fedele già in braccio. Le imprese sbloccano carte nuove, superpoteri nuovi, personaggi nuovi e la modalità infinita, dove la retata non è la fine ma l'inizio: ondate di caccia all'uomo e tregua, sempre più fitte, finché non ti prendono.</p>
+
+    <h3>La città</h3>
+    <p>Otto quartieri, dal mercato alle baracche alla collina, e una metropolitana per spostarsi. Meteo vero con ondate di caldo e di freddo, giorno e notte, gatti da raccogliere e da lanciare, e una compagnia di canaglie che ti vuole l'angolo: il netturbino, la gattara, il tossico, la banda della notte e un barbone rivale che ti insegue per mezza città per quindici dollari.</p>
+
+    <h2>Cosa non ci troverai</h2>
+    <div class="cards">
+      <div class="card"><h4>Nessuna pubblicità</h4><p>Neanche una, da nessuna parte.</p></div>
+      <div class="card"><h4>Nessun acquisto in-app</h4><p>Dentro al gioco non si compra niente.</p></div>
+      <div class="card"><h4>Nessun account da creare</h4><p>In singolo funziona del tutto offline.</p></div>
+      <div class="card"><h4>Nessun dato in vendita</h4><p>Salvataggi e impostazioni restano sul tuo dispositivo.</p></div>
+    </div>
+    <p class="note">Pixel art disegnata a mano, una colonna sonora che puoi lasciare accesa, e otto lingue: italiano, inglese, francese, spagnolo, tedesco, russo, cinese semplificato e portoghese brasiliano.</p>
+    <p>In Street University non muore nessuno. Crolli, ti beccano, perdi la nona vita come un gatto — e poi ricominci, perché stavolta sai dove sono i bidoni buoni.</p>
+
+    <h2>Piattaforme</h2>
+    <ul class="plain"><li>Windows</li><li>macOS</li><li>Android</li><li>iOS</li></ul>
+
+    <h2>Beta</h2>
+    <p>Street University è in <strong>beta chiusa</strong> e non è ancora in vendita. Se vuoi provarlo, o se sei già un tester e qualcosa si è rotto, scrivi a
+      <a href="mailto:info@streetuniversitygame.com">info@streetuniversitygame.com</a>.</p>
+
+    <h2>Chi lo fa</h2>
+    <p>Street University è ideato, scritto e disegnato da <strong>Ivan Bianco</strong>, sviluppatore indipendente in Italia, e pubblicato col nome pacchetto <code>com.divano.streetuniversity</code>. Non c'è uno studio, non c'è un editore e non c'è una squadra: c'è una persona e parecchi gatti.</p>
+  </div>
+
+  <hr>
+
+  <h2>Screenshots</h2>
+  <div class="shots">
+    <figure>
+      <img src="./img/shot-city-day.webp" width="1280" height="720" loading="lazy" alt="The city by day, seen from above, with the status bars on the left">
+      <figcaption>The city by day &middot; La città di giorno</figcaption>
+    </figure>
+    <figure>
+      <img src="./img/shot-city-night.webp" width="1280" height="720" loading="lazy" alt="The same streets at night, lit by street lamps">
+      <figcaption>Night falls &middot; Scende la notte</figcaption>
+    </figure>
+    <figure>
+      <img src="./img/shot-cards.webp" width="1280" height="720" loading="lazy" alt="The upgrade card screen: three cards to choose from">
+      <figcaption>Three cards per level &middot; Tre carte a ogni livello</figcaption>
+    </figure>
+    <figure>
+      <img src="./img/shot-shack.webp" width="1280" height="720" loading="lazy" alt="The shack, where permanent upgrades are bought between runs">
+      <figcaption>The shack &middot; La baracca</figcaption>
+    </figure>
+    <figure>
+      <img src="./img/shot-menu.webp" width="1280" height="720" loading="lazy" alt="The Street University title screen">
+      <figcaption>Title screen &middot; Il menu</figcaption>
+    </figure>
+  </div>
+
+  </main>
+
+  <footer>
+    <div class="footlinks">
+      <a href="https://blackwindita.github.io/street-university-beta-devices/">Privacy Policy</a>
+      <a href="mailto:info@streetuniversitygame.com">info@streetuniversitygame.com</a>
+    </div>
+    <p>Street University &mdash; <code>com.divano.streetuniversity</code></p>
+    <p>&copy; 2026 Ivan Bianco. All rights reserved. Street University is a work of fiction: any resemblance to real bins is coincidental.</p>
+  </footer>
+
+</div>
+
+<script>
+(function () {
+  var bar = document.querySelector('.langbar');
+  var blocks = document.querySelectorAll('.lang');
+  if (!bar || !blocks.length) return;          // niente JS utile: restano tutte e due le lingue
+
+  document.body.classList.add('js-on');
+  bar.hidden = false;
+
+  function show(lang) {
+    for (var i = 0; i < blocks.length; i++) {
+      blocks[i].hidden = (blocks[i].getAttribute('data-lang') !== lang);
+    }
+    var btns = bar.querySelectorAll('button');
+    for (var j = 0; j < btns.length; j++) {
+      btns[j].setAttribute('aria-pressed', String(btns[j].getAttribute('data-lang') === lang));
+    }
+    document.documentElement.lang = lang;
+  }
+
+  bar.addEventListener('click', function (e) {
+    var b = e.target.closest('button[data-lang]');
+    if (b) show(b.getAttribute('data-lang'));
+  });
+
+  var preferred = (navigator.language || 'en').toLowerCase().indexOf('it') === 0 ? 'it' : 'en';
+  show(preferred);
+})();
+</script>
+</body>
+</html>
