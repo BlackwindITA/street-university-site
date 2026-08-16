@@ -41,7 +41,8 @@ Tutte derivate dagli asset del repo del gioco — non modificarle a mano qui, si
 |---|---|
 | `img/hero.webp` | **composizione**: `assets/ui/menu_bg/tetto_alba.png` (1920×800, il tetto all'alba coi due piccioni) con sopra `assets/ui/menu_logo.png` scalato a 768 px con LANCZOS e centrato nel cielo a y=117. Il logo è arte a risoluzione piena, con dettagli da 1 px: **non** è pixel art da ingrandire col nearest |
 | `img/logo-256.png`, `apple-touch-icon.png`, `favicon-64.png` | `iOS/icon.png` (il gatto che dorme di SU-366), ridotta a 256/180/64 px |
-| `img/shot-*.webp` | screenshot `STORE_ASSETS/google_play/screenshots/tablet_10` 2560×1440, ridotti 2:1 con filtro BOX a 1280×720, WebP q88 |
+| `img/shot-menu.webp` | **scatto fresco** dal gioco: `bash tools/autotest/shot_su416.sh <dir> desktop_1280x720` produce `desktop_1280x720_5_menu.png` a 1280×720 nativi, convertito in WebP q88 senza ridurre. La lingua si impone scrivendo `lingua="en"` in `[general]` di un `settings.cfg` nella user-dir **isolata** del provino (`/tmp/su_<uid>_home_godot/Library/Application Support/Street University/`): quella vera di Ivan non si tocca e resta `it` |
+| `img/shot-city-*.webp`, `shot-cards.webp`, `shot-shack.webp` | screenshot `STORE_ASSETS/google_play/screenshots/tablet_10` 2560×1440, ridotti 2:1 con filtro BOX a 1280×720, WebP q88. ⚠️ Sono della **versione vecchia**: `shot-shack.webp` in particolare mostra una UI che non esiste più così (la baracca è passata sotto PROGRESS) |
 
 Il titolo del gioco vive **dentro** l'immagine dell'eroe: per questo l'`<h1>` della pagina è
 `sr-only`, presente per lettori di schermo e motori di ricerca ma non disegnato due volte.
