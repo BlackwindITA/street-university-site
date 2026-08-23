@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>v0.24 — Novità Street University</title>
+<meta name="description" content="Dettaglio tecnico della versione v0.24 di Street University, generato dal changelog di sviluppo.">
+<link rel="canonical" href="https://www.streetuniversitygame.com/changelog/v/v0-24.html">
+<link rel="icon" type="image/png" href="../../img/favicon-64.png">
+<link rel="apple-touch-icon" href="../../img/apple-touch-icon.png">
+<style>
+:root{
+  --bg:#f7f5f0; --fg:#1c1a17; --muted:#5c574f; --rule:#d9d3c7;
+  --accent:#b4531a; --card:#ffffff; --tag-bg:#efe9dd; --shadow:0 2px 10px rgba(28,26,23,.08);
+  --novita-bg:#fff4e8; --novita-border:#e8b98a;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#16151a; --fg:#ece9e3; --muted:#a09a90; --rule:#34313a;
+    --accent:#ff9d5c; --card:#1f1e25; --tag-bg:#26242d; --shadow:0 2px 14px rgba(0,0,0,.5);
+    --novita-bg:#2a2115; --novita-border:#6b4423;
+  }
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--bg); color:var(--fg);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  font-size:17px; line-height:1.6;
+}
+.wrap{max-width:760px; margin:0 auto; padding:0 18px 60px}
+a{color:var(--accent)}
+code{background:var(--tag-bg); padding:.1em .35em; border-radius:4px; font-size:.9em; word-break:break-word}
+header.top{padding:28px 0 6px; text-align:center}
+header.top .back{font-size:.92rem; color:var(--muted); text-decoration:none}
+header.top h1{margin:14px 0 4px; font-size:1.7rem}
+header.top p.sub{margin:0; color:var(--muted); font-size:1rem}
+.stats{margin:18px 0 0; display:flex; gap:8px; flex-wrap:wrap; justify-content:center}
+.stats span{
+  background:var(--tag-bg); border:1px solid var(--rule); border-radius:999px;
+  padding:4px 12px; font-size:.82rem; color:var(--muted);
+}
+main{padding:20px 0 0}
+section.version{
+  background:var(--card); border:1px solid var(--rule); border-radius:14px;
+  padding:18px 18px 16px; margin:0 0 22px; box-shadow:var(--shadow);
+}
+section.version h2{
+  margin:0 0 2px; font-size:1.25rem; display:flex; align-items:baseline; gap:8px; flex-wrap:wrap;
+}
+section.version h2 .ver{color:var(--accent); font-weight:800}
+section.version .dates{margin:0 0 14px; font-size:.85rem; color:var(--muted)}
+.novita-list{list-style:none; margin:0; padding:0}
+.novita-list li{
+  background:var(--novita-bg); border:1px solid var(--novita-border); border-radius:10px;
+  padding:9px 12px; margin:0 0 8px; font-size:.96rem;
+}
+.novita-empty{color:var(--muted); font-size:.9rem; font-style:italic; margin:0 0 8px}
+.detail-link{
+  display:inline-block; margin-top:6px; font-size:.88rem; font-weight:600;
+  text-decoration:none;
+}
+.version-page header.top .back{display:block; margin-bottom:4px}
+.entry{margin:14px 0 0; padding-top:12px; border-top:1px dashed var(--rule)}
+.entry:first-of-type{border-top:none; padding-top:0}
+.entry h3{margin:0 0 6px; font-size:1rem}
+.entry h3 .date{color:var(--muted); font-weight:400; font-size:.85rem; display:block}
+.entry ul, .entry ol{margin:6px 0; padding-left:1.25em}
+.entry li{margin:0 0 8px}
+.entry p{margin:6px 0}
+.tbl-wrap{overflow-x:auto; margin:8px 0}
+table{border-collapse:collapse; font-size:.85rem; width:100%}
+th,td{border:1px solid var(--rule); padding:5px 8px; text-align:left; white-space:nowrap}
+footer.bottom{margin:30px 0 0; padding-top:18px; border-top:1px solid var(--rule); color:var(--muted); font-size:.85rem; text-align:center}
+</style>
+</head>
+<body class="version-page">
+<div class="wrap">
+  <header class="top">
+    <a class="back" href="../">← Novità</a>
+    <h1><span class="ver">v0.24</span></h1>
+    <p class="sub">2026-07-26 · 1 voce/i di changelog</p>
+  </header>
+  <main>
+    <ul class="novita-list"><li>SU-120 — gli isolati si compongono a larghezze miste, e le torri svettano solo dove non nascondono niente.</li><li>SU-142 — il GATTILE ha finalmente la sua faccia.</li><li>SU-156 — qualche filo d'erba sul marciapiede.</li><li>SU-158 (KO) — le carte super si dispongono e si scelgono esattamente come le normali.</li><li>SU-150 — la marmotta approvata entra nella notifica delle scorregge.</li><li>SU-160 — lampadina e tromba nei messaggi, con l'assegnazione dichiarata invece che indovinata.</li></ul>
+    <section class="version">
+    <div class="entry"><h3>Sprint 8: la skyline non è più a palazzi gemelli, il gattile apre, quattro KO chiusi<span class="date">2026-07-26</span></h3><ul><li>[feat] <strong>SU-120 — gli isolati si compongono a larghezze miste, e le torri svettano solo dove non nascondono niente.</strong> L'isolato non è più una griglia di sotto-celle da 96: si divide in <strong>file</strong> e ogni fila si riempie greedy usando la <strong>larghezza reale</strong> dello sprite. È la scelta che conta: le larghezze approvate in SU-118 sono <strong>irregolari</strong> (36/39/43/75/91/96/144, non i 48/96/144 nominali), quindi slot a larghezza fissa per taglia avrebbero lasciato buchi sistematici. Lo spazio avanzato si ridistribuisce fra bordi e vuoti. <strong>Torri</strong>: il tetto dei ~160px è caduto col KO di Ivan su SU-118, e le 7 torri da 211-252px sono entrate. Una torre è candidata solo nella <strong>fila davanti</strong> di un super-isolato e solo se <code>altezza ≤ profondità del lotto</code> — così sta tutta dentro il proprio isolato e <strong>non raggiunge mai la strada dietro</strong>; poi <code>_cappello_libero()</code> verifica che il «cappello» proiettato a nord non intersechi edifici, ingressi interagibili o consumabili, e se fallisce il generatore <strong>ripiega sulle taglie basse</strong>. Il cono occluso è escluso dagli spawn: niente gatti invisibili, che era il difetto citato da Ivan. <strong>Z-order da <code>z_index = -5</code> a <code>int(base_y)</code></strong> (schema y-sortato già in uso da rifugio e player): senza, un pedone sulla strada dietro sarebbe passato <strong>davanti</strong> alla facciata dei palazzi nuovi. Importati i 25 asset approvati, <code>buildings_manifest</code> rigenerato con <code>BUILDING_SIZES</code>, indice per taglia in <code>BuildingDatabase</code> (<code>pick_building_fit</code>/<code>pick_torre</code>, deterministiche). <code>WorldGenerator.gd</code>, <code>BuildingDatabase.gd</code>, <code>buildings_manifest.gd</code>, <code>tools/import_buildings_sprites.py</code>. Commit <code>8f2b644</code>.</li><li>[feat] <strong>SU-142 — il GATTILE ha finalmente la sua faccia.</strong> Montato lo sprite approvato da Ivan (<strong>insegna «CATS»</strong>, 96×124) al posto del placeholder residenziale, ancorato alla base come gli altri edifici; <strong>collisioni invariate</strong> sul rect 96×96 e fallback al placeholder se il PNG manca. Caricato per nome diretto e non dal discovery per-quartiere, così non può essere pescato a caso altrove. Commit <code>8f2b644</code>.</li><li>[feat] <strong>SU-156 — qualche filo d'erba sul marciapiede.</strong> Le due varianti scelte da Ivan (B e D) sparse dal generatore, deterministiche dal seme, <code>z_index -14</code> (sopra la piastra, sotto tutto il resto), zero collisioni e zero interazioni. Densità 35% dei blocchi con un ciuffo, 25% di questi con un secondo: <strong>7-24 ciuffi a seconda del seme</strong> — se a Ivan sembrano pochi o troppi è un numero solo da cambiare. Commit <code>8f2b644</code>.</li><li>[fix] <strong>SU-156 — i ciuffi finivano sull'asfalto una volta su due, ed è stato il collaudo a beccarlo.</strong> L'implementazione pescava i punti nella fascia larga <code>wang_pad = 34</code> attorno all'isolato, dando per scontato che fosse tutta marciapiede: «per costruzione, non per filtro». Ma il marciapiede <strong>disegnato</strong> finisce a <code>wang_pad − WANG_INSET = 18px</code>, perché la cucitura della piastra sta <strong>dentro</strong> il pad. Misura su 4 semi: <strong>33 ciuffi su 66 sulla strada</strong>, fino a 30px oltre il bordo. Ora si campiona sullo sbordo utile: <strong>0 su 66</strong>. La lezione è che un'assunzione geometrica «vera per costruzione» va comunque misurata. Commit <code>8f2b644</code>.</li><li>[fix] <strong>Il gattile aveva un quadratino bianco davanti alla porta.</strong> <code>Interactable.Type.GATTILE</code> non aveva un caso nel <code>match</code> di <code>_add_interactable()</code> e cadeva sul default (<code>Color.WHITE</code>, 16×16), mentre rifugio, liquor e negozio di vestiti hanno tutti il loro <code>Color(1,1,1,0)</code>. Non si vedeva col placeholder generico, è saltato all'occhio appena montato lo sprite vero. Commit <code>8f2b644</code>.</li><li>[fix] <strong>Difetto PREESISTENTE (dal v0.11): i bidoni rompevano «stesso seme, stessa mappa».</strong> <code>_find_bin_point()</code> usava <code>corners.shuffle()</code>, che pesca dall'<strong>RNG globale del motore</strong> invece che dal generatore seedato: in MP host e client mettevano i bidoni in angoli diversi. Non nasce da questo sprint, ma «deterministico dal seed» è un <strong>criterio di accettazione di SU-120</strong>, e consegnarlo sapendo che la mappa non lo era sarebbe stata una mezza consegna. Ora Fisher-Yates col RNG seedato; il codice nuovo di SU-120 era già deterministico bit-per-bit. Commit <code>8f2b644</code>.</li><li>[feat] <strong>SU-158 (KO) — le carte super si dispongono e si scelgono esattamente come le normali.</strong> Terzo giro su questo ticket. Ventaglio, animazione di navigazione e ingresso portati da <code>LevelUpScreen</code> <strong>copiandone i valori</strong> invece di ritararli (<code>OVERLAP</code> 0.75, <code>FAN_DEG</code> 10, <code>HILITE_SCALE</code> 1.15, <code>HILITE_RAISE</code> 34, <code>_animate_card_to</code> 0.16s <code>TRANS_QUAD</code>): prima il passaggio da una carta all'altra scattava di colpo, senza tween. Scartata l'estrazione in helper condivisi, che avrebbe toccato <code>LevelUpScreen</code> contro il vincolo «carte normali invariate al pixel». <strong>Il difetto vero della selezione non era il touch</strong>, che era già a due stadi ed era corretto: la cerimonia ascoltava <strong><code>ui_accept</code></strong> (Invio/Spazio) mentre le carte normali usano l'azione <strong><code>interact</code></strong> — cioè E e soprattutto il <strong>bottone «A» dei controlli touch, che nella cerimonia non battezzava nulla</strong>. Brillio e coriandoli invariati, come approvati. <code>SuperCeremony.gd</code>. Commit <code>2a66f0f</code>.</li><li>[fix] <strong>SU-132 (KO) — le stazioni bloccate si mascherano, e il reset azzera davvero.</strong> Dietro il KO «resettando mi compaiono tutte le stazioni» c'erano <strong>due</strong> difetti. Il primo: i pallini lungo la linea erano sempre <code>●</code> e cambiava solo il colore — il <code>???</code> esisteva solo sulla scheda col nome; ora una stazione bloccata è <code>?</code>. Gli indizi comici richiesti dal ticket <strong>c'erano già tutti</strong> in <code>Quartieri.indizio()</code>, non serviva scriverne di nuovi. Il secondo, che è la causa vera: <strong>nessuna azione di reset toccava <code>MetaProgress</code></strong> — né OPZIONI → RESETTA STATISTICHE né il «Reset prog.» del DebugPanel — quindi gli sblocchi sopravvivevano a qualunque azzeramento. Nuovo <code>MetaProgress.reset_all()</code> agganciato al reset ufficiale delle Opzioni. <strong>Da confermare a Ivan</strong>: <code>reset_all()</code> azzera anche la ragnatela carte (coerente con «tabula rasa», ma è una scelta nostra), e il «Reset prog.» di F1 è stato lasciato com'è, per i test di bilanciamento. <code>MainMenu.gd</code>, <code>MetaProgress.gd</code>. Commit <code>8ea26f2</code>.</li><li>[fix] <strong>SU-140 (KO) — il cerchio attorno al barbone si disegna solo di notte.</strong> Il buco del cerchio nella vignette era <strong>incondizionato</strong>: si ritagliava a qualunque ora e cancellava la tinta di quartiere, ed è per questo che Ivan vedeva sparire il giallo del Solleone in pieno giorno. Non era un <code>PointLight2D</code> ma due shader inline; ora il buco è legato a <code>night_amt</code> in entrambi, con transizione graduale per non fare un lampo al tramonto. Di giorno la tinta copre lo schermo uniforme, di notte il cerchio è invariato. <code>World.gd</code>. Commit <code>df710c9</code>.</li><li>[feat] <strong>SU-150 — la marmotta approvata entra nella notifica delle scorregge.</strong> Versione <strong>B, solo muso</strong> (quella che Ivan ha approvato), al posto del placeholder emoji <code>🐹</code>, con fallback se il PNG manca. Nota di percorso: il call site <strong>non era in <code>HUD.gd</code></strong> come diceva il ticket ma in <code>Player.gd</code>. <code>Player.gd</code>, <code>assets/sprites/marmotta.png</code>. Commit <code>df710c9</code>.</li><li>[feat] <strong>SU-160 — lampadina e tromba nei messaggi, con l'assegnazione dichiarata invece che indovinata.</strong> Il ticket diceva «da concordare con Ivan se non ovvia» e Ivan non ha risposto: applicato un <strong>default esplicito, da approvare o cambiare in una riga</strong> — <strong>lampadina</strong> sui messaggi che insegnano (<code>TutorialManager</code>), <strong>tromba</strong> sugli annunci e i traguardi («NUOVA FERMATA», annunci di nuovo giorno). Dove c'era già un'emoji con lo stesso mestiere (<code>🚇</code>, <code>🗑</code>, <code>🎩</code>) è stata <strong>sostituita, non affiancata</strong>. Saltati i call site dove stonava (il commiato di fine tutorial, il banner di distretto): meglio quattro messaggi giusti che dodici a caso. <code>TutorialManager.gd</code>, <code>World.gd</code>, <code>DifficultyManager.gd</code>. Commit <code>df710c9</code>.</li><li>[feat] <strong>SU-166 (nuovo, in attesa di approvazione) — la texture del parco rifatta seamless.</strong> Nasce dal KO di SU-119 («si spacca file per file perché non sono allineate»): creata la coppia di generazione come da flusso sprite, e SU-119 resta bloccato finché Ivan non approva. Nuova texture 96×96 <strong>perfettamente tileable</strong> — differenza media al giunto <strong>0.000</strong> contro 7.7 (colonne) e 9.1 (righe) fra due linee interne adiacenti, cioè il bordo combacia meglio di due righe qualsiasi dentro la texture — più un foglio di tessere di bordo con <strong>angolo morbido e transizione dithered</strong> (maschera bilineare sui 4 angoli + Bayer ordinato), sul modello del bordo marciapiede. <strong>Nota onesta</strong>: la nuova erba è <strong>più piatta</strong> dell'attuale, che ha sentieri e cespugli — è lo stesso rilievo che Ivan aveva mosso al TileMap, ed è il compromesso strutturale del seamless (un motivo forte cotto in una tessera è proprio ciò che «si spacca» quando si ripete). Decide lui. <code>sprites_raw/WORLD/temp/</code>, anteprima <code>TMP/su119_park_preview.png</code>.</li><li>[test] <strong>Collaudo di fine sprint: 69 script / 24 scene, 0 falliti</strong>; run SP 150s con <strong>0 SCRIPT ERROR, 0 orfani, gatti stabili 8/8</strong>. Il collaudo ha prodotto due strumenti diagnostici che restano nel repo perché si sono ripagati subito: <code>su156_diag.gd</code> (conta i ciuffi fuori dal marciapiede su più semi) e <code>su120bc_diag.gd</code> (confronta due generazioni dello stesso seme e stampa le differenze). Verificato inoltre che la <strong>fontana sparita</strong> dal parco fra gli screenshot prima/dopo <strong>non è un difetto</strong>: <code>_spawn_fountain()</code> non passa mai dal test di occlusione, è lo slittamento atteso del flusso RNG (su un altro seme le fontane aumentano invece di diminuire). Dettagli in <code>TESTLOG.md</code>.</li></ul></div>
+    </section>
+  </main>
+  <footer class="bottom">
+    <p><a href="../">← Torna a tutte le novità</a></p>
+  </footer>
+</div>
+</body>
+</html>

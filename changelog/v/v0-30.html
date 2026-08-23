@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>v0.30 — Novità Street University</title>
+<meta name="description" content="Dettaglio tecnico della versione v0.30 di Street University, generato dal changelog di sviluppo.">
+<link rel="canonical" href="https://www.streetuniversitygame.com/changelog/v/v0-30.html">
+<link rel="icon" type="image/png" href="../../img/favicon-64.png">
+<link rel="apple-touch-icon" href="../../img/apple-touch-icon.png">
+<style>
+:root{
+  --bg:#f7f5f0; --fg:#1c1a17; --muted:#5c574f; --rule:#d9d3c7;
+  --accent:#b4531a; --card:#ffffff; --tag-bg:#efe9dd; --shadow:0 2px 10px rgba(28,26,23,.08);
+  --novita-bg:#fff4e8; --novita-border:#e8b98a;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#16151a; --fg:#ece9e3; --muted:#a09a90; --rule:#34313a;
+    --accent:#ff9d5c; --card:#1f1e25; --tag-bg:#26242d; --shadow:0 2px 14px rgba(0,0,0,.5);
+    --novita-bg:#2a2115; --novita-border:#6b4423;
+  }
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--bg); color:var(--fg);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  font-size:17px; line-height:1.6;
+}
+.wrap{max-width:760px; margin:0 auto; padding:0 18px 60px}
+a{color:var(--accent)}
+code{background:var(--tag-bg); padding:.1em .35em; border-radius:4px; font-size:.9em; word-break:break-word}
+header.top{padding:28px 0 6px; text-align:center}
+header.top .back{font-size:.92rem; color:var(--muted); text-decoration:none}
+header.top h1{margin:14px 0 4px; font-size:1.7rem}
+header.top p.sub{margin:0; color:var(--muted); font-size:1rem}
+.stats{margin:18px 0 0; display:flex; gap:8px; flex-wrap:wrap; justify-content:center}
+.stats span{
+  background:var(--tag-bg); border:1px solid var(--rule); border-radius:999px;
+  padding:4px 12px; font-size:.82rem; color:var(--muted);
+}
+main{padding:20px 0 0}
+section.version{
+  background:var(--card); border:1px solid var(--rule); border-radius:14px;
+  padding:18px 18px 16px; margin:0 0 22px; box-shadow:var(--shadow);
+}
+section.version h2{
+  margin:0 0 2px; font-size:1.25rem; display:flex; align-items:baseline; gap:8px; flex-wrap:wrap;
+}
+section.version h2 .ver{color:var(--accent); font-weight:800}
+section.version .dates{margin:0 0 14px; font-size:.85rem; color:var(--muted)}
+.novita-list{list-style:none; margin:0; padding:0}
+.novita-list li{
+  background:var(--novita-bg); border:1px solid var(--novita-border); border-radius:10px;
+  padding:9px 12px; margin:0 0 8px; font-size:.96rem;
+}
+.novita-empty{color:var(--muted); font-size:.9rem; font-style:italic; margin:0 0 8px}
+.detail-link{
+  display:inline-block; margin-top:6px; font-size:.88rem; font-weight:600;
+  text-decoration:none;
+}
+.version-page header.top .back{display:block; margin-bottom:4px}
+.entry{margin:14px 0 0; padding-top:12px; border-top:1px dashed var(--rule)}
+.entry:first-of-type{border-top:none; padding-top:0}
+.entry h3{margin:0 0 6px; font-size:1rem}
+.entry h3 .date{color:var(--muted); font-weight:400; font-size:.85rem; display:block}
+.entry ul, .entry ol{margin:6px 0; padding-left:1.25em}
+.entry li{margin:0 0 8px}
+.entry p{margin:6px 0}
+.tbl-wrap{overflow-x:auto; margin:8px 0}
+table{border-collapse:collapse; font-size:.85rem; width:100%}
+th,td{border:1px solid var(--rule); padding:5px 8px; text-align:left; white-space:nowrap}
+footer.bottom{margin:30px 0 0; padding-top:18px; border-top:1px solid var(--rule); color:var(--muted); font-size:.85rem; text-align:center}
+</style>
+</head>
+<body class="version-page">
+<div class="wrap">
+  <header class="top">
+    <a class="back" href="../">← Novità</a>
+    <h1><span class="ver">v0.30</span></h1>
+    <p class="sub">2026-08-10 · 1 voce/i di changelog</p>
+  </header>
+  <main>
+    <p class="novita-empty">Nessuna novità grossa segnalata in questa versione (solo correzioni e lavori interni).</p>
+    <section class="version">
+    <div class="entry"><h3>Release v0.30: le note in-game in otto lingue e il numero di versione<span class="date">2026-08-10</span></h3><ul><li>[release] <strong>Sezione <code>v0.30</code> in cima a tutte e otto le note in-game, e <code>config/version</code> a <code>0.30</code>.</strong> Diciassette voci in tono da giocatore ricavate dal delta CHANGELOG dall'ultimo tag (<code>v0.29-tutto-piu-grande-controlli-a-scomparsa-bordi-mappa-panchine-garantite</code>, quattro giri di sprint dall'ottavo all'8quater): le tre calamità meteo che lasciano il segno, il colpo di calore diventato sbornia intera col suo sprite, l'HUD che perde l'84% e si raddrizza, le tre icone scelte da Ivan, ora/giorno/retata nell'angolo, RICOMINCIA dalla pausa, il pulsante pausa che non sparisce più, la sezione CONTROLLI con trasparenza e spunta, il joystick ad anello che nasce sotto il dito, la monetina al posto del sacchetto, le note tradotte fino alla v0.21, il barbone dietro ai camioncini, i bagni chimici che non coprono più le panchine, la schermata del nome a prova di testo grande, le note del busking pixel art, gli eventi cittadini rimossi e i due residui magenta. 📌 <strong>Tradotte tutte e sette le gemelle nello stesso giro</strong> (en/fr/es/de/ru/zh/pt), non parola per parola: ogni lingua tiene il tono comico con le sue immagini — «wet rag», «serpillière», «fregona mojada», «nasser Lappen», «мокрая тряпка», «pano molhado», «湿抹布». <strong>Verificato coi conti e non a occhio</strong>: tutti e 8 i file a <strong>166 righe</strong> e <strong>17 bullet</strong> nella sezione nuova, <strong>zero parentesi quadre</strong> (il parser di <code>MainMenu.gd</code> inietta BBCode senza escape) e <strong>zero emoji</strong> con una scansione Unicode per categoria — quest'ultima serve perché <code>audit_emoji_pittogrammi.py</code> <strong>non guarda i <code>.txt</code></strong>, cosa scoperta durante SU-344. Le sezioni delle versioni precedenti non sono state toccate: i file restano cumulativi. 📌 <strong>Restano fuori dalle note, ed è voluto</strong>: SU-345 (misura del renderer Compatibility, che si è chiusa con «lasciare tutto com'è») e tutto il filone di distribuzione, che è infrastruttura e non gioco.</li><li>[change] <strong>Le note *What to Test* di TestFlight passano all'italiano — regola di Ivan.</strong> Sono la schermata che Apple mostra ai tester <strong>al primo avvio della versione nuova</strong>, e i beta tester sono tutti italiani: scriverle in inglese serviva solo i revisori Apple. 📌 <strong>La localizzazione resta <code>en-US</code> e non se ne crea una <code>it</code></strong>, ed è la parte che conta: TestFlight mostra la localizzazione che combacia con la lingua del dispositivo, quindi una <code>it</code> isolata renderebbe le note <strong>invisibili</strong> a chi ha il telefono in un'altra lingua, mentre l'unica <code>en-US</code> fa da ripiego universale. Si scrive quindi testo italiano dentro lo slot esistente. Allineati <code>.claude/commands/testflight.md</code> (§5-bis), <code>.claude/skills/pubblica-store/SKILL.md</code> e <code>.claude/commands/rilascio-beta.md</code>, così la prossima volta è già così senza doverlo ridire.</li></ul></div>
+    </section>
+  </main>
+  <footer class="bottom">
+    <p><a href="../">← Torna a tutte le novità</a></p>
+  </footer>
+</div>
+</body>
+</html>
