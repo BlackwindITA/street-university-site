@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>v0.41 — Novità Street University</title>
+<meta name="description" content="Dettaglio tecnico della versione v0.41 di Street University, generato dal changelog di sviluppo.">
+<link rel="canonical" href="https://www.streetuniversitygame.com/changelog/v/v0-41.html">
+<link rel="icon" type="image/png" href="../../img/favicon-64.png">
+<link rel="apple-touch-icon" href="../../img/apple-touch-icon.png">
+<style>
+:root{
+  --bg:#f7f5f0; --fg:#1c1a17; --muted:#5c574f; --rule:#d9d3c7;
+  --accent:#b4531a; --card:#ffffff; --tag-bg:#efe9dd; --shadow:0 2px 10px rgba(28,26,23,.08);
+  --novita-bg:#fff4e8; --novita-border:#e8b98a;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#16151a; --fg:#ece9e3; --muted:#a09a90; --rule:#34313a;
+    --accent:#ff9d5c; --card:#1f1e25; --tag-bg:#26242d; --shadow:0 2px 14px rgba(0,0,0,.5);
+    --novita-bg:#2a2115; --novita-border:#6b4423;
+  }
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--bg); color:var(--fg);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  font-size:17px; line-height:1.6;
+}
+.wrap{max-width:760px; margin:0 auto; padding:0 18px 60px}
+a{color:var(--accent)}
+code{background:var(--tag-bg); padding:.1em .35em; border-radius:4px; font-size:.9em; word-break:break-word}
+header.top{padding:28px 0 6px; text-align:center}
+header.top .back{font-size:.92rem; color:var(--muted); text-decoration:none}
+header.top h1{margin:14px 0 4px; font-size:1.7rem}
+header.top p.sub{margin:0; color:var(--muted); font-size:1rem}
+.stats{margin:18px 0 0; display:flex; gap:8px; flex-wrap:wrap; justify-content:center}
+.stats span{
+  background:var(--tag-bg); border:1px solid var(--rule); border-radius:999px;
+  padding:4px 12px; font-size:.82rem; color:var(--muted);
+}
+main{padding:20px 0 0}
+section.version{
+  background:var(--card); border:1px solid var(--rule); border-radius:14px;
+  padding:18px 18px 16px; margin:0 0 22px; box-shadow:var(--shadow);
+}
+section.version h2{
+  margin:0 0 2px; font-size:1.25rem; display:flex; align-items:baseline; gap:8px; flex-wrap:wrap;
+}
+section.version h2 .ver{color:var(--accent); font-weight:800}
+section.version .dates{margin:0 0 14px; font-size:.85rem; color:var(--muted)}
+.novita-list{list-style:none; margin:0; padding:0}
+.novita-list li{
+  background:var(--novita-bg); border:1px solid var(--novita-border); border-radius:10px;
+  padding:9px 12px; margin:0 0 8px; font-size:.96rem;
+}
+.novita-empty{color:var(--muted); font-size:.9rem; font-style:italic; margin:0 0 8px}
+.detail-link{
+  display:inline-block; margin-top:6px; font-size:.88rem; font-weight:600;
+  text-decoration:none;
+}
+.version-page header.top .back{display:block; margin-bottom:4px}
+.entry{margin:14px 0 0; padding-top:12px; border-top:1px dashed var(--rule)}
+.entry:first-of-type{border-top:none; padding-top:0}
+.entry h3{margin:0 0 6px; font-size:1rem}
+.entry h3 .date{color:var(--muted); font-weight:400; font-size:.85rem; display:block}
+.entry ul, .entry ol{margin:6px 0; padding-left:1.25em}
+.entry li{margin:0 0 8px}
+.entry p{margin:6px 0}
+.tbl-wrap{overflow-x:auto; margin:8px 0}
+table{border-collapse:collapse; font-size:.85rem; width:100%}
+th,td{border:1px solid var(--rule); padding:5px 8px; text-align:left; white-space:nowrap}
+footer.bottom{margin:30px 0 0; padding-top:18px; border-top:1px solid var(--rule); color:var(--muted); font-size:.85rem; text-align:center}
+</style>
+</head>
+<body class="version-page">
+<div class="wrap">
+  <header class="top">
+    <a class="back" href="../">← Novità</a>
+    <h1><span class="ver">v0.41</span></h1>
+    <p class="sub">2026-08-26 · 1 voce/i di changelog</p>
+  </header>
+  <main>
+    <p class="novita-empty">Nessuna novità grossa segnalata in questa versione (solo correzioni e lavori interni).</p>
+    <section class="version">
+    <div class="entry"><h3>Le note della v0.41 in otto lingue, e il tag di lavoro che dirottava il rilascio<span class="date">2026-08-26</span></h3><ul><li><strong>[fix] <code>prepare_release.sh</code> prendeva come base l'ultimo tag QUALSIASI, non l'ultimo di release.</strong> <code>git tag --sort=-creatordate | head -1</code> pescava <code>dev-perf-2026-08-26</code> — un tag di lavoro spinto su origin — invece di <code>v0.40-…</code>, e il guasto era silenzioso e triplo: senza <code>vX.Y</code> nel nome <code>VERCORE</code> esce vuoto, quindi il tag proposto diventava <strong><code>v0.1-SLUG</code></strong>, il ripiego su <code>config/version</code> <strong>non partiva</strong> (pretende <code>VERCORE</code> pieno) e il delta CHANGELOG veniva calcolato dal punto sbagliato. Ora il filtro è <code>--list 'v[0-9]*'</code>. ⚠️ Nessuno dei tre sintomi si annuncia come errore: lo script esce 0 e stampa un piano di comandi perfettamente formato per la versione sbagliata.</li><li><strong>[release] Sezione v0.41 delle note in-game, scritta in tutte e otto le lingue</strong> (it master + en/fr/es/de/ru/zh/pt), cumulativa in cima come da regola. Cinque voci, dal delta di 22 commit dal tag v0.40: la grazia di 2 s col lampeggio (SU-588), la città quasi al doppio dei fotogrammi (SU-581/582/583 + gli overlay mai spenti), le schermate carte che non arrancano più e la cerimonia senza scatto (SU-583/586), l'ondata di caldo che finalmente si vede, e l'alone rosso di fame/sonno rimosso.<ul><li>⚠️ <strong>Prima stesura buttata: accenti ASCII-fati</strong> (<code>citta'</code>, <code>e'</code>, <code>grace</code>, <code>dano</code>) scritti per cautela sull'encoding dell'heredoc. I file gemelli usano da sempre i caratteri veri: in gioco la differenza si sarebbe vista, e in una sola lingua su otto sarebbe passata inosservata. Rifatta con la punteggiatura giusta.</li><li>📌 I nomi dei personaggi <strong>non si inventano in traduzione</strong>: presi dai file gemelli già in linea — <code>cat lady</code>, <code>dame aux chats</code>, <code>señora de los gatos</code>, <code>Katzenfrau</code>, <code>кошатница</code>, <code>喂猫大妈</code>, <code>senhora dos gatos</code>.</li></ul></li><li><strong>[test] La sonda delle note non è più legata alla v0.40: adesso segue <code>config/version</code></strong> (<code>probe_note_v040.gd</code>). Prima aveva scritti dentro tre letterali — <code>v0.40</code>, «24 voci» e una frase-spia della sezione 0.40 — cioè si sarebbe dovuta ricucire a mano a ogni release, e chi non lo avesse fatto avrebbe visto <strong>31 OK su una versione che non esiste più</strong>. Ora la versione arriva da <code>project.godot</code> e il numero di voci più la frase-spia si ricavano dalla sezione italiana. <strong>Girata sulla v0.41: 31 OK, 0 KO</strong>, riferimento riconosciuto da sé (<code>v0.41 · 5 voci</code>), nessun ripiego italiano in nessuna delle sette traduzioni.<ul><li>📌 Il file <strong>non è rinominato</strong> pur chiamandosi ancora <code>probe_note_v040</code>: in Godot il <code>.uid</code> dipende dal path, quindi il rinomino costa un reimport dell'intero progetto. Il perché è scritto nell'intestazione del file, dove lo trova chi lo apre.</li></ul></li><li><code>config/version</code> era già a 0.41 (ci era arrivato con SU-587), quindi il passo 3 del giro di release era di fatto già fatto.</li></ul></div>
+    </section>
+  </main>
+  <footer class="bottom">
+    <p><a href="../">← Torna a tutte le novità</a></p>
+  </footer>
+</div>
+</body>
+</html>
