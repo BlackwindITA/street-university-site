@@ -101,12 +101,12 @@
 <header id="english">
   <h1>Street University — Privacy Policy</h1>
   <p class="sub">Video game for Windows, macOS, Android and iOS · package name <code>com.divano.streetuniversity</code></p>
-  <p class="sub">Last updated: <strong>31 August 2026</strong> · Document version: 1.3</p>
+  <p class="sub">Last updated: <strong>12 September 2026</strong> · Document version: 1.4</p>
   <p class="langbar"><strong>English</strong> · <a href="#italiano">Versione italiana ↓</a></p>
 </header>
 
 <div class="lead">
-  <p><strong>In short:</strong> Street University is a mostly offline game. Saves, scores and settings stay on your device. There are no ads, no third-party analytics or tracking SDKs, no in-app purchases, no player chat, and we sell your data to nobody. The game connects to the internet in four cases only: for <strong>multiplayer</strong> (handled by Epic Online Services); <strong>if you choose</strong> to sign in with an Epic account and publish your score to the <strong>world leaderboard</strong>; and, in the Windows and macOS test builds only, to <strong>check that your device is on the closed beta list</strong>; and, <strong>only if you switch it on</strong>, to send the optional anonymous gameplay reports described in §5. <strong>Nothing of yours becomes public</strong> unless you sign in with an account and give explicit consent.</p>
+  <p><strong>In short:</strong> Street University is a mostly offline game. Saves, scores and settings stay on your device. There are no ads, no third-party analytics or tracking SDKs, no in-app purchases, no player chat, and we sell your data to nobody. The game connects to the internet for <strong>multiplayer</strong> (handled by Epic Online Services); <strong>if you choose</strong> to sign in with an Epic account and publish your score to the <strong>world leaderboard</strong>; <strong>if you choose</strong> to use the invite-a-friend feature; in the Windows and macOS test builds only, to <strong>check that your device is on the closed beta list</strong>; and, <strong>only if you switch it on</strong>, to send the optional anonymous gameplay reports described in §5. Names and scores become public only with explicit consent; the access conditions for invitation records are described in §3.5.</p>
 </div>
 
 <h2>1. Who processes your data</h2>
@@ -119,6 +119,7 @@
 <ul>
   <li><strong>Game saves and progression</strong>, both per-run and permanent;</li>
   <li><strong>High scores</strong> and the name you type when you record one;</li>
+  <li><strong>Invitation reward state</strong>: cosmetic gold earned and spent, and whether you redeemed a code;</li>
   <li><strong>Settings</strong> (language, audio, difficulty, custom key bindings, character appearance).</li>
 </ul>
 <p>These are configuration files inside a folder dedicated to the game, under your user profile: <code>%APPDATA%\Street University\</code> on Windows, <code>~/Library/Application Support/Street University/</code> on macOS, the app's private folder on Android and iOS. The game may also write technical log files in the same folder; they stay there and are never sent anywhere. Uninstalling the game deletes all of it.</p>
@@ -146,8 +147,8 @@
 </ul>
 <p>Data in the online component is processed by Epic Games, Inc. as an independent controller. See the <a href="https://www.epicgames.com/site/privacypolicy" rel="noopener">Epic Games privacy policy</a>.</p>
 
-<h3>3.3 World leaderboard — the only thing that becomes public</h3>
-<p>The game has a <strong>world leaderboard</strong> of single-player scores. It is the <strong>only</strong> case in which anything of yours is seen by other people, and for that reason it sits behind <strong>two gates</strong> that the game puts in front of you — in this order — <strong>before</strong> signing you in with an account:</p>
+<h3>3.3 World leaderboard — public names and scores</h3>
+<p>The game has a <strong>world leaderboard</strong> of single-player scores. Publishing to it sits behind <strong>two gates</strong> that the game puts in front of you — in this order — <strong>before</strong> signing you in with an account:</p>
 <ul>
   <li><strong>Are you at least 16?</strong> If you answer no, nothing is published, any consent given earlier lapses, and you keep playing as a guest.</li>
   <li><strong>Do you consent to publishing your name and score?</strong> Consent is <strong>off by default</strong>. If you decline, the account sign-in is not performed and you stay a guest: the whole game remains playable.</li>
@@ -172,6 +173,13 @@
 </ul>
 <p><strong>Purpose:</strong> to tell you about game and beta updates. <strong>Legal basis:</strong> your <strong>consent</strong> (Art. 6(1)(a) GDPR) — given by granting the notification permission (Android 13 and later) or by leaving the game's notifications on in your system settings (earlier versions), and withdrawn by turning them off there at any time. See the <a href="https://firebase.google.com/support/privacy" rel="noopener">Firebase privacy information</a>.</p>
 
+<h3>3.5 Invite a friend — invitation identifiers</h3>
+<p>This feature is optional and is available to signed-in players. The game combines the player's Epic Online Services player identifier (PUID) with the fixed domain prefix <code>su-inviti:</code> and calculates a SHA-256 <strong>pseudonymous fingerprint</strong>. The 8-character <strong>invite code</strong> is derived from that fingerprint, keeping only eight hexadecimal characters and replacing two characters to fit the code alphabet. The code therefore reveals no part of the PUID and is not a password or secret.</p>
+<p>When another player enters the code, the game sends to <strong>Google Cloud Firestore</strong> the code, the redeeming player's 64-character pseudonymous fingerprint as the document identifier, creation and expiry dates, and a flag initially set to false. The flag changes to true after that player finishes their first run. <strong>No full PUID is included in the document path or body.</strong> The fingerprint and code are deterministic pseudonymous identifiers: they reduce direct identifiability but are not described as anonymous data.</p>
+<p>When the inviter checks the feature, the game sends their code in an aggregate query and receives the number of completed redemptions. No separate count document is stored. The first ten completed invitations are used to calculate a <strong>cosmetic reward</strong>; the reward has no real-world value and is not connected to ratings or reviews.</p>
+<p><strong>Purpose:</strong> to provide the invitation feature and calculate its cosmetic reward. <strong>Legal basis:</strong> performance of the service requested by the players who choose to invite or redeem (Art. 6(1)(b) GDPR); the game can otherwise be used without this feature.</p>
+<p><strong>Storage, access and retention:</strong> redemption records are stored in Firestore, a Google service. The database rules allow the pseudonymous records to be read without authentication for a known game environment. They are not shown in the game's public interface, but they are not access-controlled. Each record has an expiry date 12 months (365 days) after its creation and is automatically deleted through Firestore's time-to-live policy. You may also request earlier deletion by writing to the contact in §1.</p>
+
 <h2>4. What the game does not do</h2>
 <div class="tablewrap">
 <table>
@@ -181,7 +189,7 @@
     <tr><td>Third-party analytics, telemetry or tracking SDKs</td><td>None</td></tr>
     <tr><td>Profiling or automated decision-making</td><td>No</td></tr>
     <tr><td>In-app purchases or payments</td><td>No</td></tr>
-    <tr><td>Selling or sharing personal data</td><td>Never</td></tr>
+    <tr><td>Selling personal data</td><td>Never. Access to invitation records is described in §3.5</td></tr>
     <tr><td>Text or voice chat, messages between players</td><td>Not present in the game</td></tr>
     <tr><td>User-generated content</td><td>Only the <strong>display name</strong> on the world leaderboard (§3.3), which can be reported and hidden</td></tr>
     <tr><td>Access to location, contacts, camera, microphone, photos, personal files</td><td>Never requested</td></tr>
@@ -227,12 +235,14 @@ with <em>Account deletion</em> as the subject, and tell us the <strong>display n
   <li>the <strong>player identity</strong> that the game created for you on Epic Online Services, so nothing further can be attached to it.</li>
 </ul>
 
+<p><strong>Invitation records.</strong> The game offers no in-app deletion for a Firestore redemption record and the database rules do not allow the client to delete it. The record is automatically deleted 12 months (365 days) after creation. You may request earlier deletion by writing to the contact in §1.</p>
+
 <p><strong>What is not ours to delete.</strong> Your <strong>Epic Games account</strong> belongs to Epic, not to us: signing out of it in the game, or deleting your leaderboard row, does not touch it. To delete the account itself, ask Epic (<a href="https://www.epicgames.com/site/privacypolicy" rel="noopener">Epic Games privacy policy</a>).</p>
 
 <p><strong>What you can delete yourself, without asking anyone.</strong> Everything the game keeps <strong>on your device</strong> — saves, local high scores, the name you type there, settings and technical logs — never reached us in the first place. Uninstalling the game removes all of it, and inside the game <em>Options → RESET DATA</em> clears scores and progress on the spot. Signing out of your account returns you to playing as a guest and stops any further publishing.</p>
 <p>The only exception is the optional gameplay data described in §5: if you gave consent, small reports may already have reached us before you turn it off or uninstall — write to the contact in §1 to have them deleted.</p>
 
-<p><strong>What is kept, and for how long.</strong> There is <strong>no server of ours</strong>: outside the leaderboard we hold nothing about players, so once the row is gone there is nothing left to keep and <strong>no additional retention period</strong> applies. If you are a <strong>beta tester</strong>, the contact details you gave us by hand (see §5) are kept for the duration of the beta programme and deleted when it ends, or earlier if you ask. The email you write to us is kept only as long as it takes to handle the request, and is deleted with it if you ask.</p>
+<p><strong>What is kept, and for how long.</strong> Invitation redemption records are kept in Firestore for 12 months (365 days) from creation and then automatically deleted (see §3.5), or deleted earlier on request to the contact in §1. Outside those records and the leaderboard, we hold nothing about players. If you are a <strong>beta tester</strong>, the contact details you gave us by hand (see §5) are kept for the duration of the beta programme and deleted when it ends, or earlier if you ask. The email you write to us is kept only as long as it takes to handle the request, and is deleted with it if you ask.</p>
 
 <h2>10. Security</h2>
 <p>Beta tester data is kept on the controller's personal devices, protected by passwords and full-disk encryption, and is not accessible to third parties. No system is 100% secure: the controller applies measures proportionate to the amount and nature of the data processed, which is deliberately minimal.</p>
@@ -245,12 +255,12 @@ with <em>Account deletion</em> as the subject, and tell us the <strong>display n
 <header id="italiano" style="border-bottom:2px solid var(--rule); margin-top:3rem;">
   <h1>Street University — Informativa sulla privacy</h1>
   <p class="sub">Videogioco per Windows, macOS, Android e iOS · nome del pacchetto <code>com.divano.streetuniversity</code></p>
-  <p class="sub">Ultimo aggiornamento: <strong>31 agosto 2026</strong> · Versione del documento: 1.3</p>
+  <p class="sub">Ultimo aggiornamento: <strong>12 settembre 2026</strong> · Versione del documento: 1.4</p>
   <p class="langbar"><a href="#english">↑ English version</a> · <strong>Italiano</strong></p>
 </header>
 
 <div class="lead">
-  <p><strong>In breve:</strong> Street University è un gioco per lo più offline. Salvataggi, punteggi e impostazioni restano sul tuo dispositivo. Non ci sono pubblicità, né analytics o tracciatori di terze parti, né acquisti in-app, né chat fra giocatori, e non vendiamo dati a nessuno. Il gioco si collega a Internet solo in quattro casi: per il <strong>multiplayer</strong> (gestito da Epic Online Services); <strong>se scegli tu</strong> di entrare con un account Epic e di pubblicare il punteggio nella <strong>classifica mondiale</strong>; e, nelle sole build di prova per Windows e macOS, per <strong>controllare che il tuo dispositivo sia nella lista della beta chiusa</strong>; e, <strong>solo se lo accendi tu</strong>, per mandare i resoconti di gioco anonimi facoltativi descritti al §5. <strong>Niente di tuo diventa pubblico</strong> se non entri con un account e non dai un consenso esplicito.</p>
+  <p><strong>In breve:</strong> Street University è un gioco per lo più offline. Salvataggi, punteggi e impostazioni restano sul tuo dispositivo. Non ci sono pubblicità, né analytics o tracciatori di terze parti, né acquisti in-app, né chat fra giocatori, e non vendiamo dati a nessuno. Il gioco si collega a Internet per il <strong>multiplayer</strong> (gestito da Epic Online Services); <strong>se scegli tu</strong> di entrare con un account Epic e di pubblicare il punteggio nella <strong>classifica mondiale</strong>; <strong>se scegli tu</strong> di usare la funzione «Invita un amico»; nelle sole build di prova per Windows e macOS, per <strong>controllare che il tuo dispositivo sia nella lista della beta chiusa</strong>; e, <strong>solo se lo accendi tu</strong>, per mandare i resoconti di gioco anonimi facoltativi descritti al §5. Nomi e punteggi diventano pubblici solo col consenso esplicito; le condizioni di accesso ai registri degli inviti sono descritte al §3.5.</p>
 </div>
 
 <h2 id="titolare">1. Chi tratta i tuoi dati</h2>
@@ -263,6 +273,7 @@ with <em>Account deletion</em> as the subject, and tell us the <strong>display n
 <ul>
   <li><strong>Salvataggi e progressi</strong> della partita e della progressione permanente;</li>
   <li><strong>Punteggi migliori</strong> e il nome che scegli quando registri un punteggio;</li>
+  <li><strong>Stato dei premi invito</strong>: oro cosmetico guadagnato e speso e indicazione dell'avvenuto riscatto di un codice;</li>
   <li><strong>Impostazioni</strong> (lingua, audio, difficoltà, comandi personalizzati, aspetto del personaggio).</li>
 </ul>
 <p>Sono file di configurazione dentro una cartella dedicata al gioco, sotto il tuo profilo utente: <code>%APPDATA%\Street University\</code> su Windows, <code>~/Library/Application Support/Street University/</code> su macOS, la cartella privata dell'app su Android e iOS. Nella stessa cartella il gioco può scrivere file di registro tecnici, che restano lì e non vengono inviati a nessuno. Si cancella tutto disinstallando il gioco.</p>
@@ -290,8 +301,8 @@ with <em>Account deletion</em> as the subject, and tell us the <strong>display n
 </ul>
 <p>I dati della componente online sono trattati da Epic Games, Inc. come titolare autonomo. Vedi l'<a href="https://www.epicgames.com/site/privacypolicy" rel="noopener">informativa sulla privacy di Epic Games</a>.</p>
 
-<h3>3.3 Classifica mondiale — l'unica cosa che diventa pubblica</h3>
-<p>Il gioco ha una <strong>classifica mondiale</strong> dei punteggi di partita singola. È l'<strong>unico</strong> caso in cui qualcosa di tuo viene visto da altre persone, e per questo sta dietro a <strong>due gate</strong>, che il gioco ti mette davanti — in quest'ordine — <strong>prima</strong> di farti entrare con l'account:</p>
+<h3>3.3 Classifica mondiale — nomi e punteggi pubblici</h3>
+<p>Il gioco ha una <strong>classifica mondiale</strong> dei punteggi di partita singola. La pubblicazione sta dietro a <strong>due gate</strong>, che il gioco ti mette davanti — in quest'ordine — <strong>prima</strong> di farti entrare con l'account:</p>
 <ul>
   <li><strong>Hai almeno 16 anni?</strong> Se rispondi di no, non si pubblica niente, un eventuale consenso dato prima decade, e continui a giocare da ospite.</li>
   <li><strong>Acconsenti a pubblicare nome e punteggio?</strong> Il consenso è <strong>spento di serie</strong>. Se rifiuti, l'accesso con l'account non viene eseguito e resti ospite: il gioco resta tutto giocabile.</li>
@@ -316,6 +327,13 @@ with <em>Account deletion</em> as the subject, and tell us the <strong>display n
 </ul>
 <p><strong>Finalità:</strong> informarti degli aggiornamenti del gioco e della beta. <strong>Base giuridica:</strong> il tuo <strong>consenso</strong> (art. 6.1.a GDPR) — che presti concedendo il permesso di notifica (Android 13 e successivi) o lasciando attive le notifiche del gioco nelle impostazioni di sistema (versioni precedenti), e revochi spegnendole da lì in qualsiasi momento. Vedi l'<a href="https://firebase.google.com/support/privacy" rel="noopener">informativa privacy di Firebase</a>.</p>
 
+<h3>3.5 Invita un amico — identificativi degli inviti</h3>
+<p>La funzione è facoltativa ed è disponibile ai giocatori che hanno eseguito l'accesso. Il gioco combina l'identificativo di giocatore Epic Online Services (PUID) col prefisso di dominio fisso <code>su-inviti:</code> e calcola una <strong>impronta pseudonima</strong> SHA-256. Il <strong>codice invito</strong> di 8 caratteri deriva dall'impronta, conservando solo otto caratteri esadecimali e sostituendone due per rispettare l'alfabeto del codice. Il codice non rivela quindi alcuna parte del PUID e non è una password né un segreto.</p>
+<p>Quando un altro giocatore inserisce il codice, il gioco invia a <strong>Google Cloud Firestore</strong> il codice, l'impronta pseudonima di 64 caratteri di chi lo riscatta come identificativo del documento, le date di creazione e scadenza e un indicatore inizialmente falso. L'indicatore diventa vero dopo la prima partita conclusa da quel giocatore. <strong>Né il percorso né il corpo del documento includono il PUID completo.</strong> Impronta e codice sono identificativi pseudonimi deterministici: riducono l'identificabilità diretta, ma non sono presentati come dati anonimi.</p>
+<p>Quando chi invita controlla la funzione, il gioco invia il suo codice in una query aggregata e riceve il numero dei riscatti completati. Non viene salvato un documento separato col conteggio. I primi dieci inviti completati servono a calcolare un <strong>premio cosmetico</strong>; il premio non ha valore reale e non è collegato a valutazioni o recensioni.</p>
+<p><strong>Finalità:</strong> fornire la funzione inviti e calcolarne il premio cosmetico. <strong>Base giuridica:</strong> esecuzione del servizio richiesto dai giocatori che scelgono di invitare o riscattare (art. 6.1.b GDPR); il gioco resta utilizzabile senza questa funzione.</p>
+<p><strong>Conservazione e accesso:</strong> i registri dei riscatti sono conservati in Firestore, un servizio di Google. Le regole del database permettono di leggere senza autenticazione i record pseudonimi di un ambiente di gioco noto. Non sono mostrati nell'interfaccia pubblica del gioco, ma non sono protetti da un controllo di accesso. Ogni record ha una scadenza di 12 mesi (365 giorni) dalla creazione ed è cancellato automaticamente tramite la policy time-to-live di Firestore. Puoi chiederne la cancellazione anticipata scrivendo al contatto del §1.</p>
+
 <h2 id="niente">4. Cosa il gioco non fa</h2>
 <div class="tablewrap">
 <table>
@@ -325,7 +343,7 @@ with <em>Account deletion</em> as the subject, and tell us the <strong>display n
     <tr><td>Analytics, telemetria o SDK di tracciamento di terze parti</td><td>No, nessuno</td></tr>
     <tr><td>Profilazione o decisioni automatizzate</td><td>No</td></tr>
     <tr><td>Acquisti in-app o pagamenti</td><td>No</td></tr>
-    <tr><td>Vendita o cessione di dati personali</td><td>Mai</td></tr>
+    <tr><td>Vendita di dati personali</td><td>Mai. L'accesso ai registri degli inviti è descritto al §3.5</td></tr>
     <tr><td>Chat testuale o vocale, messaggi fra giocatori</td><td>Non esistono nel gioco</td></tr>
     <tr><td>Contenuti generati dagli utenti</td><td>Solo il <strong>nome visualizzato</strong> in classifica mondiale (§3.3), che si può segnalare e nascondere</td></tr>
     <tr><td>Accesso a posizione, rubrica, fotocamera, microfono, foto, file personali</td><td>Mai richiesto</td></tr>
@@ -371,12 +389,14 @@ mettendo <em>Cancellazione account</em> come oggetto, e indica il <strong>nome v
   <li>l'<strong>identità di giocatore</strong> che il gioco ha creato per te su Epic Online Services, così che non le si possa più attaccare nulla.</li>
 </ul>
 
+<p><strong>Registri degli inviti.</strong> Il gioco non offre una cancellazione in-app del registro di riscatto in Firestore e le regole del database non permettono al client di cancellarlo. Il record viene cancellato automaticamente 12 mesi (365 giorni) dopo la creazione. Puoi chiederne la cancellazione anticipata scrivendo al contatto del §1.</p>
+
 <p><strong>Cosa non è nostro da cancellare.</strong> Il tuo <strong>account Epic Games</strong> è di Epic, non nostro: uscirne dal gioco, o cancellare la tua riga di classifica, non lo tocca. Per cancellare l'account in sé devi chiederlo a Epic (<a href="https://www.epicgames.com/site/privacypolicy" rel="noopener">informativa sulla privacy di Epic Games</a>).</p>
 
 <p><strong>Cosa puoi cancellare da solo, senza chiedere niente a nessuno.</strong> Tutto ciò che il gioco tiene <strong>sul tuo dispositivo</strong> — salvataggi, classifica locale, il nome che scrivi lì, impostazioni e file di registro tecnici — non è mai arrivato a noi. Disinstallare il gioco lo elimina tutto, e dentro al gioco <em>Opzioni → RESET DATI</em> azzera classifica e progressi sul momento. Uscire dall'account ti riporta a giocare da ospite e ferma qualsiasi altra pubblicazione.</p>
 <p>L’unica eccezione sono i dati di gioco facoltativi descritti al §5: se hai dato il consenso, alcuni resoconti potrebbero essere già arrivati a noi prima che tu li disattivi o disinstalli il gioco — scrivi al contatto del §1 per farli cancellare.</p>
 
-<p><strong>Cosa resta, e per quanto.</strong> <strong>Non esiste un nostro server</strong>: fuori dalla classifica non teniamo niente sui giocatori, quindi una volta tolta la riga non resta nulla da conservare e <strong>non si applica nessun periodo di conservazione aggiuntivo</strong>. Se sei un <strong>beta tester</strong>, i recapiti che ci hai dato a mano (vedi §5) restano per la durata del programma di beta e vengono cancellati alla sua chiusura, o prima su tua richiesta. L'email con cui ci scrivi resta il tempo di gestire la richiesta, e si cancella con lei se lo chiedi.</p>
+<p><strong>Cosa resta, e per quanto.</strong> I registri dei riscatti degli inviti restano in Firestore per 12 mesi (365 giorni) dalla creazione e poi sono cancellati automaticamente (vedi §3.5), oppure sono cancellati prima su richiesta al contatto del §1. Fuori da quei registri e dalla classifica non teniamo niente sui giocatori. Se sei un <strong>beta tester</strong>, i recapiti che ci hai dato a mano (vedi §5) restano per la durata del programma di beta e vengono cancellati alla sua chiusura, o prima su tua richiesta. L'email con cui ci scrivi resta il tempo di gestire la richiesta, e si cancella con lei se lo chiedi.</p>
 
 <h2 id="sicurezza">10. Sicurezza</h2>
 <p>I dati dei beta tester sono custoditi su dispositivi personali del titolare protetti da password e cifratura del disco, e non sono accessibili a terzi. Nessun sistema è sicuro al 100%: il titolare adotta misure proporzionate alla quantità e alla natura dei dati trattati, che è volutamente minima.</p>
