@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.divano.streetuniversity",
+      "sha256_cert_fingerprints": [
+        "41:A0:84:64:A0:89:DD:63:36:43:FD:04:D0:7A:2C:2D:B7:3C:09:69:FC:F2:B7:64:6A:74:CE:09:4B:E9:14:AC"
+      ]
+    }
+  }
+]

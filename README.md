@@ -23,6 +23,10 @@ Tre motivi, in ordine di urgenza:
 | `img/` | grafiche derivate da `STORE_ASSETS/google_play/` del repo del gioco |
 | `CNAME` | il dominio personalizzato, letto da GitHub Pages. Contiene **`www.streetuniversitygame.com`**, non l'apex: è la forma che Epic ha verificato, e l'apex ci reindirizza sopra da solo |
 | `privacy/index.html` | la privacy policy, **copia identica** di `index.html` del repo `street-university-beta-devices` |
+| `invito/index.html` | la pagina del link d'invito (`?c=CODICE`) che CONDIVIDI manda via WhatsApp/Messaggi: mostra il codice con tasto COPIA, un tasto per aprire l'app (intent Android / schema `streetuni://` altrove) e i badge store. Autosufficiente, 8 lingue (it/en/fr/es/de/ru/zh/pt), stesso stile di `index.html`. Le due costanti `APP_STORE_URL`/`PLAY_STORE_URL` sono in cima allo `<script>` del file: aggiornarle quando il gioco è pubblico sugli store (finché `APP_STORE_URL` è vuota, il badge Apple resta "in arrivo" e non cliccabile) |
+| `img/badges/` | i badge UFFICIALI store, scaricati una tantum (mai ridisegnati): `apple-<lingua>.svg` da `toolbox.marketingtools.apple.com` (il vecchio dominio `tools.applemarketingtools.com` citato in giro non risolve più, redirige lì), `google-<lingua>.png` da `play.google.com/.../badges/`. Un file per ciascuna delle 8 lingue della pagina invito |
+| `.well-known/apple-app-site-association`, `.well-known/assetlinks.json` | file di verifica per Universal Links (iOS) e App Links (Android) su `/invito/*`: preparano il terreno per quando lo stesso link `https://` aprirà l'app direttamente. L'impronta Android è quella della **chiave di release nostra**; quella di firma di Play si aggiungerà (in `sha256_cert_fingerprints`, come voce in più nell'array) quando l'app sarà pubblicata |
+| `.nojekyll` | GitHub Pages usa Jekyll di default, che ignora le cartelle che iniziano col punto (`.well-known/`): questo file (vuoto) lo disattiva |
 
 La pagina è bilingue **EN/IT**: con JavaScript attivo compare il selettore e si vede una lingua
 sola; senza JavaScript si vedono entrambe, una sotto l'altra. Non si rompe mai.

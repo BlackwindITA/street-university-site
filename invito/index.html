@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Street University — you're invited</title>
+<meta name="description" content="A friend invited you to Street University: enter the code, play, and you both get a golden can.">
+<link rel="canonical" href="https://www.streetuniversitygame.com/invito/">
+<link rel="icon" type="image/png" href="../img/favicon-64.png">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Street University — you're invited">
+<meta property="og:description" content="A friend invited you to Street University: enter the code, play, and you both get a golden can.">
+<meta property="og:url" content="https://www.streetuniversitygame.com/invito/">
+<meta property="og:image" content="https://www.streetuniversitygame.com/img/hero.webp">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+  :root{
+    --bg:#f7f5f0; --fg:#1c1a17; --muted:#5c574f; --rule:#d9d3c7;
+    --accent:#b4531a; --card:#ffffff; --tag-bg:#efe9dd; --shadow:0 2px 10px rgba(28,26,23,.08);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#16151a; --fg:#ece9e3; --muted:#a09a90; --rule:#34313a;
+      --accent:#ff9d5c; --card:#1f1e25; --tag-bg:#26242d; --shadow:0 2px 14px rgba(0,0,0,.5);
+    }
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--fg);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    font-size:17px; line-height:1.55;
+  }
+  .wrap{max-width:480px; margin:0 auto; padding:0 20px 56px}
+  a{color:var(--accent)}
+  img{max-width:100%; height:auto; display:block}
+  .sr-only{
+    position:absolute; width:1px; height:1px; padding:0; margin:-1px;
+    overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0;
+  }
+
+  header{padding:28px 0 6px; text-align:center}
+  .logo{width:72px; height:72px; margin:0 auto; border-radius:18px; box-shadow:var(--shadow)}
+
+  /* ---- barra lingua (compare solo con JS attivo) ---- */
+  .langbar{display:flex; gap:6px; justify-content:center; flex-wrap:wrap; margin:22px 0 0}
+  .langbar button{
+    font:inherit; font-size:.82rem; padding:6px 12px; cursor:pointer;
+    background:var(--tag-bg); color:var(--muted); border:1px solid var(--rule); border-radius:999px;
+  }
+  .langbar button[aria-pressed="true"]{background:var(--accent); border-color:var(--accent); color:#fff; font-weight:600}
+  @media (prefers-color-scheme: dark){ .langbar button[aria-pressed="true"]{color:#1a1207} }
+
+  .lang{padding-top:34px}
+
+  h2.heading{margin:14px 0 6px; font-size:1.5rem; line-height:1.25; text-align:center}
+  .tag{margin:0 0 26px; text-align:center; color:var(--muted); font-size:1.02rem}
+
+  /* ---- codice ---- */
+  .codebox{
+    background:var(--card); border:1px solid var(--rule); border-radius:16px;
+    padding:20px; margin:0 0 18px; box-shadow:var(--shadow); text-align:center;
+  }
+  .code-label{margin:0 0 10px; font-size:.8rem; letter-spacing:.1em; text-transform:uppercase; color:var(--muted)}
+  .code-value{
+    display:block; font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    font-size:1.9rem; font-weight:700; letter-spacing:.16em;
+    padding:12px 10px; border:2px dashed var(--accent); border-radius:12px; color:var(--fg);
+  }
+  .code-explain{margin:14px 0 0; font-size:.92rem; color:var(--muted)}
+
+  .btn{
+    display:block; width:100%; font:inherit; font-weight:700; font-size:1rem;
+    padding:13px 18px; min-height:44px; border-radius:12px; border:0; cursor:pointer;
+  }
+  .btn-copy{margin-top:14px; background:var(--tag-bg); color:var(--fg); border:1px solid var(--rule)}
+  .btn-copy:disabled{opacity:.7; cursor:default}
+  .btn-open{margin:0 0 24px; background:var(--accent); color:#fff}
+
+  body:not(.has-code) .codebox,
+  body:not(.has-code) .btn-open{display:none}
+
+  /* ---- store ---- */
+  .stores{margin:12px 0 0; text-align:center}
+  .stores-h{margin:0 0 12px; font-size:.8rem; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); font-weight:700}
+  .store-row{display:flex; flex-wrap:wrap; gap:12px; justify-content:center}
+  .store-item{
+    background:#ffffff; border-radius:12px; padding:8px 14px; box-shadow:var(--shadow);
+    display:flex; flex-direction:column; align-items:center; gap:4px;
+  }
+  .badge-link{display:block; min-height:44px; display:flex; align-items:center}
+  .badge-link[aria-disabled="true"]{pointer-events:none; cursor:default}
+  .badge{height:44px; width:auto; display:block}
+  .badge.apple{width:132px; height:44px}
+  .badge.google{width:114px; height:44px}
+  .soon{font-size:.72rem; color:var(--muted); text-transform:uppercase; letter-spacing:.08em}
+  .badge-link:not([aria-disabled]) + .soon{display:none}
+  .beta-note{margin:18px 0 0; font-size:.88rem; color:var(--muted)}
+
+  .backhome{margin:36px 0 0; text-align:center; font-size:.9rem}
+  hr.rule{border:0; border-top:1px solid var(--rule); margin:40px 0 0}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <img class="logo" src="../img/logo-256.png" width="72" height="72" alt="Street University app icon: a sleeping ginger cat">
+    <h1 class="sr-only">Street University — invito</h1>
+  </header>
+
+  <nav class="langbar" hidden>
+    <button type="button" data-lang="it">Italiano</button>
+    <button type="button" data-lang="en">English</button>
+    <button type="button" data-lang="fr">Français</button>
+    <button type="button" data-lang="es">Español</button>
+    <button type="button" data-lang="de">Deutsch</button>
+    <button type="button" data-lang="ru">Русский</button>
+    <button type="button" data-lang="zh">简体中文</button>
+    <button type="button" data-lang="pt">Português</button>
+  </nav>
+
+  <main>
+
+  <!-- ============================= ITALIANO ============================= -->
+  <div class="lang" data-lang="it">
+    <h2 class="heading">Ci vediamo su Street University!</h2>
+    <p class="tag">Un roguelike buffo di sopravvivenza per strada: partite da trenta minuti, carte potenziamento e gatti a raffica.</p>
+
+    <div class="codebox">
+      <p class="code-label">Il tuo codice invito</p>
+      <span class="code-value" aria-live="polite"></span>
+      <p class="code-explain">Inseriscilo in INVITA UN AMICO &rarr; HAI UN CODICE?. Finita la prima partita, una lattina d'oro arriva a te e a chi ti ha invitato.</p>
+      <button type="button" class="btn btn-copy" data-copy data-copied-label="COPIATO!">COPIA</button>
+    </div>
+    <button type="button" class="btn btn-open" data-open>Ho già il gioco: apri</button>
+
+    <div class="stores">
+      <p class="stores-h">Scarica il gioco</p>
+      <div class="store-row">
+        <div class="store-item">
+          <a class="badge-link" data-store="apple" aria-disabled="true" tabindex="-1">
+            <img class="badge apple" src="../img/badges/apple-it.svg" width="132" height="44" alt="Scarica su App Store">
+          </a>
+          <small class="soon">in arrivo</small>
+        </div>
+        <div class="store-item">
+          <a class="badge-link" data-store="google" href="https://play.google.com/store/apps/details?id=com.divano.streetuniversity" target="_blank" rel="noopener">
+            <img class="badge google" src="../img/badges/google-it.png" width="114" height="44" alt="Disponibile su Google Play">
+          </a>
+        </div>
+      </div>
+      <p class="beta-note">Il gioco è in beta: per entrare chiedi l'accesso a chi ti ha invitato.</p>
+    </div>
+
+    <p class="backhome"><a href="https://www.streetuniversitygame.com/">streetuniversitygame.com</a></p>
+  </div>
+
+  <!-- ============================= ENGLISH ============================= -->
+  <div class="lang" data-lang="en" hidden>
+    <h2 class="heading">See you on Street University!</h2>
+    <p class="tag">A goofy street-survival roguelike: thirty-minute runs, upgrade cards, and cats by the dozen.</p>
+
+    <div class="codebox">
+      <p class="code-label">Your invite code</p>
+      <span class="code-value" aria-live="polite"></span>
+      <p class="code-explain">Enter it in INVITE A FRIEND &rarr; GOT A CODE?. Finish your first run and a golden can lands on both of you.</p>
+      <button type="button" class="btn btn-copy" data-copy data-copied-label="COPIED!">COPY</button>
+    </div>
+    <button type="button" class="btn btn-open" data-open>Already have the game: open it</button>
+
+    <div class="stores">
+      <p class="stores-h">Get the game</p>
+      <div class="store-row">
+        <div class="store-item">
+          <a class="badge-link" data-store="apple" aria-disabled="true" tabindex="-1">
+            <img class="badge apple" src="../img/badges/apple-en.svg" width="132" height="44" alt="Download on the App Store">
+          </a>
+          <small class="soon">coming soon</small>
+        </div>
+        <div class="store-item">
+          <a class="badge-link" data-store="google" href="https://play.google.com/store/apps/details?id=com.divano.streetuniversity" target="_blank" rel="noopener">
+            <img class="badge google" src="../img/badges/google-en.png" width="114" height="44" alt="Get it on Google Play">
+          </a>
+        </div>
+      </div>
+      <p class="beta-note">The game is in closed beta: ask whoever invited you for access.</p>
+    </div>
+
+    <p class="backhome"><a href="https://www.streetuniversitygame.com/">streetuniversitygame.com</a></p>
+  </div>
+
+  <!-- ============================= FRANÇAIS ============================= -->
+  <div class="lang" data-lang="fr" hidden>
+    <h2 class="heading">On se retrouve sur Street University&nbsp;!</h2>
+    <p class="tag">Un roguelike loufoque de survie dans la rue&nbsp;: parties de trente minutes, cartes d'amélioration et une flopée de chats.</p>
+
+    <div class="codebox">
+      <p class="code-label">Ton code d'invitation</p>
+      <span class="code-value" aria-live="polite"></span>
+      <p class="code-explain">Entre-le dans INVITER UN AMI &rarr; TU AS UN CODE&nbsp;?. À la fin de ta première partie, une canette dorée arrive chez toi et chez la personne qui t'a invité.</p>
+      <button type="button" class="btn btn-copy" data-copy data-copied-label="COPIÉ !">COPIER</button>
+    </div>
+    <button type="button" class="btn btn-open" data-open>J'ai déjà le jeu&nbsp;: ouvrir</button>
+
+    <div class="stores">
+      <p class="stores-h">Télécharger le jeu</p>
+      <div class="store-row">
+        <div class="store-item">
+          <a class="badge-link" data-store="apple" aria-disabled="true" tabindex="-1">
+            <img class="badge apple" src="../img/badges/apple-fr.svg" width="132" height="44" alt="Télécharger sur l'App Store">
+          </a>
+          <small class="soon">bientôt disponible</small>
+        </div>
+        <div class="store-item">
+          <a class="badge-link" data-store="google" href="https://play.google.com/store/apps/details?id=com.divano.streetuniversity" target="_blank" rel="noopener">
+            <img class="badge google" src="../img/badges/google-fr.png" width="114" height="44" alt="Disponible sur Google Play">
+          </a>
+        </div>
+      </div>
+      <p class="beta-note">Le jeu est en bêta fermée&nbsp;: demande l'accès à la personne qui t'a invité.</p>
+    </div>
+
+    <p class="backhome"><a href="https://www.streetuniversitygame.com/">streetuniversitygame.com</a></p>
+  </div>
+
+  <!-- ============================= ESPAÑOL ============================= -->
+  <div class="lang" data-lang="es" hidden>
+    <h2 class="heading">¡Nos vemos en Street University!</h2>
+    <p class="tag">Un roguelike disparatado de supervivencia callejera: partidas de treinta minutos, cartas de mejora y gatos a montones.</p>
+
+    <div class="codebox">
+      <p class="code-label">Tu código de invitación</p>
+      <span class="code-value" aria-live="polite"></span>
+      <p class="code-explain">Introdúcelo en INVITAR A UN AMIGO &rarr; ¿TIENES UN CÓDIGO?. Al terminar tu primera partida, una lata dorada llega a ti y a quien te invitó.</p>
+      <button type="button" class="btn btn-copy" data-copy data-copied-label="¡COPIADO!">COPIAR</button>
+    </div>
+    <button type="button" class="btn btn-open" data-open>Ya tengo el juego: abrir</button>
+
+    <div class="stores">
+      <p class="stores-h">Descarga el juego</p>
+      <div class="store-row">
+        <div class="store-item">
+          <a class="badge-link" data-store="apple" aria-disabled="true" tabindex="-1">
+            <img class="badge apple" src="../img/badges/apple-es.svg" width="132" height="44" alt="Descárgalo en App Store">
+          </a>
+          <small class="soon">próximamente</small>
+        </div>
+        <div class="store-item">
+          <a class="badge-link" data-store="google" href="https://play.google.com/store/apps/details?id=com.divano.streetuniversity" target="_blank" rel="noopener">
+            <img class="badge google" src="../img/badges/google-es.png" width="114" height="44" alt="Disponible en Google Play">
+          </a>
+        </div>
+      </div>
+      <p class="beta-note">El juego está en beta cerrada: pide acceso a quien te invitó.</p>
+    </div>
+
+    <p class="backhome"><a href="https://www.streetuniversitygame.com/">streetuniversitygame.com</a></p>
+  </div>
+
+  <!-- ============================= DEUTSCH ============================= -->
+  <div class="lang" data-lang="de" hidden>
+    <h2 class="heading">Wir sehen uns auf Street University!</h2>
+    <p class="tag">Ein schräges Survival-Roguelike von der Straße: dreißigminütige Runs, Upgrade-Karten und jede Menge Katzen.</p>
+
+    <div class="codebox">
+      <p class="code-label">Dein Einladungscode</p>
+      <span class="code-value" aria-live="polite"></span>
+      <p class="code-explain">Gib ihn bei FREUND EINLADEN &rarr; HAST DU EINEN CODE? ein. Nach deinem ersten Run bekommt ihr beide eine goldene Dose.</p>
+      <button type="button" class="btn btn-copy" data-copy data-copied-label="KOPIERT!">KOPIEREN</button>
+    </div>
+    <button type="button" class="btn btn-open" data-open>Hab das Spiel schon: öffnen</button>
+
+    <div class="stores">
+      <p class="stores-h">Spiel herunterladen</p>
+      <div class="store-row">
+        <div class="store-item">
+          <a class="badge-link" data-store="apple" aria-disabled="true" tabindex="-1">
+            <img class="badge apple" src="../img/badges/apple-de.svg" width="132" height="44" alt="Im App Store laden">
+          </a>
+          <small class="soon">demnächst</small>
+        </div>
+        <div class="store-item">
+          <a class="badge-link" data-store="google" href="https://play.google.com/store/apps/details?id=com.divano.streetuniversity" target="_blank" rel="noopener">
+            <img class="badge google" src="../img/badges/google-de.png" width="114" height="44" alt="Jetzt bei Google Play">
+          </a>
+        </div>
+      </div>
+      <p class="beta-note">Das Spiel ist in der geschlossenen Beta: Frag die Person, die dich eingeladen hat, nach Zugang.</p>
+    </div>
+
+    <p class="backhome"><a href="https://www.streetuniversitygame.com/">streetuniversitygame.com</a></p>
+  </div>
+
+  <!-- ============================= РУССКИЙ ============================= -->
+  <div class="lang" data-lang="ru" hidden>
+    <h2 class="heading">Увидимся в Street University!</h2>
+    <p class="tag">Безумный роглайк о выживании на улице: забеги по тридцать минут, карты усиления и целая куча котов.</p>
+
+    <div class="codebox">
+      <p class="code-label">Твой код приглашения</p>
+      <span class="code-value" aria-live="polite"></span>
+      <p class="code-explain">Введи его в ПРИГЛАСИТЬ ДРУГА &rarr; ЕСТЬ КОД?. После первого забега золотая банка достанется и тебе, и тому, кто тебя пригласил.</p>
+      <button type="button" class="btn btn-copy" data-copy data-copied-label="СКОПИРОВАНО!">КОПИРОВАТЬ</button>
+    </div>
+    <button type="button" class="btn btn-open" data-open>Игра уже есть: открыть</button>
+
+    <div class="stores">
+      <p class="stores-h">Скачать игру</p>
+      <div class="store-row">
+        <div class="store-item">
+          <a class="badge-link" data-store="apple" aria-disabled="true" tabindex="-1">
+            <img class="badge apple" src="../img/badges/apple-ru.svg" width="132" height="44" alt="Загрузите в App Store">
+          </a>
+          <small class="soon">скоро</small>
+        </div>
+        <div class="store-item">
+          <a class="badge-link" data-store="google" href="https://play.google.com/store/apps/details?id=com.divano.streetuniversity" target="_blank" rel="noopener">
+            <img class="badge google" src="../img/badges/google-ru.png" width="114" height="44" alt="Доступно в Google Play">
+          </a>
+        </div>
+      </div>
+      <p class="beta-note">Игра в закрытом бета-тестировании: попроси доступ у того, кто тебя пригласил.</p>
+    </div>
+
+    <p class="backhome"><a href="https://www.streetuniversitygame.com/">streetuniversitygame.com</a></p>
+  </div>
+
+  <!-- ============================= 简体中文 ============================= -->
+  <div class="lang" data-lang="zh" hidden>
+    <h2 class="heading">Street University 里见！</h2>
+    <p class="tag">一款荒诞搞笑的街头生存 roguelike：三十分钟一局，升级卡牌，还有一大堆猫。</p>
+
+    <div class="codebox">
+      <p class="code-label">你的邀请码</p>
+      <span class="code-value" aria-live="polite"></span>
+      <p class="code-explain">在【邀请好友】&rarr;【已有邀请码？】中输入。完成第一局后，你和邀请你的人都会各得到一个金罐子。</p>
+      <button type="button" class="btn btn-copy" data-copy data-copied-label="已复制！">复制</button>
+    </div>
+    <button type="button" class="btn btn-open" data-open>已经有游戏了：打开</button>
+
+    <div class="stores">
+      <p class="stores-h">下载游戏</p>
+      <div class="store-row">
+        <div class="store-item">
+          <a class="badge-link" data-store="apple" aria-disabled="true" tabindex="-1">
+            <img class="badge apple" src="../img/badges/apple-zh.svg" width="132" height="44" alt="在 App Store 下载">
+          </a>
+          <small class="soon">即将上线</small>
+        </div>
+        <div class="store-item">
+          <a class="badge-link" data-store="google" href="https://play.google.com/store/apps/details?id=com.divano.streetuniversity" target="_blank" rel="noopener">
+            <img class="badge google" src="../img/badges/google-zh.png" width="114" height="44" alt="在 Google Play 上获取">
+          </a>
+        </div>
+      </div>
+      <p class="beta-note">游戏目前处于封闭测试阶段：请向邀请你的人索取访问权限。</p>
+    </div>
+
+    <p class="backhome"><a href="https://www.streetuniversitygame.com/">streetuniversitygame.com</a></p>
+  </div>
+
+  <!-- ============================= PORTUGUÊS ============================= -->
+  <div class="lang" data-lang="pt" hidden>
+    <h2 class="heading">Vemo-nos em Street University!</h2>
+    <p class="tag">Um roguelike disparatado de sobrevivência na rua: partidas de trinta minutos, cartas de melhoria e gatos aos montes.</p>
+
+    <div class="codebox">
+      <p class="code-label">O teu código de convite</p>
+      <span class="code-value" aria-live="polite"></span>
+      <p class="code-explain">Introduz o código em CONVIDAR UM AMIGO &rarr; TENS UM CÓDIGO?. Ao terminares a tua primeira partida, chega uma lata dourada a ti e a quem te convidou.</p>
+      <button type="button" class="btn btn-copy" data-copy data-copied-label="COPIADO!">COPIAR</button>
+    </div>
+    <button type="button" class="btn btn-open" data-open>Já tenho o jogo: abrir</button>
+
+    <div class="stores">
+      <p class="stores-h">Descarregar o jogo</p>
+      <div class="store-row">
+        <div class="store-item">
+          <a class="badge-link" data-store="apple" aria-disabled="true" tabindex="-1">
+            <img class="badge apple" src="../img/badges/apple-pt.svg" width="132" height="44" alt="Descarregar na App Store">
+          </a>
+          <small class="soon">brevemente</small>
+        </div>
+        <div class="store-item">
+          <a class="badge-link" data-store="google" href="https://play.google.com/store/apps/details?id=com.divano.streetuniversity" target="_blank" rel="noopener">
+            <img class="badge google" src="../img/badges/google-pt.png" width="114" height="44" alt="Disponível no Google Play">
+          </a>
+        </div>
+      </div>
+      <p class="beta-note">O jogo está em beta fechada: pede acesso a quem te convidou.</p>
+    </div>
+
+    <p class="backhome"><a href="https://www.streetuniversitygame.com/">streetuniversitygame.com</a></p>
+  </div>
+
+  </main>
+
+  <hr class="rule">
+  <p class="backhome" style="margin-top:20px">
+    <a href="mailto:info@streetuniversitygame.com">info@streetuniversitygame.com</a>
+  </p>
+
+</div>
+
+<script>
+(function () {
+  // Cambiare questi due valori quando il gioco sarà pubblico sugli store
+  // (aggiornano anche gli <a data-store> nella pagina; il PLAY_STORE_URL
+  // baked negli href statici serve solo a chi ha JavaScript disattivato).
+  var APP_STORE_URL = '';
+  var PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.divano.streetuniversity';
+
+  var SUPPORTED = ['it', 'en', 'fr', 'es', 'de', 'ru', 'zh', 'pt'];
+  var CODE_RE = /^[A-FY-Z2-9]{8}$/;
+
+  function getCode() {
+    var qs = new URLSearchParams(location.search);
+    var c = (qs.get('c') || '').toUpperCase();
+    return CODE_RE.test(c) ? c : null;
+  }
+
+  function detectLang() {
+    var qs = new URLSearchParams(location.search);
+    var forced = (qs.get('lang') || '').toLowerCase();
+    if (SUPPORTED.indexOf(forced) !== -1) return forced;
+    var langs = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || 'en'];
+    for (var i = 0; i < langs.length; i++) {
+      var prefix = String(langs[i]).toLowerCase().split('-')[0];
+      if (SUPPORTED.indexOf(prefix) !== -1) return prefix;
+    }
+    return 'en';
+  }
+
+  function showLang(lang) {
+    var blocks = document.querySelectorAll('.lang');
+    for (var i = 0; i < blocks.length; i++) {
+      blocks[i].hidden = (blocks[i].getAttribute('data-lang') !== lang);
+    }
+    var btns = document.querySelectorAll('.langbar button');
+    for (var j = 0; j < btns.length; j++) {
+      btns[j].setAttribute('aria-pressed', String(btns[j].getAttribute('data-lang') === lang));
+    }
+    document.documentElement.lang = lang;
+  }
+
+  function wireStores() {
+    var apple = document.querySelectorAll('a[data-store="apple"]');
+    var google = document.querySelectorAll('a[data-store="google"]');
+    var i;
+    if (APP_STORE_URL) {
+      for (i = 0; i < apple.length; i++) {
+        apple[i].href = APP_STORE_URL;
+        apple[i].target = '_blank';
+        apple[i].rel = 'noopener';
+        apple[i].removeAttribute('aria-disabled');
+        apple[i].removeAttribute('tabindex');
+      }
+    }
+    for (i = 0; i < google.length; i++) {
+      google[i].href = PLAY_STORE_URL;
+    }
+  }
+
+  function wireCode() {
+    var code = getCode();
+    if (!code) return;
+    document.body.classList.add('has-code');
+
+    var values = document.querySelectorAll('.code-value');
+    for (var i = 0; i < values.length; i++) values[i].textContent = code;
+
+    var copyBtns = document.querySelectorAll('[data-copy]');
+    for (var j = 0; j < copyBtns.length; j++) {
+      copyBtns[j].addEventListener('click', function () {
+        var btn = this;
+        var original = btn.textContent;
+        var done = function () {
+          btn.textContent = btn.getAttribute('data-copied-label') || original;
+          btn.disabled = true;
+          setTimeout(function () { btn.textContent = original; btn.disabled = false; }, 1600);
+        };
+        var fallback = function () {
+          var ta = document.createElement('textarea');
+          ta.value = code;
+          ta.style.position = 'fixed';
+          ta.style.opacity = '0';
+          document.body.appendChild(ta);
+          ta.focus();
+          ta.select();
+          try { document.execCommand('copy'); } catch (e) { /* niente da fare */ }
+          document.body.removeChild(ta);
+          done();
+        };
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(code).then(done, fallback);
+        } else {
+          fallback();
+        }
+      });
+    }
+
+    var openBtns = document.querySelectorAll('[data-open]');
+    for (var k = 0; k < openBtns.length; k++) {
+      openBtns[k].addEventListener('click', function () {
+        var pageUrl = location.origin + location.pathname + '?c=' + code;
+        var isAndroid = /Android/i.test(navigator.userAgent);
+        var url = isAndroid
+          ? 'intent://invito?c=' + code + '#Intent;scheme=streetuni;package=com.divano.streetuniversity;S.browser_fallback_url=' + encodeURIComponent(pageUrl) + ';end'
+          : 'streetuni://invito?c=' + code;
+        window.location.href = url;
+      });
+    }
+  }
+
+  var bar = document.querySelector('.langbar');
+  if (bar) {
+    document.body.classList.add('js-on');
+    bar.hidden = false;
+    bar.addEventListener('click', function (e) {
+      var b = e.target.closest('button[data-lang]');
+      if (b) showLang(b.getAttribute('data-lang'));
+    });
+    showLang(detectLang());
+  }
+
+  wireStores();
+  wireCode();
+})();
+</script>
+</body>
+</html>
