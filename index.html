@@ -190,7 +190,7 @@
         <p class="kick c0">The run</p>
         <h2 id="h-run-en">Thirty minutes. Then the raid.</h2>
       </div>
-      <div class="scene">
+      <div class="scene" data-seq="run" data-frames="39" data-ext="webp">
         <div class="pin">
           <img class="poster" src="./img/seq/run/poster.webp" width="960" height="540" loading="lazy" decoding="async" alt="A city street, by day and by night">
           <canvas width="960" height="540" role="img" aria-label="A city street, by day and by night"></canvas>
@@ -223,14 +223,21 @@
       </div>
     </section>
 
-    <section class="feat" aria-labelledby="h-cards-en">
+    <section class="stage" aria-labelledby="h-cards-en">
       <div class="wrap">
         <p class="kick c2">Cards and superpowers</p>
         <h2 id="h-cards-en">Three cards at every level.</h2>
-        <img class="shot" src="./img/shot-cards.webp" width="1280" height="720" loading="lazy" decoding="async" alt="Three upgrade cards to choose from">
-        <p>Living on the street is how you level up: begging, busking, bin-diving, sleeping and knocking people over with cats all earn experience. Every level deals you three upgrade cards — iron stomach, street charisma, rubber soles, sixth sense and more. Push one all the way and a juggler drops into town to pelt you with pins; take him down, grab the golden card, and your upgrade is crowned an active superpower with its own recharge.</p>
+      </div>
+      <div class="scene" data-seq="cards" data-frames="14" data-ext="webp">
+        <div class="pin">
+          <img class="poster" src="./img/seq/cards/poster.webp" width="960" height="540" loading="lazy" decoding="async" alt="Three upgrade cards to choose from">
+          <canvas width="960" height="540" role="img" aria-label="Three upgrade cards to choose from"></canvas>
+        </div>
       </div>
     </section>
+    <div class="wrap prose">
+      <p>Living on the street is how you level up: begging, busking, bin-diving, sleeping and knocking people over with cats all earn experience. Every level deals you three upgrade cards — iron stomach, street charisma, rubber soles, sixth sense and more. Push one all the way and a juggler drops into town to pelt you with pins; take him down, grab the golden card, and your upgrade is crowned an active superpower with its own recharge.</p>
+    </div>
 
     <section class="stage" aria-labelledby="h-city-en">
       <div class="wrap">
@@ -366,7 +373,7 @@
         <p class="kick c0">La partita</p>
         <h2 id="h-run-it">Trenta minuti. Poi la retata.</h2>
       </div>
-      <div class="scene">
+      <div class="scene" data-seq="run" data-frames="39" data-ext="webp">
         <div class="pin">
           <img class="poster" src="./img/seq/run/poster.webp" width="960" height="540" loading="lazy" decoding="async" alt="Una strada della città, di giorno e di notte">
           <canvas width="960" height="540" role="img" aria-label="Una strada della città, di giorno e di notte"></canvas>
@@ -399,14 +406,21 @@
       </div>
     </section>
 
-    <section class="feat" aria-labelledby="h-cards-it">
+    <section class="stage" aria-labelledby="h-cards-it">
       <div class="wrap">
         <p class="kick c2">Carte e superpoteri</p>
         <h2 id="h-cards-it">Tre carte a ogni livello.</h2>
-        <img class="shot" src="./img/shot-cards.webp" width="1280" height="720" loading="lazy" decoding="async" alt="Tre carte potenziamento fra cui scegliere">
-        <p>Si sale di livello vivendo per strada: elemosina, musica, bidoni, sonno e gente buttata a terra a gattate danno tutti esperienza. A ogni livello ti arrivano tre carte potenziamento — stomaco di ferro, carisma da marciapiede, suole di gomma, sesto senso e altre. Portane una fino in fondo e in città piomba un giullare che ti bersaglia di birilli: stendilo, prenditi la carta d'oro, e il potenziamento diventa un superpotere attivo con la sua ricarica.</p>
+      </div>
+      <div class="scene" data-seq="cards" data-frames="14" data-ext="webp">
+        <div class="pin">
+          <img class="poster" src="./img/seq/cards/poster.webp" width="960" height="540" loading="lazy" decoding="async" alt="Tre carte potenziamento fra cui scegliere">
+          <canvas width="960" height="540" role="img" aria-label="Tre carte potenziamento fra cui scegliere"></canvas>
+        </div>
       </div>
     </section>
+    <div class="wrap prose">
+      <p>Si sale di livello vivendo per strada: elemosina, musica, bidoni, sonno e gente buttata a terra a gattate danno tutti esperienza. A ogni livello ti arrivano tre carte potenziamento — stomaco di ferro, carisma da marciapiede, suole di gomma, sesto senso e altre. Portane una fino in fondo e in città piomba un giullare che ti bersaglia di birilli: stendilo, prenditi la carta d'oro, e il potenziamento diventa un superpotere attivo con la sua ricarica.</p>
+    </div>
 
     <section class="stage" aria-labelledby="h-city-it">
       <div class="wrap">
@@ -585,8 +599,12 @@
 
     function visible(it) { return it.el.getClientRects().length > 0; }
 
+    // Finche' la pagina non e' stata scorsa i fotogrammi non partono: la prima scena sta a meno di uno
+    // schermo dalla cima, e senza questo il primo caricamento peserebbe quanto tutta la sua sequenza.
+    var moved = (window.pageYOffset || 0) > 0, waiting = [];
     function load(it) {                  // parte quando la scena e' a meno di uno schermo
       if (it.poster) it.poster.loading = 'eager';   // l'immagine e' nascosta: il caricamento pigro non la scarichera' mai
+      if (!moved) { if (waiting.indexOf(it) < 0) waiting.push(it); return; }   // intanto vale il fermo immagine
       if (cache[it.key]) return;
       var list = cache[it.key] = [];
       for (var i = 0; i < it.n; i++) {
@@ -641,7 +659,10 @@
       items.forEach(function (it) { if (visible(it)) load(it); });
     }
     if (items[0].poster) items.forEach(function (it) { if (it.poster) it.poster.addEventListener('load', function () { schedule(true); }); });
-    window.addEventListener('scroll', function () { schedule(false); }, { passive: true });
+    window.addEventListener('scroll', function () {
+      if (!moved) { moved = true; for (var i = 0; i < waiting.length; i++) load(waiting[i]); waiting = []; }
+      schedule(false);
+    }, { passive: true });
     window.addEventListener('resize', function () { schedule(true); });
     window.__scenesRefresh = function () { schedule(true); };
     schedule(true);
