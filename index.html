@@ -58,6 +58,13 @@
   .byline{margin:16px 0 0; font-size:.95rem; color:var(--muted)}
   .byline strong{color:var(--fg); font-weight:600}
 
+  /* ---- trailer: parte solo al clic (preload=none), prima si vede il fermo immagine ---- */
+  .trailer{margin:26px auto 0; max-width:760px}
+  .trailer video{
+    display:block; width:100%; height:auto; aspect-ratio:16 / 9;
+    border-radius:14px; box-shadow:var(--shadow); background:#18141f;
+  }
+
   /* ---- barra lingua (compare solo con JS attivo) ---- */
   .langbar{display:flex; gap:8px; justify-content:center; margin:34px 0 0}
   .langbar button{
@@ -113,6 +120,12 @@
     <h1 class="sr-only">Street University</h1>
     <p class="tagline">A cartoon street-survival roguelike: thirty-minute runs, upgrade cards, and cats.</p>
     <p class="byline">An independent game by <strong>Ivan Bianco</strong> &middot; Divano_Prime &middot; Italy</p>
+    <figure class="trailer">
+      <video controls preload="none" playsinline width="1280" height="720" poster="./img/trailer-poster.webp" aria-label="Street University trailer &middot; Il trailer di Street University">
+        <source src="./video/trailer.mp4" type="video/mp4">
+        <a href="./video/trailer.mp4">Watch the trailer &middot; Guarda il trailer</a>
+      </video>
+    </figure>
   </header>
 
   <nav class="langbar" hidden>
