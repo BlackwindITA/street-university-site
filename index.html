@@ -212,7 +212,7 @@
         <p class="kick c1">Characters</p>
         <h2 id="h-chars-en">Pick who to be, out there.</h2>
       </div>
-      <div class="scene">
+      <div class="scene" data-seq="chars" data-frames="30" data-ext="webp">
         <div class="pin">
           <img class="poster" src="./img/seq/chars/poster.webp" width="960" height="540" loading="lazy" decoding="async" alt="The character selection screen">
           <canvas width="960" height="540" role="img" aria-label="The character selection screen"></canvas>
@@ -237,7 +237,7 @@
         <p class="kick c0">The city</p>
         <h2 id="h-city-en">The city would rather not see you.</h2>
       </div>
-      <div class="scene">
+      <div class="scene" data-seq="city" data-frames="39" data-ext="webp">
         <div class="pin">
           <img class="poster" src="./img/seq/city/poster.webp" width="960" height="540" loading="lazy" decoding="async" alt="A yeti next to an ice-cream van in a frozen square">
           <canvas width="960" height="540" role="img" aria-label="A yeti next to an ice-cream van in a frozen square"></canvas>
@@ -276,7 +276,7 @@
         <p class="kick c2">Nobody dies</p>
         <h2 id="h-ghost-en">Knocked out? Haunt someone.</h2>
       </div>
-      <div class="scene">
+      <div class="scene" data-seq="ghost" data-frames="30" data-ext="webp">
         <div class="pin">
           <img class="poster" src="./img/seq/ghost/poster.webp" width="960" height="540" loading="lazy" decoding="async" alt="A ghost taking over the cat lady">
           <canvas width="960" height="540" role="img" aria-label="A ghost taking over the cat lady"></canvas>
@@ -388,7 +388,7 @@
         <p class="kick c1">Personaggi</p>
         <h2 id="h-chars-it">Scegli chi essere, per strada.</h2>
       </div>
-      <div class="scene">
+      <div class="scene" data-seq="chars" data-frames="30" data-ext="webp">
         <div class="pin">
           <img class="poster" src="./img/seq/chars/poster.webp" width="960" height="540" loading="lazy" decoding="async" alt="La schermata di scelta del personaggio">
           <canvas width="960" height="540" role="img" aria-label="La schermata di scelta del personaggio"></canvas>
@@ -413,7 +413,7 @@
         <p class="kick c0">La città</p>
         <h2 id="h-city-it">La città preferirebbe non vederti.</h2>
       </div>
-      <div class="scene">
+      <div class="scene" data-seq="city" data-frames="39" data-ext="webp">
         <div class="pin">
           <img class="poster" src="./img/seq/city/poster.webp" width="960" height="540" loading="lazy" decoding="async" alt="Uno yeti accanto a un furgone dei gelati in una piazza ghiacciata">
           <canvas width="960" height="540" role="img" aria-label="Uno yeti accanto a un furgone dei gelati in una piazza ghiacciata"></canvas>
@@ -452,7 +452,7 @@
         <p class="kick c2">Non muore nessuno</p>
         <h2 id="h-ghost-it">Sei crollato? Possiedi qualcuno.</h2>
       </div>
-      <div class="scene">
+      <div class="scene" data-seq="ghost" data-frames="30" data-ext="webp">
         <div class="pin">
           <img class="poster" src="./img/seq/ghost/poster.webp" width="960" height="540" loading="lazy" decoding="async" alt="Un fantasma che possiede la gattara">
           <canvas width="960" height="540" role="img" aria-label="Un fantasma che possiede la gattara"></canvas>
@@ -650,6 +650,19 @@
   var preferred = (navigator.language || 'en').toLowerCase().indexOf('it') === 0 ? 'it' : 'en';
   show(preferred);
 })();
+
+/* «Watch the trailer»: il rimando porta al riquadro (anche senza JavaScript) e in piu' fa partire il video
+   dall'inizio. Il clic e' un gesto di chi guarda, quindi il browser lascia partire anche l'audio. */
+document.addEventListener('click', function (e) {
+  var a = e.target.closest ? e.target.closest('a[href^="#trailer-"]') : null;
+  if (!a) return;
+  var box = document.getElementById(a.getAttribute('href').slice(1));
+  var v = box ? box.querySelector('video') : null;
+  if (!v) return;
+  try { v.currentTime = 0; } catch (err) {}
+  var p = v.play();
+  if (p && p.catch) p.catch(function () {});
+});
 </script>
 </body>
 </html>
