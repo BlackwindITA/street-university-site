@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>v0.55 — Novità Street University</title>
+<meta name="description" content="Dettaglio tecnico della versione v0.55 di Street University, generato dal changelog di sviluppo.">
+<link rel="canonical" href="https://www.streetuniversitygame.com/changelog/v/v0-55.html">
+<link rel="icon" type="image/png" href="../../img/favicon-64.png">
+<link rel="apple-touch-icon" href="../../img/apple-touch-icon.png">
+<style>
+:root{
+  --bg:#f7f5f0; --fg:#1c1a17; --muted:#5c574f; --rule:#d9d3c7;
+  --accent:#b4531a; --card:#ffffff; --tag-bg:#efe9dd; --shadow:0 2px 10px rgba(28,26,23,.08);
+  --novita-bg:#fff4e8; --novita-border:#e8b98a;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#16151a; --fg:#ece9e3; --muted:#a09a90; --rule:#34313a;
+    --accent:#ff9d5c; --card:#1f1e25; --tag-bg:#26242d; --shadow:0 2px 14px rgba(0,0,0,.5);
+    --novita-bg:#2a2115; --novita-border:#6b4423;
+  }
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--bg); color:var(--fg);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  font-size:17px; line-height:1.6;
+}
+.wrap{max-width:760px; margin:0 auto; padding:0 18px 60px}
+a{color:var(--accent)}
+code{background:var(--tag-bg); padding:.1em .35em; border-radius:4px; font-size:.9em; word-break:break-word}
+header.top{padding:28px 0 6px; text-align:center}
+header.top .back{font-size:.92rem; color:var(--muted); text-decoration:none}
+header.top h1{margin:14px 0 4px; font-size:1.7rem}
+header.top p.sub{margin:0; color:var(--muted); font-size:1rem}
+.stats{margin:18px 0 0; display:flex; gap:8px; flex-wrap:wrap; justify-content:center}
+.stats span{
+  background:var(--tag-bg); border:1px solid var(--rule); border-radius:999px;
+  padding:4px 12px; font-size:.82rem; color:var(--muted);
+}
+main{padding:20px 0 0}
+section.version{
+  background:var(--card); border:1px solid var(--rule); border-radius:14px;
+  padding:18px 18px 16px; margin:0 0 22px; box-shadow:var(--shadow);
+}
+section.version h2{
+  margin:0 0 2px; font-size:1.25rem; display:flex; align-items:baseline; gap:8px; flex-wrap:wrap;
+}
+section.version h2 .ver{color:var(--accent); font-weight:800}
+section.version .dates{margin:0 0 14px; font-size:.85rem; color:var(--muted)}
+.novita-list{list-style:none; margin:0; padding:0}
+.novita-list li{
+  background:var(--novita-bg); border:1px solid var(--novita-border); border-radius:10px;
+  padding:9px 12px; margin:0 0 8px; font-size:.96rem;
+}
+.novita-empty{color:var(--muted); font-size:.9rem; font-style:italic; margin:0 0 8px}
+.detail-link{
+  display:inline-block; margin-top:6px; font-size:.88rem; font-weight:600;
+  text-decoration:none;
+}
+.version-page header.top .back{display:block; margin-bottom:4px}
+.entry{margin:14px 0 0; padding-top:12px; border-top:1px dashed var(--rule)}
+.entry:first-of-type{border-top:none; padding-top:0}
+.entry h3{margin:0 0 6px; font-size:1rem}
+.entry h3 .date{color:var(--muted); font-weight:400; font-size:.85rem; display:block}
+.entry ul, .entry ol{margin:6px 0; padding-left:1.25em}
+.entry li{margin:0 0 8px}
+.entry p{margin:6px 0}
+.tbl-wrap{overflow-x:auto; margin:8px 0}
+table{border-collapse:collapse; font-size:.85rem; width:100%}
+th,td{border:1px solid var(--rule); padding:5px 8px; text-align:left; white-space:nowrap}
+footer.bottom{margin:30px 0 0; padding-top:18px; border-top:1px solid var(--rule); color:var(--muted); font-size:.85rem; text-align:center}
+</style>
+</head>
+<body class="version-page">
+<div class="wrap">
+  <header class="top">
+    <a class="back" href="../">← Novità</a>
+    <h1><span class="ver">v0.55</span></h1>
+    <p class="sub">2026-10-09 · 1 voce/i di changelog</p>
+  </header>
+  <main>
+    <ul class="novita-list"><li>Metro insieme</li><li>Tasto INVITA</li><li>Fantasmi più capaci</li><li>Intoccabile mentre scegli la carta</li><li>L'ospedale al posto della chiesa</li><li>Gattopoli più vivibile</li></ul>
+    <section class="version">
+    <div class="entry"><h3>Release 0.55: note in-game in otto lingue, versione a 0.55 (`/rilascio-beta`)<span class="date">2026-10-09</span></h3><p>Giro di rilascio beta lanciato da Ivan con <code>/rilascio-beta</code>. Delta dall'ultimo tag di release <code>v0.54-host-paziente-barboni-rimappati-relay-epic</code>: voci di CHANGELOG 339-378 (338 e 346 chiudono il giro della 0.54). Il grosso è il multiplayer nato dalle partite del 05/10: bonus metro, possessione, scelta della carta.</p><ul><li>✅ Sezione <strong>v0.55</strong> in cima a <code>files/homeless_city/assets/release_notes_it.txt</code> più le 7 gemelle (<code>_en</code>, <code>_fr</code>, <code>_es</code>, <code>_de</code>, <code>_ru</code>, <code>_zh</code>, <code>_pt</code>): 9 voci nel formato SU-721 <code>- TITOLO: testo</code>, sezioni vecchie intatte. I nomi di quartieri, nemici, skin e dell'avviso del bonus sono quelli dei CSV di traduzione (Meowpolis, Hoarfrost, THE PACK, BONUS STAGE INCOMING e gemelli), non ritradotti. Inserite con <code>TMP/release/note_055.py</code>.</li><li>📌 Voce <strong>SOLO CON LA 0.55</strong>: la guardia RPC di <code>prepare_release.sh</code> segnala <code>NetworkManager._cl_tunnel_start</code> (nuova, SU-1102) e <code>Player._net_state</code> passato da 8 a 10 argomenti (SU-1093, SU-1097). Una 0.54 con una 0.55 non gioca, senza errori a schermo: il manifest tiene il default, versione minima multiplayer <strong>0.55</strong>.</li><li>📌 Fuori dalle note le cose che il giocatore non vede: posizioni dei puppet <code>unreliable</code> e coda di crash compressa (SU-1093), suite di regressione e sonde (SU-1083, 1084, 1090, 1111), documenti e regole (SU-1085…1089), le pagine <code>/metodo/</code> del sito (SU-1104…1107), il monoscopio senza dissolvenza (SU-1079).</li><li>✅ <code>config/version</code> di <code>files/homeless_city/project.godot</code> a <strong>0.55</strong>, e <code>version/code</code> <strong>55</strong> nei due preset Android di <code>files/homeless_city/export_presets.cfg</code> (riallineato dal pre-volo <code>export_all.sh --env stage mac win aab --controlla</code>). Pre-volo di macOS, Windows e AAB: include_filter a posto, template Android con le patch EOS, keystore caricato.</li><li>⚠️ <strong>Esce senza collaudo di Ivan sui device:</strong> dei ticket di gioco di questo delta nessuno è a «Fatto», sono tutti «In revisione» e provati con le sonde a due peer sul Mac. Nessuno è rientrato KO.</li><li>⚠️ <strong>Informativa privacy:</strong> il tasto INVITA esce con questa build e la pagina <code>/partita/</code> è online (200, e l'<code>apple-app-site-association</code> la elenca), ma la riga dell'informativa che la nomina (SU-1115) sta in due commit non pubblicati, uno per copia. Si pubblicano con l'ok di Ivan prima che la build arrivi ai tester.</li><li>[NOVITA'] <strong>Metro insieme</strong> — in multiplayer la corsa del bonus metro parte per tutti nello stesso momento, con freccia verde verso la fermata e avviso col conto alla rovescia.</li><li>[NOVITA'] <strong>Tasto INVITA</strong> — dalla lobby online si manda un link: chi lo apre entra nella lobby, o a guardare se la partita è già cominciata.</li><li>[NOVITA'] <strong>Fantasmi più capaci</strong> — in multiplayer si possiedono anche poliziotto, fenicottero e pupazzo di neve, e i posseduti camminano svelti.</li><li>[NOVITA'] <strong>Intoccabile mentre scegli la carta</strong> — in multiplayer niente vite perse e nessun inseguitore finché la carta non è scelta.</li><li>[NOVITA'] <strong>L'ospedale al posto della chiesa</strong> — stessa meccanica, ora si paga il ticket.</li><li>[NOVITA'] <strong>Gattopoli più vivibile</strong> — al massimo due gattare vive, e mollano oltre i 400 px.</li></ul></div>
+    </section>
+  </main>
+  <footer class="bottom">
+    <p><a href="../">← Torna a tutte le novità</a></p>
+  </footer>
+</div>
+</body>
+</html>
