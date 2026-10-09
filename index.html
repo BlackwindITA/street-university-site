@@ -15,220 +15,513 @@
 <meta property="og:image" content="https://www.streetuniversitygame.com/img/hero.webp">
 <meta name="twitter:card" content="summary_large_image">
 <style>
-  :root{
-    --bg:#f7f5f0; --fg:#1c1a17; --muted:#5c574f; --rule:#d9d3c7;
-    --accent:#b4531a; --card:#ffffff; --tag-bg:#efe9dd; --shadow:0 2px 10px rgba(28,26,23,.08);
+  /* ---- font dei titoli: gia' nel sito, Bebas Neue peso 400 ---- */
+  @font-face{
+    font-family:"Bebas Neue"; font-weight:400; font-display:swap;
+    src:url("./fonts/BebasNeue-latin.woff2") format("woff2");
   }
-  @media (prefers-color-scheme: dark){
-    :root{
-      --bg:#16151a; --fg:#ece9e3; --muted:#a09a90; --rule:#34313a;
-      --accent:#ff9d5c; --card:#1f1e25; --tag-bg:#26242d; --shadow:0 2px 14px rgba(0,0,0,.5);
-    }
+  /* tema UNICO scuro; cremisi solo su link e pulsanti; turchese e arancio mai su testo piccolo */
+  :root{
+    color-scheme:dark;
+    --bg:#121a2c; --fg:#f2ecdf; --muted:#9ba6bd; --rule:#2a3550; --card:#19233a; --stage:#0b1120;
+    --c0:#f2ecdf; --c1:#56c4d3; --c2:#ff9c57;
+    --btn:#e2456b; --on-btn:#170a10; --link:#f0597c;
+    --disp:"Bebas Neue","Arial Narrow","Roboto Condensed",Impact,sans-serif;
   }
   *{box-sizing:border-box}
+  [hidden]{display:none !important}
   html{-webkit-text-size-adjust:100%}
   body{
     margin:0; background:var(--bg); color:var(--fg);
     font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
     font-size:17px; line-height:1.65;
   }
-  .wrap{max-width:900px; margin:0 auto; padding:0 20px}
-  a{color:var(--accent)}
+  .wrap{max-width:980px; margin:0 auto; padding:0 20px}
+  a{color:var(--link)}
   a:hover{text-decoration:none}
   img{max-width:100%; height:auto; display:block}
+  h1,h2,p{margin:0}
+  code{font-size:.92em}
 
-  /* ---- testata ---- */
-  header{padding:30px 0 8px; text-align:center}
-  /* l'eroe porta gia' il titolo disegnato: l'h1 resta per lettori di schermo e motori */
-  .sr-only{
-    position:absolute; width:1px; height:1px; padding:0; margin:-1px;
-    overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0;
-  }
-  .hero{width:100%; border-radius:14px; box-shadow:var(--shadow)}
-  /* l'icona del gatto scavalca il bordo basso dell'eroe, come un distintivo */
-  .logo{
-    width:104px; height:104px; margin:-58px auto 0; position:relative;
-    border-radius:24px; border:4px solid var(--bg); box-shadow:var(--shadow);
-  }
-  /* su schermo stretto l'eroe e' basso: un distintivo da 104 px se lo mangerebbe */
-  @media (max-width:560px){
-    .logo{width:76px; height:76px; margin:-42px auto 0; border-radius:18px; border-width:3px}
-  }
-  .tagline{margin:20px auto 0; max-width:34em; font-size:1.12rem; color:var(--muted)}
-  .byline{margin:16px 0 0; font-size:.95rem; color:var(--muted)}
-  .byline strong{color:var(--fg); font-weight:600}
-
-  /* ---- trailer: parte solo al clic (preload=none), prima si vede il fermo immagine ---- */
-  .trailer{margin:26px auto 0; max-width:760px}
-  .trailer video{
-    display:block; width:100%; height:auto; aspect-ratio:16 / 9;
-    border-radius:14px; box-shadow:var(--shadow); background:#18141f;
-  }
-
-  /* ---- barra lingua (compare solo con JS attivo) ---- */
-  .langbar{display:flex; gap:8px; justify-content:center; margin:34px 0 0}
+  /* ---- selettore lingua (compare solo con JS attivo), a spigolo vivo ---- */
+  .langbar{display:flex; gap:0; justify-content:center; padding:14px 20px; background:var(--stage)}
   .langbar button{
-    font:inherit; font-size:.9rem; padding:7px 16px; cursor:pointer;
-    background:var(--tag-bg); color:var(--muted); border:1px solid var(--rule); border-radius:999px;
+    font:inherit; font-size:.9rem; padding:7px 18px; cursor:pointer;
+    background:var(--card); color:var(--muted); border:1px solid var(--rule); border-radius:0;
   }
-  .langbar button[aria-pressed="true"]{background:var(--accent); border-color:var(--accent); color:#fff; font-weight:600}
-  @media (prefers-color-scheme: dark){ .langbar button[aria-pressed="true"]{color:#1a1207} }
-
-  /* ---- corpo ---- */
-  main{padding:8px 0 0}
-  .lang > h2:first-of-type{margin-top:34px}
-  h2{
-    margin:46px 0 4px; font-size:.86rem; letter-spacing:.16em; text-transform:uppercase;
-    color:var(--accent); font-weight:700;
-  }
-  h2 + p{margin-top:10px}
-  h3{margin:32px 0 2px; font-size:1.28rem; line-height:1.3}
-  p{margin:14px 0}
-  .lead{font-size:1.14rem}
-  hr{border:0; border-top:1px solid var(--rule); margin:52px 0}
+  .langbar button + button{border-left:0}
+  .langbar button[aria-pressed="true"]{background:var(--btn); border-color:var(--btn); color:var(--on-btn); font-weight:700}
   .langlabel{
-    display:inline-block; margin:52px 0 -20px; padding:3px 12px; border-radius:999px;
-    background:var(--tag-bg); color:var(--muted); font-size:.78rem; letter-spacing:.12em; text-transform:uppercase;
+    display:block; padding:10px 20px; background:var(--card); color:var(--muted);
+    font-size:.8rem; letter-spacing:.12em; text-transform:uppercase; border-bottom:1px solid var(--rule);
   }
   .js-on .langlabel{display:none}
 
-  /* ---- liste ---- */
-  ul.plain{list-style:none; padding:0; margin:16px 0; display:flex; flex-wrap:wrap; gap:8px}
-  ul.plain li{
-    background:var(--tag-bg); border:1px solid var(--rule); border-radius:999px;
-    padding:5px 14px; font-size:.9rem; color:var(--muted);
+  /* ---- etichette di sezione: la barretta porta il colore della categoria ---- */
+  .kick{
+    font-size:.82rem; line-height:1.3; letter-spacing:.16em; text-transform:uppercase; font-weight:700;
+    color:var(--muted);
   }
+  .kick::before{content:""; display:block; width:36px; height:6px; margin-bottom:10px; background:var(--c0)}
+  .kick.c1::before{background:var(--c1)}
+  .kick.c2::before{background:var(--c2)}
+  h1,h2{
+    font-family:var(--disp); font-weight:400; text-transform:uppercase; text-wrap:balance;
+    font-size:clamp(2.2rem,6vw,3.6rem); line-height:.95; margin-top:8px; overflow-wrap:break-word;
+  }
+  .prose p, .feat p, .who p, .intro p{margin-top:16px; max-width:40em}
+  .prose, .intro{padding-block:0 8px}
+  .intro{padding-top:8px}
+  .byline{font-size:.95rem; color:var(--muted)}
+  .byline strong{color:var(--fg); font-weight:600}
+  .lead{font-size:1.14rem}
 
-  /* ---- galleria ---- */
-  .shots{display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:16px; margin:24px 0 0}
-  figure{margin:0}
-  figure img{border-radius:10px; border:1px solid var(--rule); box-shadow:var(--shadow)}
-  figcaption{margin-top:8px; font-size:.88rem; color:var(--muted); text-align:center}
+  /* ---- 1 · apertura ---- */
+  .hero{background:var(--stage); text-align:center; padding-block:clamp(40px,8vw,96px) 0}
+  .hero .kick{color:var(--muted)}
+  .hero .kick::before{margin-inline:auto}
+  .hero h1{font-size:clamp(3.4rem,13vw,9rem); line-height:.88; letter-spacing:.01em}
+  .hero .tag{margin:14px auto 0; max-width:22em; font-size:clamp(1.15rem,2.6vw,1.6rem); line-height:1.3; color:var(--muted)}
+  .acts{display:flex; flex-wrap:wrap; gap:12px 22px; justify-content:center; align-items:center; margin-top:26px}
+  .btn{
+    display:inline-block; padding:8px 24px 6px; background:var(--btn); color:var(--on-btn); text-decoration:none;
+    font-family:var(--disp); font-weight:400; text-transform:uppercase; font-size:1.35rem; letter-spacing:.05em;
+  }
+  .btn:hover{background:#f0597c}
+  .lnk{font-size:1.05rem; text-underline-offset:4px}
+  .hero .shot{max-width:1100px; margin:clamp(28px,6vw,64px) auto 0; padding-inline:20px}
+  .hero .shot img{width:100%}
+
+  /* ---- scene: fascia scura, fermo immagine + frasi una sotto l'altra (stato senza JS) ---- */
+  .stage{background:var(--stage); padding-block:clamp(40px,8vw,96px) clamp(28px,5vw,64px); margin-top:clamp(40px,8vw,96px)}
+  .hero + .intro + .stage{margin-top:clamp(40px,8vw,96px)}
+  .scene{margin-top:clamp(20px,4vw,40px)}
+  .scene .pin{max-width:980px; margin:0 auto; padding-inline:20px}
+  .scene .poster{width:100%; max-width:960px; margin:0 auto}
+  .scene canvas{display:none; width:100%; max-width:960px; height:auto; aspect-ratio:16 / 9}
+  .caps{margin-top:20px; text-align:center}
+  .caps p{
+    font-family:var(--disp); text-transform:uppercase; text-wrap:balance; margin:.25em 0;
+    font-size:clamp(2rem,6vw,3.8rem); line-height:1;
+  }
+  .stage .wrap{text-align:center}
+  .stage .kick::before{margin-inline:auto}
+
+  /* ---- scena viva: lo attiva il JS con la classe js-scenes su <html> ---- */
+  .js-scenes .scene[data-frames]{height:260vh; height:260svh}
+  .js-scenes .scene[data-frames] .pin{
+    position:sticky; top:0; height:100vh; height:100svh;
+    display:flex; flex-direction:column; justify-content:center; align-items:center; gap:18px;
+  }
+  .js-scenes .scene[data-frames] .poster{display:none}
+  .js-scenes .scene[data-frames] canvas{display:block}
+  .js-scenes .scene[data-frames] .caps{display:grid; width:100%; margin-top:0}
+  .js-scenes .scene[data-frames] .caps p{grid-area:1 / 1; margin:0; opacity:0; transition:opacity .35s}
+  .js-scenes .scene[data-frames] .caps p.on{opacity:1}
+
+  /* ---- 4 · 8 · immagini con testo ---- */
+  .feat{padding-block:clamp(48px,9vw,120px) 0}
+  .feat .shot{width:100%; margin-top:24px}
+  .feat p{margin-top:24px}
+
+  /* ---- 9 · specifiche ---- */
+  .specs{padding-block:clamp(48px,9vw,120px) 0}
+  ul.nums{list-style:none; margin:28px 0 0; padding:0; display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:18px}
+  ul.nums li{border-top:6px solid var(--c0); padding-top:12px}
+  ul.nums li.c1{border-color:var(--c1)} ul.nums li.c2{border-color:var(--c2)}
+  .nums .n{display:block; font-family:var(--disp); font-size:clamp(3rem,8vw,4.6rem); line-height:1; font-variant-numeric:tabular-nums}
+  .nums .n.c1{color:var(--c1)} .nums .n.c2{color:var(--c2)}
+  .nums .cap{display:block; margin-top:8px; text-transform:uppercase; letter-spacing:.08em; font-size:.78rem; font-weight:600; color:var(--muted)}
+  @media (max-width:700px){ ul.nums{grid-template-columns:repeat(2,minmax(0,1fr))} }
+  ul.plain{list-style:none; padding:0; margin:36px 0 0; display:flex; flex-wrap:wrap; gap:8px}
+  ul.plain li{background:var(--card); border:1px solid var(--rule); padding:5px 14px; font-size:.9rem; color:var(--muted)}
+
+  /* ---- 10 · trailer: parte solo al clic (preload=none), prima si vede il fermo immagine ---- */
+  .trail{padding-block:clamp(48px,9vw,120px) 0}
+  .trailer{margin:24px 0 0; max-width:760px}
+  .trailer video{display:block; width:100%; height:auto; aspect-ratio:16 / 9; background:var(--stage)}
+
+  /* ---- 11 · coming soon ---- */
+  .soon{background:var(--stage); text-align:center; margin-top:clamp(48px,9vw,120px); padding-block:clamp(48px,9vw,110px)}
+  .soon h2{font-size:clamp(3rem,10vw,6rem); line-height:.9; margin:0}
+  .soon .tag{margin-top:8px; color:var(--muted); font-size:1.15rem}
+  .soon .beta{margin:28px auto 0; max-width:34em; text-align:left}
+
+  /* ---- 12 · chi lo fa ---- */
+  .who{padding-block:clamp(40px,7vw,80px) 0}
 
   /* ---- piede ---- */
-  footer{margin:64px 0 0; padding:28px 0 56px; border-top:1px solid var(--rule); color:var(--muted); font-size:.92rem}
+  footer{margin:48px 0 0; padding:28px 0 56px; border-top:1px solid var(--rule); color:var(--muted); font-size:.92rem}
   footer p{margin:8px 0}
   .footlinks{display:flex; flex-wrap:wrap; gap:8px 22px; margin:0 0 16px}
 </style>
+<!-- senza JavaScript il selettore non compare e le due lingue si vedono una sotto l'altra -->
+<noscript><style>.lang[hidden]{display:block !important}</style></noscript>
 </head>
 <body>
-<div class="wrap">
 
-  <header>
-    <img class="hero" src="./img/hero.webp" width="1920" height="800" alt="Street University — the game logo on a city rooftop at dawn, with two pigeons on the parapet">
-    <img class="logo" src="./img/logo-256.png" width="256" height="256" alt="Street University app icon: a sleeping ginger cat">
-    <h1 class="sr-only">Street University</h1>
-    <p class="tagline">A cartoon street-survival roguelike: thirty-minute runs, upgrade cards, and cats.</p>
-    <p class="byline">An independent game by <strong>Ivan Bianco</strong> &middot; Divano_Prime &middot; Italy</p>
-    <figure class="trailer">
-      <video controls preload="none" playsinline width="1280" height="720" poster="./img/trailer-poster.webp" aria-label="Street University trailer &middot; Il trailer di Street University">
-        <source src="./video/trailer.mp4" type="video/mp4">
-        <a href="./video/trailer.mp4">Watch the trailer &middot; Guarda il trailer</a>
-      </video>
-    </figure>
-  </header>
+<nav class="langbar" hidden>
+  <button type="button" data-lang="en" aria-pressed="true">English</button>
+  <button type="button" data-lang="it" aria-pressed="false">Italiano</button>
+</nav>
 
-  <nav class="langbar" hidden>
-    <button type="button" data-lang="en" aria-pressed="true">English</button>
-    <button type="button" data-lang="it" aria-pressed="false">Italiano</button>
-  </nav>
-
-  <main>
+<main>
 
   <!-- ============================= ENGLISH ============================= -->
   <span class="langlabel">English</span>
   <div class="lang" data-lang="en">
 
-    <h2>The game</h2>
-    <p class="lead">Street University is a cartoon survival roguelike about three very bad days, played entirely for laughs. You are homeless in a city that would rather you weren't, you have thirty minutes, and a cat.</p>
+    <section class="hero">
+      <div class="wrap">
+        <p class="kick">A street-survival roguelike</p>
+        <h1>Street University</h1>
+        <p class="tag">Three bad days. Thirty minutes. One cat.</p>
+        <div class="acts"><a class="btn" href="#trailer-en">Watch the trailer</a><a class="lnk" href="/metodo/">How it's built</a></div>
+      </div>
+      <div class="shot"><img src="./img/hero.webp" width="1920" height="800" alt="The Street University logo above the rooftops at sunset"></div>
+    </section>
+    <div class="wrap intro">
+      <p class="byline">An independent game by <strong>Ivan Bianco</strong> &middot; Divano_Prime &middot; Italy</p>
+      <p class="lead">Street University is a cartoon survival roguelike about three very bad days, played entirely for laughs. You are homeless in a city that would rather you weren't, you have thirty minutes, and a cat.</p>
+    </div>
 
-    <h3>The run</h3>
-    <p>Thirty real minutes are three days on the street. Beg at the traffic lights, busk with a kazoo, dig through bins, nap on a bench, wash in a public toilet, and watch hunger, energy and hygiene drain while you do it. Every dawn the city gets meaner: more police, higher prices, stingier passers-by, and absurd daily events like the bin men's strike or the mayor's visit.</p>
-    <p>At minute thirty, the big raid arrives. It always does. A clearance squad faster than you floods the streets, and every run ends the same way. The only questions are how long you last and what you scored.</p>
+    <section class="stage" aria-labelledby="h-run-en">
+      <div class="wrap">
+        <p class="kick c0">The run</p>
+        <h2 id="h-run-en">Thirty minutes. Then the raid.</h2>
+      </div>
+      <div class="scene">
+        <div class="pin">
+          <img class="poster" src="./img/seq/run/poster.webp" width="960" height="540" loading="lazy" decoding="async" alt="A city street, by day and by night">
+          <canvas width="960" height="540" role="img" aria-label="A city street, by day and by night"></canvas>
+          <div class="caps">
+          <p>Morning: beg at the traffic light.</p>
+          <p>Evening: the city gets meaner.</p>
+          <p>Minute thirty: they come for you.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="wrap prose">
+      <p>Thirty real minutes are three days on the street. Beg at the traffic lights, busk with a kazoo, dig through bins, nap on a bench, wash in a public toilet, and watch hunger, energy and hygiene drain while you do it. Every dawn the city gets meaner: more police, higher prices, stingier passers-by, and absurd daily events like the bin men's strike or the mayor's visit.</p>
+      <p>At minute thirty, the big raid arrives. It always does. A clearance squad faster than you floods the streets, and every run ends the same way. The only questions are how long you last and what you scored.</p>
+    </div>
 
-    <h3>Cards and superpowers</h3>
-    <p>Living on the street is how you level up: begging, busking, bin-diving, sleeping and knocking people over with cats all earn experience. Every level deals you three upgrade cards — iron stomach, street charisma, rubber soles, sixth sense and more. Push one all the way and a juggler drops into town to pelt you with pins; take him down, grab the golden card, and your upgrade is crowned an active superpower with its own recharge.</p>
+    <section class="stage" aria-labelledby="h-chars-en">
+      <div class="wrap">
+        <p class="kick c1">Characters</p>
+        <h2 id="h-chars-en">Pick who to be, out there.</h2>
+      </div>
+      <div class="scene">
+        <div class="pin">
+          <img class="poster" src="./img/seq/chars/poster.webp" width="960" height="540" loading="lazy" decoding="async" alt="The character selection screen">
+          <canvas width="960" height="540" role="img" aria-label="The character selection screen"></canvas>
+          <div class="caps">
+          <p>The clown, the one-man band, the fire-eater.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <h3>Between runs</h3>
-    <p>Your score turns into cans, and cans buy permanent upgrades at the shack: a starting float, a bottomless appetite, a shopkeeper's discount, a card reroll, a veto, a loyal cat already in your arms. Feats unlock new cards, new superpowers, new characters and endless mode, where the raid is not the end but the start: waves of manhunt and truce, thicker every time, until they finally get you.</p>
+    <section class="feat" aria-labelledby="h-cards-en">
+      <div class="wrap">
+        <p class="kick c2">Cards and superpowers</p>
+        <h2 id="h-cards-en">Three cards at every level.</h2>
+        <img class="shot" src="./img/shot-cards.webp" width="1280" height="720" loading="lazy" decoding="async" alt="Three upgrade cards to choose from">
+        <p>Living on the street is how you level up: begging, busking, bin-diving, sleeping and knocking people over with cats all earn experience. Every level deals you three upgrade cards — iron stomach, street charisma, rubber soles, sixth sense and more. Push one all the way and a juggler drops into town to pelt you with pins; take him down, grab the golden card, and your upgrade is crowned an active superpower with its own recharge.</p>
+      </div>
+    </section>
 
-    <h3>The city</h3>
-    <p>Eight districts, from the market to the slums to the hill, and a subway to move between them. Real weather with heat and cold waves, day and night, cats to pick up and throw, and a cast of street villains after your corner: the bin man, the cat lady, the junkie, the night gang, and a rival tramp who will chase you across town for fifteen dollars.</p>
+    <section class="stage" aria-labelledby="h-city-en">
+      <div class="wrap">
+        <p class="kick c0">The city</p>
+        <h2 id="h-city-en">The city would rather not see you.</h2>
+      </div>
+      <div class="scene">
+        <div class="pin">
+          <img class="poster" src="./img/seq/city/poster.webp" width="960" height="540" loading="lazy" decoding="async" alt="A yeti next to an ice-cream van in a frozen square">
+          <canvas width="960" height="540" role="img" aria-label="A yeti next to an ice-cream van in a frozen square"></canvas>
+          <div class="caps">
+          <p>The ice-cream yeti.</p>
+          <p>The flamingos.</p>
+          <p>The pack of dogs.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="wrap prose">
+      <p>Eight districts, from the market to the slums to the hill, and a subway to move between them. Real weather with heat and cold waves, day and night, cats to pick up and throw, and a cast of street villains after your corner: the bin man, the cat lady, the junkie, the night gang, and a rival tramp who will chase you across town for fifteen dollars.</p>
+    </div>
 
-    <p>Nobody dies in Street University. You collapse, you get nicked, you lose your ninth life like a cat — and then you go again, because this time you know where the good bins are.</p>
+    <section class="stage" aria-labelledby="h-metro-en">
+      <div class="wrap">
+        <p class="kick c1">Multiplayer</p>
+        <h2 id="h-metro-en">Down in the metro, together.</h2>
+      </div>
+      <div class="scene" data-seq="metro" data-frames="36" data-ext="webp">
+        <div class="pin">
+          <img class="poster" src="./img/seq/metro/poster.webp" width="960" height="540" loading="lazy" decoding="async" alt="Eight players in the metro tunnel as the train arrives">
+          <canvas width="960" height="540" role="img" aria-label="Eight players in the metro tunnel as the train arrives"></canvas>
+          <div class="caps">
+          <p>Everyone gets off at the same stop.</p>
+          <p>The arrows warn you.</p>
+          <p>The train does not wait.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <h2>Platforms</h2>
-    <ul class="plain"><li>Windows</li><li>macOS</li><li>Android</li><li>iOS</li></ul>
+    <section class="stage" aria-labelledby="h-ghost-en">
+      <div class="wrap">
+        <p class="kick c2">Nobody dies</p>
+        <h2 id="h-ghost-en">Knocked out? Haunt someone.</h2>
+      </div>
+      <div class="scene">
+        <div class="pin">
+          <img class="poster" src="./img/seq/ghost/poster.webp" width="960" height="540" loading="lazy" decoding="async" alt="A ghost taking over the cat lady">
+          <canvas width="960" height="540" role="img" aria-label="A ghost taking over the cat lady"></canvas>
+          <div class="caps">
+          <p>As a ghost you take over the cat lady.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="wrap prose">
+      <p>Nobody dies in Street University. You collapse, you get nicked, you lose your ninth life like a cat — and then you go again, because this time you know where the good bins are.</p>
+    </div>
 
-    <h2>Beta</h2>
-    <p>Street University is in <strong>closed beta</strong> and is not on sale yet. If you would like to try it, or if you are already a tester and something broke, write to
+    <section class="feat" aria-labelledby="h-shack-en">
+      <div class="wrap">
+        <p class="kick c0">Between runs</p>
+        <h2 id="h-shack-en">Your score turns into cans.</h2>
+        <img class="shot" src="./img/shot-shack.webp" width="1280" height="720" loading="lazy" decoding="async" alt="The shack, where permanent upgrades are bought">
+        <p>Your score turns into cans, and cans buy permanent upgrades at the shack: a starting float, a bottomless appetite, a shopkeeper's discount, a card reroll, a veto, a loyal cat already in your arms. Feats unlock new cards, new superpowers, new characters and endless mode, where the raid is not the end but the start: waves of manhunt and truce, thicker every time, until they finally get you.</p>
+      </div>
+    </section>
+
+    <section class="specs">
+      <div class="wrap">
+        <p class="kick c1">In numbers</p>
+        <ul class="nums">
+        <li class="c0"><span class="n c0">30</span><span class="cap">minutes a run</span></li>
+        <li class="c1"><span class="n c1">3</span><span class="cap">days on the street</span></li>
+        <li class="c2"><span class="n c2">8</span><span class="cap">districts</span></li>
+        <li class="c0"><span class="n c0">8</span><span class="cap">languages</span></li>
+        <li class="c1"><span class="n c1">4</span><span class="cap">platforms</span></li>
+        </ul>
+        <ul class="plain"><li>Windows</li><li>macOS</li><li>Android</li><li>iOS</li></ul>
+      </div>
+    </section>
+
+    <section class="trail" id="trailer-en" aria-labelledby="h-trailer-en">
+      <div class="wrap">
+        <p class="kick c2">Trailer</p>
+        <h2 id="h-trailer-en">See it move.</h2>
+        <figure class="trailer">
+          <video controls preload="none" playsinline width="1280" height="720" poster="./img/trailer-poster.webp" aria-label="Street University trailer &middot; Il trailer di Street University">
+            <source src="./video/trailer.mp4" type="video/mp4">
+            <a href="./video/trailer.mp4">Watch the trailer &middot; Guarda il trailer</a>
+          </video>
+        </figure>
+      </div>
+    </section>
+
+    <section class="soon">
+      <div class="wrap">
+        <h2>Coming soon</h2>
+        <p class="tag">iOS · Android</p>
+        <p class="beta">Street University is in <strong>closed beta</strong> and is not on sale yet. If you would like to try it, or if you are already a tester and something broke, write to
       <a href="mailto:info@streetuniversitygame.com">info@streetuniversitygame.com</a>.</p>
+      </div>
+    </section>
 
-    <h2>Who makes it</h2>
-    <p>Street University is designed, written and drawn by <strong>Ivan Bianco</strong>, an independent developer based in Italy, publishing under the name <strong>Divano_Prime</strong> and the package name <code>com.divano.streetuniversity</code>. There is no studio, no publisher and no team: it is one person and a lot of cats.</p>
+    <section class="who">
+      <div class="wrap">
+        <p class="kick c1">Who makes it</p>
+        <p>Street University is designed, written and drawn by <strong>Ivan Bianco</strong>, an independent developer based in Italy, publishing under the name <strong>Divano_Prime</strong> and the package name <code>com.divano.streetuniversity</code>. There is no studio, no publisher and no team: it is one person and a lot of cats.</p>
+      </div>
+    </section>
   </div>
 
   <!-- ============================= ITALIANO ============================= -->
   <span class="langlabel">Italiano</span>
   <div class="lang" data-lang="it" hidden>
 
-    <h2>Il gioco</h2>
-    <p class="lead">Street University è un roguelike di sopravvivenza in stile cartone animato su tre giornate storte, e si prende sul ridere dall'inizio alla fine. Sei un senzatetto in una città che preferirebbe non vederti, hai trenta minuti e un gatto.</p>
+    <section class="hero">
+      <div class="wrap">
+        <p class="kick">Un roguelike di strada</p>
+        <h1>Street University</h1>
+        <p class="tag">Tre giornate storte. Trenta minuti. Un gatto.</p>
+        <div class="acts"><a class="btn" href="#trailer-it">Guarda il trailer</a><a class="lnk" href="/metodo/">Come è fatto</a></div>
+      </div>
+      <div class="shot"><img src="./img/hero.webp" width="1920" height="800" alt="Il logo di Street University sopra i tetti al tramonto"></div>
+    </section>
+    <div class="wrap intro">
+      <p class="byline">An independent game by <strong>Ivan Bianco</strong> &middot; Divano_Prime &middot; Italy</p>
+      <p class="lead">Street University è un roguelike di sopravvivenza in stile cartone animato su tre giornate storte, e si prende sul ridere dall'inizio alla fine. Sei un senzatetto in una città che preferirebbe non vederti, hai trenta minuti e un gatto.</p>
+    </div>
 
-    <h3>La partita</h3>
-    <p>Trenta minuti veri sono tre giorni di strada. Chiedi l'elemosina al semaforo, suona il kazoo, fruga nei bidoni, dormi su una panchina, lavati in un bagno pubblico — e intanto fame, energia e igiene calano. A ogni alba la città diventa più cattiva: più polizia, prezzi più alti, passanti più tirchi, ed eventi del giorno assurdi come lo sciopero dei netturbini o la visita del sindaco.</p>
-    <p>Al trentesimo minuto arriva la retata. Arriva sempre. Una squadra di sgombero più veloce di te riempie le strade, e ogni partita finisce allo stesso modo. Le uniche domande sono quanto duri e quanto hai fatto.</p>
+    <section class="stage" aria-labelledby="h-run-it">
+      <div class="wrap">
+        <p class="kick c0">La partita</p>
+        <h2 id="h-run-it">Trenta minuti. Poi la retata.</h2>
+      </div>
+      <div class="scene">
+        <div class="pin">
+          <img class="poster" src="./img/seq/run/poster.webp" width="960" height="540" loading="lazy" decoding="async" alt="Una strada della città, di giorno e di notte">
+          <canvas width="960" height="540" role="img" aria-label="Una strada della città, di giorno e di notte"></canvas>
+          <div class="caps">
+          <p>Mattina: elemosina al semaforo.</p>
+          <p>Sera: la città si incattivisce.</p>
+          <p>Minuto trenta: vengono a prenderti.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="wrap prose">
+      <p>Trenta minuti veri sono tre giorni di strada. Chiedi l'elemosina al semaforo, suona il kazoo, fruga nei bidoni, dormi su una panchina, lavati in un bagno pubblico — e intanto fame, energia e igiene calano. A ogni alba la città diventa più cattiva: più polizia, prezzi più alti, passanti più tirchi, ed eventi del giorno assurdi come lo sciopero dei netturbini o la visita del sindaco.</p>
+      <p>Al trentesimo minuto arriva la retata. Arriva sempre. Una squadra di sgombero più veloce di te riempie le strade, e ogni partita finisce allo stesso modo. Le uniche domande sono quanto duri e quanto hai fatto.</p>
+    </div>
 
-    <h3>Carte e superpoteri</h3>
-    <p>Si sale di livello vivendo per strada: elemosina, musica, bidoni, sonno e gente buttata a terra a gattate danno tutti esperienza. A ogni livello ti arrivano tre carte potenziamento — stomaco di ferro, carisma da marciapiede, suole di gomma, sesto senso e altre. Portane una fino in fondo e in città piomba un giullare che ti bersaglia di birilli: stendilo, prenditi la carta d'oro, e il potenziamento diventa un superpotere attivo con la sua ricarica.</p>
+    <section class="stage" aria-labelledby="h-chars-it">
+      <div class="wrap">
+        <p class="kick c1">Personaggi</p>
+        <h2 id="h-chars-it">Scegli chi essere, per strada.</h2>
+      </div>
+      <div class="scene">
+        <div class="pin">
+          <img class="poster" src="./img/seq/chars/poster.webp" width="960" height="540" loading="lazy" decoding="async" alt="La schermata di scelta del personaggio">
+          <canvas width="960" height="540" role="img" aria-label="La schermata di scelta del personaggio"></canvas>
+          <div class="caps">
+          <p>Il pagliaccio, l'uomo-orchestra, il mangiafuoco.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <h3>Fra una partita e l'altra</h3>
-    <p>Il punteggio diventa lattine, e le lattine comprano migliorie permanenti alla baracca: un gruzzolo iniziale, un appetito senza fondo, lo sconto del negoziante, il cambio di una carta, un veto, un gatto fedele già in braccio. Le imprese sbloccano carte nuove, superpoteri nuovi, personaggi nuovi e la modalità infinita, dove la retata non è la fine ma l'inizio: ondate di caccia all'uomo e tregua, sempre più fitte, finché non ti prendono.</p>
+    <section class="feat" aria-labelledby="h-cards-it">
+      <div class="wrap">
+        <p class="kick c2">Carte e superpoteri</p>
+        <h2 id="h-cards-it">Tre carte a ogni livello.</h2>
+        <img class="shot" src="./img/shot-cards.webp" width="1280" height="720" loading="lazy" decoding="async" alt="Tre carte potenziamento fra cui scegliere">
+        <p>Si sale di livello vivendo per strada: elemosina, musica, bidoni, sonno e gente buttata a terra a gattate danno tutti esperienza. A ogni livello ti arrivano tre carte potenziamento — stomaco di ferro, carisma da marciapiede, suole di gomma, sesto senso e altre. Portane una fino in fondo e in città piomba un giullare che ti bersaglia di birilli: stendilo, prenditi la carta d'oro, e il potenziamento diventa un superpotere attivo con la sua ricarica.</p>
+      </div>
+    </section>
 
-    <h3>La città</h3>
-    <p>Otto quartieri, dal mercato alle baracche alla collina, e una metropolitana per spostarsi. Meteo vero con ondate di caldo e di freddo, giorno e notte, gatti da raccogliere e da lanciare, e una compagnia di canaglie che ti vuole l'angolo: il netturbino, la gattara, il tossico, la banda della notte e un barbone rivale che ti insegue per mezza città per quindici dollari.</p>
+    <section class="stage" aria-labelledby="h-city-it">
+      <div class="wrap">
+        <p class="kick c0">La città</p>
+        <h2 id="h-city-it">La città preferirebbe non vederti.</h2>
+      </div>
+      <div class="scene">
+        <div class="pin">
+          <img class="poster" src="./img/seq/city/poster.webp" width="960" height="540" loading="lazy" decoding="async" alt="Uno yeti accanto a un furgone dei gelati in una piazza ghiacciata">
+          <canvas width="960" height="540" role="img" aria-label="Uno yeti accanto a un furgone dei gelati in una piazza ghiacciata"></canvas>
+          <div class="caps">
+          <p>Lo yeti dei gelati.</p>
+          <p>I fenicotteri.</p>
+          <p>Il branco di cani.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="wrap prose">
+      <p>Otto quartieri, dal mercato alle baracche alla collina, e una metropolitana per spostarsi. Meteo vero con ondate di caldo e di freddo, giorno e notte, gatti da raccogliere e da lanciare, e una compagnia di canaglie che ti vuole l'angolo: il netturbino, la gattara, il tossico, la banda della notte e un barbone rivale che ti insegue per mezza città per quindici dollari.</p>
+    </div>
 
-    <p>In Street University non muore nessuno. Crolli, ti beccano, perdi la nona vita come un gatto — e poi ricominci, perché stavolta sai dove sono i bidoni buoni.</p>
+    <section class="stage" aria-labelledby="h-metro-it">
+      <div class="wrap">
+        <p class="kick c1">Multiplayer</p>
+        <h2 id="h-metro-it">Giù in metro, insieme.</h2>
+      </div>
+      <div class="scene" data-seq="metro" data-frames="36" data-ext="webp">
+        <div class="pin">
+          <img class="poster" src="./img/seq/metro/poster.webp" width="960" height="540" loading="lazy" decoding="async" alt="Otto giocatori nel tunnel della metro mentre arriva il treno">
+          <canvas width="960" height="540" role="img" aria-label="Otto giocatori nel tunnel della metro mentre arriva il treno"></canvas>
+          <div class="caps">
+          <p>Si scende tutti alla stessa fermata.</p>
+          <p>Le frecce avvisano.</p>
+          <p>Il treno non aspetta.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <h2>Piattaforme</h2>
-    <ul class="plain"><li>Windows</li><li>macOS</li><li>Android</li><li>iOS</li></ul>
+    <section class="stage" aria-labelledby="h-ghost-it">
+      <div class="wrap">
+        <p class="kick c2">Non muore nessuno</p>
+        <h2 id="h-ghost-it">Sei crollato? Possiedi qualcuno.</h2>
+      </div>
+      <div class="scene">
+        <div class="pin">
+          <img class="poster" src="./img/seq/ghost/poster.webp" width="960" height="540" loading="lazy" decoding="async" alt="Un fantasma che possiede la gattara">
+          <canvas width="960" height="540" role="img" aria-label="Un fantasma che possiede la gattara"></canvas>
+          <div class="caps">
+          <p>Da fantasma ti prendi la gattara.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="wrap prose">
+      <p>In Street University non muore nessuno. Crolli, ti beccano, perdi la nona vita come un gatto — e poi ricominci, perché stavolta sai dove sono i bidoni buoni.</p>
+    </div>
 
-    <h2>Beta</h2>
-    <p>Street University è in <strong>beta chiusa</strong> e non è ancora in vendita. Se vuoi provarlo, o se sei già un tester e qualcosa si è rotto, scrivi a
+    <section class="feat" aria-labelledby="h-shack-it">
+      <div class="wrap">
+        <p class="kick c0">Fra una partita e l'altra</p>
+        <h2 id="h-shack-it">Il punteggio diventa lattine.</h2>
+        <img class="shot" src="./img/shot-shack.webp" width="1280" height="720" loading="lazy" decoding="async" alt="La baracca, dove si comprano i miglioramenti permanenti">
+        <p>Il punteggio diventa lattine, e le lattine comprano migliorie permanenti alla baracca: un gruzzolo iniziale, un appetito senza fondo, lo sconto del negoziante, il cambio di una carta, un veto, un gatto fedele già in braccio. Le imprese sbloccano carte nuove, superpoteri nuovi, personaggi nuovi e la modalità infinita, dove la retata non è la fine ma l'inizio: ondate di caccia all'uomo e tregua, sempre più fitte, finché non ti prendono.</p>
+      </div>
+    </section>
+
+    <section class="specs">
+      <div class="wrap">
+        <p class="kick c1">In numeri</p>
+        <ul class="nums">
+        <li class="c0"><span class="n c0">30</span><span class="cap">minuti a partita</span></li>
+        <li class="c1"><span class="n c1">3</span><span class="cap">giorni di strada</span></li>
+        <li class="c2"><span class="n c2">8</span><span class="cap">quartieri</span></li>
+        <li class="c0"><span class="n c0">8</span><span class="cap">lingue</span></li>
+        <li class="c1"><span class="n c1">4</span><span class="cap">piattaforme</span></li>
+        </ul>
+        <ul class="plain"><li>Windows</li><li>macOS</li><li>Android</li><li>iOS</li></ul>
+      </div>
+    </section>
+
+    <section class="trail" id="trailer-it" aria-labelledby="h-trailer-it">
+      <div class="wrap">
+        <p class="kick c2">Trailer</p>
+        <h2 id="h-trailer-it">Guardalo muoversi.</h2>
+        <figure class="trailer">
+          <video controls preload="none" playsinline width="1280" height="720" poster="./img/trailer-poster.webp" aria-label="Street University trailer &middot; Il trailer di Street University">
+            <source src="./video/trailer.mp4" type="video/mp4">
+            <a href="./video/trailer.mp4">Watch the trailer &middot; Guarda il trailer</a>
+          </video>
+        </figure>
+      </div>
+    </section>
+
+    <section class="soon">
+      <div class="wrap">
+        <h2>Coming soon</h2>
+        <p class="tag">iOS · Android</p>
+        <p class="beta">Street University è in <strong>beta chiusa</strong> e non è ancora in vendita. Se vuoi provarlo, o se sei già un tester e qualcosa si è rotto, scrivi a
       <a href="mailto:info@streetuniversitygame.com">info@streetuniversitygame.com</a>.</p>
+      </div>
+    </section>
 
-    <h2>Chi lo fa</h2>
-    <p>Street University è ideato, scritto e disegnato da <strong>Ivan Bianco</strong>, sviluppatore indipendente in Italia, che pubblica col nome <strong>Divano_Prime</strong> e col nome pacchetto <code>com.divano.streetuniversity</code>. Non c'è uno studio, non c'è un editore e non c'è una squadra: c'è una persona e parecchi gatti.</p>
+    <section class="who">
+      <div class="wrap">
+        <p class="kick c1">Chi lo fa</p>
+        <p>Street University è ideato, scritto e disegnato da <strong>Ivan Bianco</strong>, sviluppatore indipendente in Italia, che pubblica col nome <strong>Divano_Prime</strong> e col nome pacchetto <code>com.divano.streetuniversity</code>. Non c'è uno studio, non c'è un editore e non c'è una squadra: c'è una persona e parecchi gatti.</p>
+      </div>
+    </section>
   </div>
 
-  <hr>
+</main>
 
-  <h2>Screenshots</h2>
-  <div class="shots">
-    <figure>
-      <img src="./img/shot-city-day.webp" width="1280" height="720" loading="lazy" alt="The city by day, seen from above, with the status bars on the left">
-      <figcaption>The city by day &middot; La città di giorno</figcaption>
-    </figure>
-    <figure>
-      <img src="./img/shot-city-night.webp" width="1280" height="720" loading="lazy" alt="The same streets at night, lit by street lamps">
-      <figcaption>Night falls &middot; Scende la notte</figcaption>
-    </figure>
-    <figure>
-      <img src="./img/shot-cards.webp" width="1280" height="720" loading="lazy" alt="The upgrade card screen: three cards to choose from">
-      <figcaption>Three cards per level &middot; Tre carte a ogni livello</figcaption>
-    </figure>
-    <figure>
-      <img src="./img/shot-shack.webp" width="1280" height="720" loading="lazy" alt="The shack, where permanent upgrades are bought between runs">
-      <figcaption>The shack &middot; La baracca</figcaption>
-    </figure>
-    <figure>
-      <img src="./img/shot-menu.webp" width="1280" height="720" loading="lazy" alt="The Street University main menu at night, with the game logo and falling street objects">
-      <figcaption>The main menu &middot; Il menu</figcaption>
-    </figure>
-  </div>
-
-  </main>
-
+<div class="wrap">
   <footer>
     <div class="footlinks">
       <a href="/changelog/">Novità e changelog</a>
@@ -239,11 +532,11 @@
     <p>Street University &mdash; Divano_Prime &mdash; <code>com.divano.streetuniversity</code></p>
     <p>&copy; 2026 Ivan Bianco. All rights reserved. Street University is a work of fiction: any resemblance to real bins is coincidental.</p>
   </footer>
-
 </div>
 
 <script>
 (function () {
+  /* ---------- selettore della lingua (invariato) ---------- */
   var bar = document.querySelector('.langbar');
   var blocks = document.querySelectorAll('.lang');
   if (!bar || !blocks.length) return;          // niente JS utile: restano tutte e due le lingue
@@ -260,12 +553,99 @@
       btns[j].setAttribute('aria-pressed', String(btns[j].getAttribute('data-lang') === lang));
     }
     document.documentElement.lang = lang;
+    if (window.__scenesRefresh) window.__scenesRefresh();   // le scene della lingua nuova diventano quelle visibili
   }
 
   bar.addEventListener('click', function (e) {
     var b = e.target.closest('button[data-lang]');
     if (b) show(b.getAttribute('data-lang'));
   });
+
+  /* ---------- il motore delle scene ----------
+     Una scena e' una sezione alta con un blocco sticky: il fotogramma disegnato dipende da quanto si e'
+     scorso dentro la sezione, le frasi si alternano a tappe uguali. Legge da data- la cartella (data-seq),
+     il numero di fotogrammi (data-frames) e l'estensione (data-ext). Senza data-frames la scena resta
+     al fermo immagine. Con movimento ridotto o risparmio dati non parte nulla. */
+  (function () {
+    var still = (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) ||
+                (navigator.connection && navigator.connection.saveData);
+    var scenes = [].slice.call(document.querySelectorAll('.scene[data-frames]'));
+    if (still || !scenes.length || !document.createElement('canvas').getContext) return;
+    document.documentElement.classList.add('js-scenes');
+
+    var size = window.innerWidth < 700 ? 640 : 960;
+    var cache = {};                      // una sola serie per cartella+taglio, condivisa fra le due lingue
+    var items = scenes.map(function (el) {
+      var cv = el.querySelector('canvas');
+      return { el: el, cv: cv, cx: cv.getContext('2d'), caps: el.querySelectorAll('.caps p'),
+               poster: el.querySelector('.poster'), n: parseInt(el.getAttribute('data-frames'), 10),
+               key: el.getAttribute('data-seq') + '/' + size, ext: el.getAttribute('data-ext') || 'webp',
+               seq: el.getAttribute('data-seq'), last: -2 };
+    });
+
+    function visible(it) { return it.el.getClientRects().length > 0; }
+
+    function load(it) {                  // parte quando la scena e' a meno di uno schermo
+      if (it.poster) it.poster.loading = 'eager';   // l'immagine e' nascosta: il caricamento pigro non la scarichera' mai
+      if (cache[it.key]) return;
+      var list = cache[it.key] = [];
+      for (var i = 0; i < it.n; i++) {
+        var im = new Image();
+        im.decoding = 'async';
+        im.onload = onLoaded;
+        im.src = './img/seq/' + it.seq + '/' + size + '/' + (i < 10 ? '0' : '') + i + '.' + it.ext;
+        list.push(im);
+      }
+    }
+    function onLoaded() { schedule(true); }
+
+    function draw(it, force) {
+      var r = it.el.getBoundingClientRect(), vh = window.innerHeight || 600;
+      var span = r.height - vh;
+      var p = span > 0 ? Math.min(1, Math.max(0, -r.top / span)) : 0;
+      var k = Math.round(p * (it.n - 1));
+      for (var c = 0; c < it.caps.length; c++) {
+        it.caps[c].classList.toggle('on', Math.min(it.caps.length - 1, Math.floor(p * it.caps.length)) === c);
+      }
+      var list = cache[it.key], src = null, shown = -1;
+      if (list) { for (var f = k; f >= 0; f--) { var im = list[f]; if (im && im.complete && im.naturalWidth) { src = im; shown = f; break; } } }
+      if (!src && it.poster && it.poster.complete && it.poster.naturalWidth) src = it.poster;   // finche' mancano i fotogrammi: il fermo immagine
+      var sig = shown + ':' + k;
+      if (!force && it.last === sig) return;
+      it.last = sig;
+      it.cv.setAttribute('data-frame', String(k));
+      if (src) it.cx.drawImage(src, 0, 0, it.cv.width, it.cv.height);
+    }
+
+    var queued = false, forceNext = false;
+    function schedule(force) {
+      if (force) forceNext = true;
+      if (queued) return;
+      queued = true;
+      requestAnimationFrame(function () {
+        queued = false; var fo = forceNext; forceNext = false;
+        for (var i = 0; i < items.length; i++) if (visible(items[i])) draw(items[i], fo);
+      });
+    }
+
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (es) {
+        es.forEach(function (e) {
+          if (!e.isIntersecting) return;
+          for (var i = 0; i < items.length; i++) if (items[i].el === e.target) load(items[i]);
+          schedule(true);
+        });
+      }, { rootMargin: '100% 0px 100% 0px' });
+      items.forEach(function (it) { io.observe(it.el); });
+    } else {
+      items.forEach(function (it) { if (visible(it)) load(it); });
+    }
+    if (items[0].poster) items.forEach(function (it) { if (it.poster) it.poster.addEventListener('load', function () { schedule(true); }); });
+    window.addEventListener('scroll', function () { schedule(false); }, { passive: true });
+    window.addEventListener('resize', function () { schedule(true); });
+    window.__scenesRefresh = function () { schedule(true); };
+    schedule(true);
+  })();
 
   var preferred = (navigator.language || 'en').toLowerCase().indexOf('it') === 0 ? 'it' : 'en';
   show(preferred);
