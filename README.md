@@ -26,6 +26,9 @@ Tre motivi, in ordine di urgenza:
 | `invito/index.html` | la pagina del link d'invito (`?c=CODICE`) che CONDIVIDI manda via WhatsApp/Messaggi: mostra il codice con tasto COPIA, un tasto per aprire l'app (intent Android / schema `streetuni://` altrove) e i badge store. Autosufficiente, 8 lingue (it/en/fr/es/de/ru/zh/pt), stesso stile di `index.html`. Le due costanti `APP_STORE_URL`/`PLAY_STORE_URL` sono in cima allo `<script>` del file: aggiornarle quando il gioco è pubblico sugli store (finché `APP_STORE_URL` è vuota, il badge Apple resta "in arrivo" e non cliccabile) |
 | `img/badges/` | i badge UFFICIALI store, scaricati una tantum (mai ridisegnati): `apple-<lingua>.svg` da `toolbox.marketingtools.apple.com` (il vecchio dominio `tools.applemarketingtools.com` citato in giro non risolve più, redirige lì), `google-<lingua>.png` da `play.google.com/.../badges/`. Un file per ciascuna delle 8 lingue della pagina invito |
 | `.well-known/apple-app-site-association`, `.well-known/assetlinks.json` | file di verifica per Universal Links (iOS) e App Links (Android) su `/invito/*`: preparano il terreno per quando lo stesso link `https://` aprirà l'app direttamente. L'impronta Android è quella della **chiave di release nostra**; quella di firma di Play si aggiungerà (in `sha256_cert_fingerprints`, come voce in più nell'array) quando l'app sarà pubblicata |
+| `metodo/index.html` | la pagina «Come è fatto»: il metodo di lavoro del gioco (commit, ticket, sprint, catena di comando, costi) in grafici e numeri, per chi vuole capire come nasce Street University. **GENERATA** dallo script del repo del gioco con i numeri del giorno: non si modifica a mano, la prossima rigenerazione la sovrascrive. Bilingue EN/IT, nessuna richiesta a terzi |
+| `portfolio/index.html` | la versione breve per chi deve decidere in un minuto: eroe, tre numeri, catena di comando ridotta, tre prove, contatti. **GENERATA** come `metodo/`, dallo stesso script e dagli stessi dati: non si modifica a mano. Bilingue EN/IT, pesa meno di 150 KB |
+| `fonts/` | Bebas Neue (licenza OFL, col suo `OFL.txt`) per titoli e numeri di `metodo/` e `portfolio/`: **servito dal sito**, non è una richiesta a terzi. È l'unica eccezione al «niente font» di `index.html`. Copiato dalla stessa rigenerazione delle due pagine |
 | `.nojekyll` | GitHub Pages usa Jekyll di default, che ignora le cartelle che iniziano col punto (`.well-known/`): questo file (vuoto) lo disattiva |
 
 La pagina è bilingue **EN/IT**: con JavaScript attivo compare il selettore e si vede una lingua
@@ -37,6 +40,8 @@ se cambia una delle due, vanno allineate a mano. La versione italiana è nata qu
 ## Come si aggiorna
 
 Commit e push su `main`. GitHub Pages ricostruisce da sé in un paio di minuti.
+
+`metodo/`, `portfolio/` e `fonts/` non si scrivono a mano: si rigenerano dal repo del gioco con `python3 tools/genera_pagina_metodo.py` e si copiano qui (`cp -R build/sito_metodo/metodo build/sito_metodo/portfolio build/sito_metodo/fonts ../street-university-site/`, poi commit e push: è il passo 5c di `WORKFLOW/04_RELEASE.md`). I numeri li produce lo script a ogni release; `dati.json` resta nel repo del gioco e non si copia.
 
 ## Immagini
 

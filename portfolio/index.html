@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Street University — portfolio</title>
+<meta name="description" content="A game built by one person directing AI agents, with the method measured and not just told.">
+<style>
+  /* token identici a `template_metodo.html`: se cambiano lì, cambiano qui */
+  @font-face{font-family:"Bebas Neue"; font-weight:400; font-style:normal; font-display:swap; src:url("../fonts/BebasNeue-latin.woff2") format("woff2")}
+  :root{
+    --disp:"Bebas Neue","Arial Narrow","Roboto Condensed",Impact,sans-serif;
+    --bg:#f5f0e6; --fg:#1e2a44; --muted:#566078; --rule:#d9d1c0; --card:#fbf7ee;
+    --navy:#1e2a44; --on-navy:#f5f0e6; --t-navy:#1e2a44;
+    --teal:#3fb1c3; --on-teal:#10243a; --t-teal:#147888;
+    --orange:#f48b3a; --on-orange:#10243a; --t-orange:#bd5610;
+    --red:#b5123e; --on-red:#fff6ea; --t-red:#b5123e;
+    --link:#b5123e;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#121a2c; --fg:#f2ecdf; --muted:#9ba6bd; --rule:#2a3550; --card:#19233a;
+      --navy:#e6ebf5; --on-navy:#121a2c; --t-navy:#e6ebf5;
+      --teal:#56c4d3; --on-teal:#0c1a2a; --t-teal:#56c4d3;
+      --orange:#ff9c57; --on-orange:#0c1a2a; --t-orange:#ff9c57;
+      --red:#e2456b; --on-red:#170a10; --t-red:#f0597c;
+      --link:#f0597c;
+    }
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--fg);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    font-size:17px; line-height:1.65;
+  }
+  .wrap{max-width:900px; margin:0 auto; padding:0 20px}
+  a{color:var(--link)}
+  a:hover{text-decoration:none}
+  .skip{position:absolute; left:-9999px}
+  .skip:focus{left:20px; top:8px; background:var(--card); padding:6px 10px; z-index:5}
+
+  .top{display:flex; flex-wrap:wrap; gap:8px 22px; justify-content:space-between; padding:18px 0 4px; font-size:.95rem}
+  .langbar{display:flex; gap:8px; justify-content:center; margin:18px 0 0}
+  .langbar[hidden]{display:none}
+  .langbar button{
+    font:inherit; font-size:.9rem; padding:7px 16px; cursor:pointer;
+    background:var(--card); color:var(--muted); border:1px solid var(--rule); border-radius:0;
+  }
+  .langbar button[aria-pressed="true"]{background:var(--red); border-color:var(--red); color:var(--on-red); font-weight:600}
+  .lang[hidden]{display:none}
+
+  main{padding:8px 0 0}
+  h1,h2{font-family:var(--disp); font-weight:400; text-transform:uppercase; text-wrap:balance}
+  h1{margin:4px 0 0; font-size:clamp(2.7rem,8vw,4.6rem); line-height:.92; letter-spacing:.01em}
+  h2{margin:2px 0 0; font-size:2.3rem; line-height:1; letter-spacing:.02em}
+  p{margin:14px 0}
+  .kicker{margin:0; font-size:.82rem; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); font-weight:700}
+  header .kicker{margin-top:22px}
+  .lead{font-size:1.14rem}
+  .block{margin:56px 0 0}
+
+  /* eroe: a tutta colonna, spigoli vivi, niente ombra */
+  .hero{display:block; width:100%; height:auto; margin:18px 0 0; border-radius:0}
+
+  /* tre numeri grossi: filetto da 6 px, ruota blu notte / turchese / arancio; il centrale solo contornato */
+  .nums{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:22px 14px; margin:30px 0 0}
+  .nums .n{min-width:0; border-top:6px solid var(--k); padding-top:10px}
+  .nums .n:nth-child(1){--k:var(--navy); --kt:var(--t-navy)}
+  .nums .n:nth-child(2){--k:var(--teal); --kt:var(--t-teal)}
+  .nums .n:nth-child(3){--k:var(--orange); --kt:var(--t-orange)}
+  .nums .big{display:block; font-family:var(--disp); font-size:clamp(3rem,9vw,4.8rem); font-weight:400; line-height:1; color:var(--kt); font-variant-numeric:tabular-nums; white-space:nowrap}
+  .nums .n:nth-child(2) .big{color:transparent; -webkit-text-stroke:2px var(--kt)}
+  .nums .cap{display:block; margin-top:6px; font-size:.76rem; font-weight:600; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); line-height:1.3}
+  @media (max-width:640px){ .nums{grid-template-columns:1fr} }
+
+  /* catena di comando ridotta: nodi a tinta piena, senza ombra */
+  .viz{margin:14px 0 6px}
+  .viz-svg{display:block; width:100%; height:auto; overflow:visible}
+  .viz-v .viz-svg{max-width:420px; margin:0 auto}
+  .viz-v{display:none}
+  @media (max-width:700px){ .viz-h{display:none} .viz-v{display:block} }
+  svg text{font-family:inherit; fill:var(--muted); font-size:15px}
+  .viz-v svg text{font-size:12.5px}
+  svg .node{stroke:none}
+  svg .node-author{fill:var(--navy)}
+  svg .node-bridge{fill:var(--teal)}
+  svg .node-roster{fill:var(--orange)}
+  svg .node-codex{fill:var(--card); stroke:var(--navy); stroke-width:2}
+  svg .node-name{fill:var(--fg); font-weight:700}
+  svg .on-navy{fill:var(--on-navy)} svg .on-teal{fill:var(--on-teal)} svg .on-orange{fill:var(--on-orange)}
+  svg .arrow{stroke:var(--fg); stroke-width:1.8; fill:none}
+  svg .ah{fill:var(--fg)}
+  .caption{font-size:.95rem; color:var(--muted); margin:10px 0 0}
+
+  /* tre prove: filetto superiore da 6 px, senza scatola */
+  .proofs{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:22px 18px; margin:26px 0 0}
+  .proof{min-width:0; border-top:6px solid var(--k); padding-top:10px}
+  .proof:nth-child(1){--k:var(--navy)}
+  .proof:nth-child(2){--k:var(--teal)}
+  .proof:nth-child(3){--k:var(--orange)}
+  .proof h3{margin:0; font-family:var(--disp); font-weight:400; text-transform:uppercase; font-size:1.7rem; line-height:1.05; letter-spacing:.02em}
+  .proof p{margin:8px 0 0; font-size:.95rem; line-height:1.5}
+  @media (max-width:700px){ .proofs{grid-template-columns:1fr} }
+
+  /* cosa so fare */
+  .skills{list-style:none; margin:20px 0 0; padding:0; display:grid; gap:12px}
+  .skills li{position:relative; padding-left:26px; line-height:1.5}
+  .skills li::before{content:""; position:absolute; left:0; top:.5em; width:11px; height:11px; background:var(--navy)}
+
+  /* contatti: pulsante cremisi rettangolare */
+  .acts{display:flex; flex-wrap:wrap; align-items:center; gap:14px 28px; margin:18px 0 0}
+  .cta{
+    display:inline-block; background:var(--red); color:var(--on-red); text-decoration:none; border-radius:0;
+    font-family:var(--disp); font-weight:400; font-size:1.35rem; text-transform:uppercase; letter-spacing:.05em; line-height:1.2; padding:8px 24px 6px;
+  }
+  .cta:hover,.cta:focus-visible{outline:3px solid var(--fg); outline-offset:2px}
+  .more{display:flex; flex-wrap:wrap; gap:8px 28px; margin:34px 0 0}
+
+  footer{margin:60px 0 0; padding:22px 0 40px; border-top:1px solid var(--rule); font-size:.9rem; color:var(--muted)}
+  .footlinks{display:flex; flex-wrap:wrap; gap:6px 22px}
+  footer p{margin:10px 0}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav class="langbar" hidden>
+<button type="button" data-lang="en" aria-pressed="true">English</button>
+<button type="button" data-lang="it" aria-pressed="false">Italiano</button>
+</nav>
+<!-- corpo --><div class="lang" data-lang="en">
+<a class="skip" href="#main-en">Skip to the content</a>
+<div class="top">
+<a href="/" aria-label="Back to the game&#x27;s home page">Street University</a>
+<a href="/metodo/">Read the full method</a>
+</div>
+<main id="main-en">
+
+<header>
+<img class="hero" src="../img/hero.webp" width="1920" height="800" alt="Key art of Street University">
+<p class="kicker">Portfolio</p>
+<h1>A game shipped by one person directing AI agents</h1>
+<p class="lead">Street University is a cartoonish top-down roguelike, in closed beta on Android and iOS. I designed it, I directed the AI agents that wrote it, and I measured the method while it was running.</p>
+</header>
+
+<section class="block" aria-label="Three numbers that give the size of the work">
+<div class="nums" role="group" aria-label="Three numbers that give the size of the work">
+<div class="n"><span class="big">1,758</span><span class="cap">commits</span></div>
+<div class="n"><span class="big">1,101</span><span class="cap">tickets tracked</span></div>
+<div class="n"><span class="big">88,725</span><span class="cap">lines of game code</span></div>
+</div>
+</section>
+
+<section class="block" id="chain-en" aria-labelledby="chain-title-en">
+<h2 id="chain-title-en">How the work flows</h2>
+<div class="viz viz-h"><svg class="viz-svg viz-i4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 170" role="img" aria-label="Diagram: the author, a first AI session that orchestrates, and two rosters of agents that build."><defs><marker id="i4-ah-ch-en" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path class="ah" d="M0,0 L10,5 L0,10 z"/></marker><marker id="i4-ag-ch-en" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path class="ah ah-gate" d="M0,0 L10,5 L0,10 z"/></marker></defs><rect class="node node-author" x="0" y="40" width="170" height="90"/><text class="node-name on-navy"><tspan x="12.0" y="90.2">The author</tspan></text><rect class="node node-bridge" x="355" y="10" width="150" height="150"/><text class="node-name on-teal"><tspan x="365.0" y="90.2">First bridge</tspan></text><rect class="node node-roster" x="620" y="0" width="260" height="70"/><text class="node-name on-orange"><tspan x="632.0" y="40.2">Claude roster</tspan></text><rect class="node node-codex" x="620" y="100" width="260" height="70"/><text class="node-name"><tspan x="632.0" y="140.2">Codex roster</tspan></text><line class="arrow" x1="174" y1="70" x2="351" y2="70" marker-end="url(#i4-ah-ch-en)"/><line class="arrow" x1="351" y1="100" x2="174" y2="100" marker-end="url(#i4-ah-ch-en)"/><line class="arrow" x1="509" y1="20" x2="616" y2="20" marker-end="url(#i4-ah-ch-en)"/><line class="arrow" x1="616" y1="50" x2="509" y2="50" marker-end="url(#i4-ah-ch-en)"/><line class="arrow" x1="509" y1="120" x2="616" y2="120" marker-end="url(#i4-ah-ch-en)"/><line class="arrow" x1="616" y1="150" x2="509" y2="150" marker-end="url(#i4-ah-ch-en)"/></svg></div>
+<div class="viz viz-v"><svg class="viz-svg viz-i4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 232" role="img" aria-label="Diagram: the author, a first AI session that orchestrates, and two rosters of agents that build."><defs><marker id="i4-ah-cv-en" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path class="ah" d="M0,0 L10,5 L0,10 z"/></marker><marker id="i4-ag-cv-en" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path class="ah ah-gate" d="M0,0 L10,5 L0,10 z"/></marker></defs><rect class="node node-author" x="0" y="0" width="360" height="44"/><text class="node-name on-navy"><tspan x="12.0" y="26.4">The author</tspan></text><rect class="node node-bridge" x="0" y="92" width="360" height="44"/><text class="node-name on-teal"><tspan x="12.0" y="118.4">First bridge</tspan></text><rect class="node node-roster" x="0" y="188" width="172" height="44"/><text class="node-name on-orange"><tspan x="10.0" y="214.4">Claude roster</tspan></text><rect class="node node-codex" x="188" y="188" width="172" height="44"/><text class="node-name"><tspan x="198.0" y="214.4">Codex roster</tspan></text><line class="arrow" x1="100" y1="47" x2="100" y2="89" marker-end="url(#i4-ah-cv-en)"/><line class="arrow" x1="260" y1="89" x2="260" y2="47" marker-end="url(#i4-ah-cv-en)"/><line class="arrow" x1="40" y1="139" x2="40" y2="185" marker-end="url(#i4-ah-cv-en)"/><line class="arrow" x1="130" y1="185" x2="130" y2="139" marker-end="url(#i4-ah-cv-en)"/><line class="arrow" x1="228" y1="139" x2="228" y2="185" marker-end="url(#i4-ah-cv-en)"/><line class="arrow" x1="318" y1="185" x2="318" y2="139" marker-end="url(#i4-ah-cv-en)"/></svg></div>
+<p class="caption">I decide. A first AI session splits the work into lots, two rosters of agents build them, and every lot passes a gate before it comes back to me.</p>
+</section>
+
+<section class="block" id="proofs-en" aria-labelledby="proofs-title-en">
+<h2 id="proofs-title-en">Three proofs</h2>
+<div class="proofs">
+<div class="proof"><h3>A closed beta on both stores</h3><p>Real testers install it from Google Play and from TestFlight, on their own phones.</p></div>
+<div class="proof"><h3>49 releases in 22 weeks</h3><p>From the first commit on 14 May 2026 to today, each release tagged and with its own changelog.</p></div>
+<div class="proof"><h3>A method that is measured, not told</h3><p>Rejections, costs and failed checks are counted by a script and published with everything else.</p></div>
+</div>
+</section>
+
+<section class="block" id="skills-en" aria-labelledby="skills-title-en">
+<h2 id="skills-title-en">What I can do</h2>
+<ul class="skills">
+<li>Take a game from an idea to a playable build on 5 platforms and in 8 languages, and through store review.</li>
+<li>Direct AI agents as a team: tickets, closed briefs, a gate on every lot, and a written rule for every mistake made once.</li>
+<li>Build the tools around the work: automated probes, a regression suite, scripts that read the cost before spending it.</li>
+<li>Decide from numbers, and say plainly what has not been tested.</li>
+</ul>
+</section>
+
+<section class="block" id="contact-en" aria-labelledby="contact-title-en">
+<h2 id="contact-title-en">Get in touch</h2>
+<p>Write to me, or find me on LinkedIn.</p>
+<div class="acts">
+<a class="cta" href="mailto:info@streetuniversitygame.com">info@streetuniversitygame.com</a>
+<a href="https://www.linkedin.com/in/ivan-bianco-709b1bb/" rel="noopener">LinkedIn</a>
+</div>
+<div class="more">
+<a href="/metodo/">Read the full method</a>
+<a href="/">See the game</a>
+</div>
+</section>
+
+</main>
+
+<footer>
+<div class="footlinks">
+<a href="/">Back to the game</a>
+<a href="/changelog/">Changelog</a>
+<a href="/privacy/">Privacy Policy</a>
+<a href="mailto:info@streetuniversitygame.com">info@streetuniversitygame.com</a>
+</div>
+<p>The numbers on this page are regenerated by a script at every release; snapshot of 9 October 2026.</p>
+<p>Street University is a work of fiction: any resemblance to real bins is coincidental.</p>
+</footer>
+</div><div class="lang" data-lang="it">
+<a class="skip" href="#main-it">Vai al contenuto</a>
+<div class="top">
+<a href="/" aria-label="Torna alla pagina del gioco">Street University</a>
+<a href="/metodo/">Leggi il metodo per intero</a>
+</div>
+<main id="main-it">
+
+<header>
+<img class="hero" src="../img/hero.webp" width="1920" height="800" alt="Illustrazione di copertina di Street University">
+<p class="kicker">Portfolio</p>
+<h1>Un gioco pubblicato da una persona che dirige agenti IA</h1>
+<p class="lead">Street University è un roguelike cartoonesco con visuale dall'alto, in beta chiusa su Android e iOS. L'ho progettato, ho diretto gli agenti IA che l'hanno scritto, e ho misurato il metodo mentre girava.</p>
+</header>
+
+<section class="block" aria-label="Tre numeri che danno la misura del lavoro">
+<div class="nums" role="group" aria-label="Tre numeri che danno la misura del lavoro">
+<div class="n"><span class="big">1.758</span><span class="cap">commit</span></div>
+<div class="n"><span class="big">1.101</span><span class="cap">ticket tracciati</span></div>
+<div class="n"><span class="big">88.725</span><span class="cap">righe di codice del gioco</span></div>
+</div>
+</section>
+
+<section class="block" id="chain-it" aria-labelledby="chain-title-it">
+<h2 id="chain-title-it">Come scorre il lavoro</h2>
+<div class="viz viz-h"><svg class="viz-svg viz-i4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 170" role="img" aria-label="Schema: l&#x27;autore, una prima sessione IA che orchestra, e due roster di agenti che costruiscono."><defs><marker id="i4-ah-ch-it" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path class="ah" d="M0,0 L10,5 L0,10 z"/></marker><marker id="i4-ag-ch-it" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path class="ah ah-gate" d="M0,0 L10,5 L0,10 z"/></marker></defs><rect class="node node-author" x="0" y="40" width="170" height="90"/><text class="node-name on-navy"><tspan x="12.0" y="90.2">L'autore</tspan></text><rect class="node node-bridge" x="355" y="10" width="150" height="150"/><text class="node-name on-teal"><tspan x="365.0" y="90.2">Primo ponte</tspan></text><rect class="node node-roster" x="620" y="0" width="260" height="70"/><text class="node-name on-orange"><tspan x="632.0" y="40.2">Roster Claude</tspan></text><rect class="node node-codex" x="620" y="100" width="260" height="70"/><text class="node-name"><tspan x="632.0" y="140.2">Roster Codex</tspan></text><line class="arrow" x1="174" y1="70" x2="351" y2="70" marker-end="url(#i4-ah-ch-it)"/><line class="arrow" x1="351" y1="100" x2="174" y2="100" marker-end="url(#i4-ah-ch-it)"/><line class="arrow" x1="509" y1="20" x2="616" y2="20" marker-end="url(#i4-ah-ch-it)"/><line class="arrow" x1="616" y1="50" x2="509" y2="50" marker-end="url(#i4-ah-ch-it)"/><line class="arrow" x1="509" y1="120" x2="616" y2="120" marker-end="url(#i4-ah-ch-it)"/><line class="arrow" x1="616" y1="150" x2="509" y2="150" marker-end="url(#i4-ah-ch-it)"/></svg></div>
+<div class="viz viz-v"><svg class="viz-svg viz-i4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 232" role="img" aria-label="Schema: l&#x27;autore, una prima sessione IA che orchestra, e due roster di agenti che costruiscono."><defs><marker id="i4-ah-cv-it" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path class="ah" d="M0,0 L10,5 L0,10 z"/></marker><marker id="i4-ag-cv-it" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path class="ah ah-gate" d="M0,0 L10,5 L0,10 z"/></marker></defs><rect class="node node-author" x="0" y="0" width="360" height="44"/><text class="node-name on-navy"><tspan x="12.0" y="26.4">L'autore</tspan></text><rect class="node node-bridge" x="0" y="92" width="360" height="44"/><text class="node-name on-teal"><tspan x="12.0" y="118.4">Primo ponte</tspan></text><rect class="node node-roster" x="0" y="188" width="172" height="44"/><text class="node-name on-orange"><tspan x="10.0" y="214.4">Roster Claude</tspan></text><rect class="node node-codex" x="188" y="188" width="172" height="44"/><text class="node-name"><tspan x="198.0" y="214.4">Roster Codex</tspan></text><line class="arrow" x1="100" y1="47" x2="100" y2="89" marker-end="url(#i4-ah-cv-it)"/><line class="arrow" x1="260" y1="89" x2="260" y2="47" marker-end="url(#i4-ah-cv-it)"/><line class="arrow" x1="40" y1="139" x2="40" y2="185" marker-end="url(#i4-ah-cv-it)"/><line class="arrow" x1="130" y1="185" x2="130" y2="139" marker-end="url(#i4-ah-cv-it)"/><line class="arrow" x1="228" y1="139" x2="228" y2="185" marker-end="url(#i4-ah-cv-it)"/><line class="arrow" x1="318" y1="185" x2="318" y2="139" marker-end="url(#i4-ah-cv-it)"/></svg></div>
+<p class="caption">Io decido. Una prima sessione IA divide il lavoro in lotti, due roster di agenti li costruiscono, e ogni lotto passa un gate prima di tornare da me.</p>
+</section>
+
+<section class="block" id="proofs-it" aria-labelledby="proofs-title-it">
+<h2 id="proofs-title-it">Tre prove</h2>
+<div class="proofs">
+<div class="proof"><h3>Una beta chiusa sui due store</h3><p>Tester veri lo installano da Google Play e da TestFlight, sui loro telefoni.</p></div>
+<div class="proof"><h3>49 release in 22 settimane</h3><p>Dal primo commit del 14 maggio 2026 a oggi, ogni release col suo tag e il suo changelog.</p></div>
+<div class="proof"><h3>Un metodo misurato, non raccontato</h3><p>Bocciature, costi e controlli falliti li conta uno script, e si pubblicano insieme a tutto il resto.</p></div>
+</div>
+</section>
+
+<section class="block" id="skills-it" aria-labelledby="skills-title-it">
+<h2 id="skills-title-it">Cosa so fare</h2>
+<ul class="skills">
+<li>Portare un gioco da un'idea a una build giocabile su 5 piattaforme e in 8 lingue, e attraverso la revisione degli store.</li>
+<li>Dirigere agenti IA come una squadra: ticket, brief chiusi, un gate su ogni lotto, e una regola scritta per ogni errore fatto una volta.</li>
+<li>Costruire gli strumenti intorno al lavoro: sonde automatiche, una suite di regressione, script che leggono il costo prima di spenderlo.</li>
+<li>Decidere dai numeri, e dire chiaro che cosa non è stato provato.</li>
+</ul>
+</section>
+
+<section class="block" id="contact-it" aria-labelledby="contact-title-it">
+<h2 id="contact-title-it">Contatti</h2>
+<p>Scrivimi, oppure cercami su LinkedIn.</p>
+<div class="acts">
+<a class="cta" href="mailto:info@streetuniversitygame.com">info@streetuniversitygame.com</a>
+<a href="https://www.linkedin.com/in/ivan-bianco-709b1bb/" rel="noopener">LinkedIn</a>
+</div>
+<div class="more">
+<a href="/metodo/">Leggi il metodo per intero</a>
+<a href="/">Guarda il gioco</a>
+</div>
+</section>
+
+</main>
+
+<footer>
+<div class="footlinks">
+<a href="/">Torna al gioco</a>
+<a href="/changelog/">Novità e changelog</a>
+<a href="/privacy/">Informativa sulla privacy</a>
+<a href="mailto:info@streetuniversitygame.com">info@streetuniversitygame.com</a>
+</div>
+<p>I numeri di questa pagina li rigenera uno script a ogni release; scatto del 9 ottobre 2026.</p>
+<p>Street University è un'opera di fantasia: ogni somiglianza con bidoni reali è casuale.</p>
+</footer>
+</div><!-- /corpo -->
+</div>
+<script>
+(function () {
+  var bar = document.querySelector('.langbar');
+  var blocks = document.querySelectorAll('.lang');
+  if (!bar || !blocks.length) return;          // niente JS utile: restano tutte e due le lingue
+  document.body.classList.add('js-on');
+  bar.hidden = false;
+
+  function show(lang) {
+    for (var i = 0; i < blocks.length; i++) {
+      blocks[i].hidden = (blocks[i].getAttribute('data-lang') !== lang);
+    }
+    var btns = bar.querySelectorAll('button');
+    for (var j = 0; j < btns.length; j++) {
+      btns[j].setAttribute('aria-pressed', String(btns[j].getAttribute('data-lang') === lang));
+    }
+    document.documentElement.lang = lang;
+  }
+  bar.addEventListener('click', function (e) {
+    var b = e.target.closest('button[data-lang]');
+    if (b) show(b.getAttribute('data-lang'));
+  });
+  var saved = null;
+  try { saved = window.localStorage.getItem('su-metodo-lang'); } catch (err) { saved = null; }
+  bar.addEventListener('click', function (e) {
+    var b = e.target.closest('button[data-lang]');
+    if (b) { try { window.localStorage.setItem('su-metodo-lang', b.getAttribute('data-lang')); } catch (err) {} }
+  });
+  var preferred = (navigator.language || 'en').toLowerCase().indexOf('it') === 0 ? 'it' : 'en';
+  show(saved === 'it' || saved === 'en' ? saved : preferred);
+})();
+</script>
+</body>
+</html>
