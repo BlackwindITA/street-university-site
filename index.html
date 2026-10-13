@@ -119,16 +119,31 @@
   .js-scenes .scene[data-frames] .caps p{grid-area:1 / 1; margin:0; opacity:0; transition:opacity .35s}
   .js-scenes .scene[data-frames] .caps p.on{opacity:1}
 
-  /* ---- telefono in verticale: etichetta e titolo restano in cima mentre la scena avanza ----
+  /* ---- etichetta e titolo restano in cima mentre la scena avanza ----
      Il titolo e' fratello della scena dentro .stage: resta attaccato finche' la fascia non finisce.
-     --head-h la misura il JS (il titolo va su una o due righe): il blocco sticky la lascia libera in
-     alto e centra fotogramma e frase nello spazio che resta, cosi' nulla passa sotto il titolo. */
-  @media (max-width:700px) and (orientation:portrait){
+     Il blocco sticky lascia libera in alto l'altezza del titolo (--pin-t) e centra fotogramma e frase
+     nello spazio che resta; il fotogramma si stringe quanto serve per starci in altezza con la frase
+     (da desktop e' il caso normale). --head-h e --caps-h le misura il JS: titolo e frasi vanno su una
+     o piu' righe. --pin-b e' la fascia in basso lasciata al «torna in cima», dove la frase arriverebbe
+     fino all'angolo.
+     Sullo schermo basso in orizzontale (telefono coricato) il titolo scorre via come prima: tenerlo
+     ridurrebbe il fotogramma a un francobollo. Il fotogramma si adatta all'altezza anche li', e al
+     «torna in cima» si lascia l'angolo stringendo ai lati (--side) invece che in basso. */
+  :root{--pin-b:0px; --side:0px}
+  @media (max-width:1099px){ :root{--pin-b:60px} }
+  @media (orientation:landscape) and (max-height:559px){ :root{--pin-b:0px; --side:128px} }
+  .js-scenes .stage.live .scene[data-frames] .pin{padding-top:var(--pin-t,0px); padding-bottom:var(--pin-b)}
+  .js-scenes .stage.live .scene[data-frames] .caps{max-width:calc(100% - var(--side))}
+  .js-scenes .stage.live .scene[data-frames] canvas{
+    max-width:min(960px, calc(100% - var(--side)), calc((100vh - var(--pin-t,0px) - var(--caps-h,64px) - var(--pin-b) - 70px) * 16 / 9));
+    max-width:min(960px, calc(100% - var(--side)), calc((100svh - var(--pin-t,0px) - var(--caps-h,64px) - var(--pin-b) - 70px) * 16 / 9));
+  }
+  @media (orientation:portrait), (min-height:560px){
+    .js-scenes .stage.live{--pin-t:var(--head-h,120px)}
     .js-scenes .stage.live > .wrap{
       position:sticky; top:0; z-index:2; background:var(--stage);
       padding-block:14px 12px; margin-block:-14px -12px;
     }
-    .js-scenes .stage.live .scene[data-frames] .pin{padding-top:var(--head-h,120px)}
   }
 
   /* ---- 4 · 8 · immagini con testo ---- */
@@ -166,6 +181,18 @@
   footer{margin:48px 0 0; padding:28px 0 56px; border-top:1px solid var(--rule); color:var(--muted); font-size:.92rem}
   footer p{margin:8px 0}
   .footlinks{display:flex; flex-wrap:wrap; gap:8px 22px; margin:0 0 16px}
+
+  /* ---- torna in cima: fisso in basso a destra, compare dopo il primo schermo (lo accende il JS) ---- */
+  .totop{
+    position:fixed; right:16px; bottom:calc(16px + env(safe-area-inset-bottom, 0px)); z-index:5;
+    width:44px; height:44px; padding:0; display:grid; place-items:center; cursor:pointer;
+    background:var(--card); color:var(--fg); border:1px solid var(--rule); border-radius:0;
+    opacity:0; visibility:hidden; transition:opacity .25s, visibility .25s;
+  }
+  .totop.on{opacity:1; visibility:visible}
+  .totop:hover{background:var(--btn); border-color:var(--btn); color:var(--on-btn)}
+  .totop svg{display:block; width:20px; height:20px}
+  @media (prefers-reduced-motion: reduce){ .totop{transition:none} }
 </style>
 <!-- senza JavaScript il selettore non compare e le due lingue si vedono una sotto l'altra -->
 <noscript><style>.lang[hidden]{display:block !important}</style></noscript>
@@ -560,6 +587,11 @@
   </footer>
 </div>
 
+<!-- torna in cima: senza JavaScript resta nascosto -->
+<button type="button" class="totop" hidden aria-label="Back to top" title="Back to top" data-en="Back to top" data-it="Torna all'inizio">
+  <svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M10 4 3 11h4.5v5h5v-5H17z" fill="currentColor"/></svg>
+</button>
+
 <script>
 (function () {
   /* ---------- selettore della lingua (invariato) ---------- */
@@ -579,6 +611,8 @@
       btns[j].setAttribute('aria-pressed', String(btns[j].getAttribute('data-lang') === lang));
     }
     document.documentElement.lang = lang;
+    var tt = document.querySelector('.totop');               // l'etichetta del «torna in cima» segue la lingua
+    if (tt && tt.getAttribute('data-' + lang)) { tt.setAttribute('aria-label', tt.getAttribute('data-' + lang)); tt.title = tt.getAttribute('data-' + lang); }
     if (window.__scenesRefresh) window.__scenesRefresh();   // le scene della lingua nuova diventano quelle visibili
   }
 
@@ -607,17 +641,18 @@
                poster: el.querySelector('.poster'), n: parseInt(el.getAttribute('data-frames'), 10),
                key: el.getAttribute('data-seq') + '/' + size, ext: el.getAttribute('data-ext') || 'webp',
                seq: el.getAttribute('data-seq'), last: -2,
-               stage: el.parentNode, head: el.parentNode.querySelector('.wrap') };
+               stage: el.parentNode, head: el.parentNode.querySelector('.wrap'), capsBox: el.querySelector('.caps') };
     });
 
-    // Su telefono il titolo della sezione resta in cima (CSS): qui se ne misura l'altezza, che cambia
-    // con la lingua, con la larghezza e quando arriva il font dei titoli.
+    // Il titolo della sezione resta in cima (CSS): qui si misurano la sua altezza e quella delle frasi,
+    // che cambiano con la lingua, con la larghezza e quando arriva il font dei titoli.
     function measure() {
       for (var i = 0; i < items.length; i++) {
         var it = items[i];
         if (!it.head || !it.head.offsetHeight) continue;          // lingua nascosta: si misura al cambio
         it.stage.classList.add('live');
         it.stage.style.setProperty('--head-h', it.head.offsetHeight + 'px');
+        it.stage.style.setProperty('--caps-h', (it.capsBox ? it.capsBox.offsetHeight : 0) + 'px');
       }
     }
 
@@ -710,6 +745,28 @@ document.addEventListener('click', function (e) {
   var p = v.play();
   if (p && p.catch) p.catch(function () {});
 });
+
+/* «Torna in cima»: compare dopo il primo schermo di scorrimento e riporta a inizio pagina. Con movimento
+   ridotto il ritorno e' immediato. */
+(function () {
+  var b = document.querySelector('.totop');
+  if (!b) return;
+  b.hidden = false;
+  var shown = false;
+  function upd() {
+    var on = (window.pageYOffset || 0) > (window.innerHeight || 600);
+    if (on === shown) return;
+    shown = on;
+    b.classList.toggle('on', on);
+  }
+  window.addEventListener('scroll', upd, { passive: true });
+  window.addEventListener('resize', upd);
+  b.addEventListener('click', function () {
+    var calm = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    try { window.scrollTo({ top: 0, behavior: calm ? 'auto' : 'smooth' }); } catch (err) { window.scrollTo(0, 0); }
+  });
+  upd();
+})();
 </script>
 </body>
 </html>
