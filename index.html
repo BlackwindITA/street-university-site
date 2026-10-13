@@ -119,6 +119,18 @@
   .js-scenes .scene[data-frames] .caps p{grid-area:1 / 1; margin:0; opacity:0; transition:opacity .35s}
   .js-scenes .scene[data-frames] .caps p.on{opacity:1}
 
+  /* ---- telefono in verticale: etichetta e titolo restano in cima mentre la scena avanza ----
+     Il titolo e' fratello della scena dentro .stage: resta attaccato finche' la fascia non finisce.
+     --head-h la misura il JS (il titolo va su una o due righe): il blocco sticky la lascia libera in
+     alto e centra fotogramma e frase nello spazio che resta, cosi' nulla passa sotto il titolo. */
+  @media (max-width:700px) and (orientation:portrait){
+    .js-scenes .stage.live > .wrap{
+      position:sticky; top:0; z-index:2; background:var(--stage);
+      padding-block:14px 12px; margin-block:-14px -12px;
+    }
+    .js-scenes .stage.live .scene[data-frames] .pin{padding-top:var(--head-h,120px)}
+  }
+
   /* ---- 4 · 8 · immagini con testo ---- */
   .feat{padding-block:clamp(48px,9vw,120px) 0}
   .feat .shot{width:100%; margin-top:24px}
@@ -594,8 +606,20 @@
       return { el: el, cv: cv, cx: cv.getContext('2d'), caps: el.querySelectorAll('.caps p'),
                poster: el.querySelector('.poster'), n: parseInt(el.getAttribute('data-frames'), 10),
                key: el.getAttribute('data-seq') + '/' + size, ext: el.getAttribute('data-ext') || 'webp',
-               seq: el.getAttribute('data-seq'), last: -2 };
+               seq: el.getAttribute('data-seq'), last: -2,
+               stage: el.parentNode, head: el.parentNode.querySelector('.wrap') };
     });
+
+    // Su telefono il titolo della sezione resta in cima (CSS): qui se ne misura l'altezza, che cambia
+    // con la lingua, con la larghezza e quando arriva il font dei titoli.
+    function measure() {
+      for (var i = 0; i < items.length; i++) {
+        var it = items[i];
+        if (!it.head || !it.head.offsetHeight) continue;          // lingua nascosta: si misura al cambio
+        it.stage.classList.add('live');
+        it.stage.style.setProperty('--head-h', it.head.offsetHeight + 'px');
+      }
+    }
 
     function visible(it) { return it.el.getClientRects().length > 0; }
 
@@ -663,8 +687,10 @@
       if (!moved) { moved = true; for (var i = 0; i < waiting.length; i++) load(waiting[i]); waiting = []; }
       schedule(false);
     }, { passive: true });
-    window.addEventListener('resize', function () { schedule(true); });
-    window.__scenesRefresh = function () { schedule(true); };
+    window.addEventListener('resize', function () { measure(); schedule(true); });
+    window.__scenesRefresh = function () { measure(); schedule(true); };
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(measure);
+    measure();
     schedule(true);
   })();
 
