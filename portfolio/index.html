@@ -245,12 +245,12 @@
   .totop{
     position:fixed; right:16px; bottom:calc(16px + env(safe-area-inset-bottom, 0px)); z-index:5;
     width:44px; height:44px; padding:0; display:grid; place-items:center; cursor:pointer;
-    background:var(--card); color:var(--fg); border:1px solid var(--rule); border-radius:0;
+    background:#ff9c57; color:#0c1a2a; border:0; border-radius:50%;   /* arancio del layout, freccia nera: sul fondo scuro si vede */
     opacity:0; visibility:hidden; transition:opacity .25s, visibility .25s;
   }
   .totop[hidden]{display:none}
   .totop.on{opacity:1; visibility:visible}
-  .totop:hover{background:var(--red); border-color:var(--red); color:var(--on-red)}
+  .totop:hover,.totop:focus-visible{outline:3px solid var(--fg); outline-offset:2px}
   .totop svg{display:block; width:20px; height:20px}
   @media (prefers-reduced-motion: reduce){ .totop{transition:none} }
 </style>
@@ -400,7 +400,7 @@
 <div>
 <img class="shot" src="../img/hero.webp" width="1920" height="800" alt="Cover art of Street University" loading="lazy">
 <div class="nums" role="group" aria-label="The game&#x27;s numbers, regenerated at every release">
-<div class="n"><span class="big">1,803</span><span class="cap">commits</span></div>
+<div class="n"><span class="big">1,804</span><span class="cap">commits</span></div>
 <div class="n"><span class="big">1,130</span><span class="cap">tickets on Jira</span></div>
 <div class="n"><span class="big">49</span><span class="cap">tagged releases in 23 weeks</span></div>
 <div class="n"><span class="big">8</span><span class="cap">languages</span></div>
@@ -626,7 +626,7 @@
 <div>
 <img class="shot" src="../img/hero.webp" width="1920" height="800" alt="Illustrazione di copertina di Street University" loading="lazy">
 <div class="nums" role="group" aria-label="I numeri del gioco, rigenerati a ogni release">
-<div class="n"><span class="big">1.803</span><span class="cap">commit</span></div>
+<div class="n"><span class="big">1.804</span><span class="cap">commit</span></div>
 <div class="n"><span class="big">1.130</span><span class="cap">ticket su Jira</span></div>
 <div class="n"><span class="big">49</span><span class="cap">release taggate in 23 settimane</span></div>
 <div class="n"><span class="big">8</span><span class="cap">lingue</span></div>
