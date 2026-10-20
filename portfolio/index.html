@@ -86,9 +86,23 @@
   .band .cta.alt{color:var(--on-band); box-shadow:inset 0 0 0 2px var(--on-band)}
   .cta:hover,.cta:focus-visible{outline:3px solid var(--fg); outline-offset:2px}
   .band .cta:hover,.band .cta:focus-visible{outline-color:var(--on-band)}
+  /* da telefono la foto a tutta colonna riempiva il primo schermo da sola: diventa una miniatura
+     accanto a nome e ruolo, e il testo della colonna destra si dispone sotto (display:contents
+     porta i figli di .intro nella griglia dell'eroe) */
   @media (max-width:760px){
-    .hero{grid-template-columns:1fr}
-    .photo{max-width:340px}
+    .hero{
+      grid-template-columns:clamp(104px,30vw,150px) minmax(0,1fr); gap:0 18px; align-items:end; margin-top:18px;
+      grid-template-areas:"photo name" "photo role" "sub sub" "lead lead" "tags tags" "acts acts";
+    }
+    .intro{display:contents}
+    .photo{grid-area:photo; align-self:start; margin:0 8px 8px 0}
+    .photo::before{inset:8px -8px -8px 8px}
+    .hero h1{grid-area:name; margin:0; font-size:clamp(2.8rem,13vw,4.2rem)}
+    .role{grid-area:role; align-self:start; margin-top:8px; font-size:clamp(1.15rem,5vw,1.6rem)}
+    .sub{grid-area:sub; margin-top:18px}
+    .lead{grid-area:lead}
+    .tags{grid-area:tags; margin-top:4px}
+    .acts{grid-area:acts}
   }
 
   /* ---- numeri grossi: filetto da 6 px, ruota turchese / arancio / cremisi / crema ---- */
@@ -247,7 +261,7 @@
 <div class="photo">
 <img src="ivan-bianco.webp" width="640" height="962" alt="Portrait of Ivan Bianco" fetchpriority="high">
 </div>
-<div>
+<div class="intro">
 <h1><span>Ivan</span><span>Bianco</span></h1>
 <p class="role">Senior Technical Project Manager</p>
 <p class="sub">15 years of software engineering · 4+ years of international delivery</p>
@@ -374,7 +388,7 @@
 <div>
 <img class="shot" src="../img/hero.webp" width="1920" height="800" alt="Cover art of Street University" loading="lazy">
 <div class="nums" role="group" aria-label="The game&#x27;s numbers, regenerated at every release">
-<div class="n"><span class="big">1,801</span><span class="cap">commits</span></div>
+<div class="n"><span class="big">1,802</span><span class="cap">commits</span></div>
 <div class="n"><span class="big">1,130</span><span class="cap">tickets on Jira</span></div>
 <div class="n"><span class="big">49</span><span class="cap">tagged releases in 23 weeks</span></div>
 <div class="n"><span class="big">8</span><span class="cap">languages</span></div>
@@ -471,7 +485,7 @@
 <div class="photo">
 <img src="ivan-bianco.webp" width="640" height="962" alt="Ritratto di Ivan Bianco" fetchpriority="high">
 </div>
-<div>
+<div class="intro">
 <h1><span>Ivan</span><span>Bianco</span></h1>
 <p class="role">Senior Technical Project Manager</p>
 <p class="sub">15 anni di sviluppo software · 4+ anni di delivery internazionale</p>
@@ -598,7 +612,7 @@
 <div>
 <img class="shot" src="../img/hero.webp" width="1920" height="800" alt="Illustrazione di copertina di Street University" loading="lazy">
 <div class="nums" role="group" aria-label="I numeri del gioco, rigenerati a ogni release">
-<div class="n"><span class="big">1.801</span><span class="cap">commit</span></div>
+<div class="n"><span class="big">1.802</span><span class="cap">commit</span></div>
 <div class="n"><span class="big">1.130</span><span class="cap">ticket su Jira</span></div>
 <div class="n"><span class="big">49</span><span class="cap">release taggate in 23 settimane</span></div>
 <div class="n"><span class="big">8</span><span class="cap">lingue</span></div>
