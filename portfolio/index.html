@@ -11,29 +11,20 @@
 <meta property="og:url" content="https://www.streetuniversitygame.com/portfolio/">
 <meta name="twitter:card" content="summary_large_image">
 <style>
-  /* token identici a `template_metodo.html`: se cambiano lì, cambiano qui.
-     In più solo --band/--on-band/--band-muted/--band-rule, per le fasce a tutta larghezza. */
+  /* token identici a `template_metodo.html`: tema UNICO scuro come /metodo/ e la home (SU-1125),
+     la pagina non segue il tema del dispositivo. In più solo --band/--on-band/--band-muted/--band-rule,
+     per le fasce a tutta larghezza (fondo = --stage di /metodo/). */
   @font-face{font-family:"Bebas Neue"; font-weight:400; font-style:normal; font-display:swap; src:url("../fonts/BebasNeue-latin.woff2") format("woff2")}
   :root{
     --disp:"Bebas Neue","Arial Narrow","Roboto Condensed",Impact,sans-serif;
-    --bg:#f5f0e6; --fg:#1e2a44; --muted:#566078; --rule:#d9d1c0; --card:#fbf7ee;
-    --navy:#1e2a44; --on-navy:#f5f0e6; --t-navy:#1e2a44;
-    --teal:#3fb1c3; --on-teal:#10243a; --t-teal:#147888;
-    --orange:#f48b3a; --on-orange:#10243a; --t-orange:#bd5610;
-    --red:#b5123e; --on-red:#fff6ea; --t-red:#b5123e;
-    --link:#b5123e;
-    --band:#1e2a44; --on-band:#f5f0e6; --band-muted:#b9c1d3; --band-rule:#34436a;
-  }
-  @media (prefers-color-scheme: dark){
-    :root{
-      --bg:#121a2c; --fg:#f2ecdf; --muted:#9ba6bd; --rule:#2a3550; --card:#19233a;
-      --navy:#e6ebf5; --on-navy:#121a2c; --t-navy:#e6ebf5;
-      --teal:#56c4d3; --on-teal:#0c1a2a; --t-teal:#56c4d3;
-      --orange:#ff9c57; --on-orange:#0c1a2a; --t-orange:#ff9c57;
-      --red:#e2456b; --on-red:#170a10; --t-red:#f0597c;
-      --link:#f0597c;
-      --band:#0b1120; --on-band:#f2ecdf; --band-muted:#9ba6bd; --band-rule:#2a3550;
-    }
+    color-scheme:dark;
+    --bg:#121a2c; --fg:#f2ecdf; --muted:#9ba6bd; --rule:#2a3550; --card:#19233a;
+    --navy:#e6ebf5; --on-navy:#121a2c; --t-navy:#e6ebf5;
+    --teal:#56c4d3; --on-teal:#0c1a2a; --t-teal:#56c4d3;
+    --orange:#ff9c57; --on-orange:#0c1a2a; --t-orange:#ff9c57;
+    --red:#e2456b; --on-red:#170a10; --t-red:#f0597c;
+    --link:#f0597c;
+    --band:#0b1120; --on-band:#f2ecdf; --band-muted:#9ba6bd; --band-rule:#2a3550;
   }
   *{box-sizing:border-box}
   html{-webkit-text-size-adjust:100%}
@@ -79,10 +70,6 @@
   .photo{position:relative; margin:0 18px 18px 0}
   .photo::before{content:""; position:absolute; inset:18px -18px -18px 18px; background:var(--orange)}
   .photo img{position:relative; display:block; width:100%; height:auto; border-radius:0; background:#2a2a2a}
-  .photo .stamp{
-    position:absolute; left:-10px; bottom:26px; background:var(--red); color:var(--on-red);
-    font-family:var(--disp); font-size:1.25rem; letter-spacing:.06em; line-height:1; padding:8px 14px 6px; text-transform:uppercase;
-  }
   .hero h1{margin:6px 0 0; font-size:clamp(3.6rem,10vw,7.2rem); line-height:.86; letter-spacing:.01em}
   .hero h1 span{display:block}
   .hero h1 span + span{color:var(--t-teal)}
@@ -259,7 +246,6 @@
 <header class="hero">
 <div class="photo">
 <img src="ivan-bianco.webp" width="640" height="962" alt="Portrait of Ivan Bianco" fetchpriority="high">
-<span class="stamp">Ex software engineer</span>
 </div>
 <div>
 <p class="kicker">Portfolio · Turin, Italy</p>
@@ -389,7 +375,7 @@
 <div>
 <img class="shot" src="../img/hero.webp" width="1920" height="800" alt="Cover art of Street University" loading="lazy">
 <div class="nums" role="group" aria-label="The game&#x27;s numbers, regenerated at every release">
-<div class="n"><span class="big">1,799</span><span class="cap">commits</span></div>
+<div class="n"><span class="big">1,800</span><span class="cap">commits</span></div>
 <div class="n"><span class="big">1,130</span><span class="cap">tickets on Jira</span></div>
 <div class="n"><span class="big">49</span><span class="cap">tagged releases in 23 weeks</span></div>
 <div class="n"><span class="big">8</span><span class="cap">languages</span></div>
@@ -485,7 +471,6 @@
 <header class="hero">
 <div class="photo">
 <img src="ivan-bianco.webp" width="640" height="962" alt="Ritratto di Ivan Bianco" fetchpriority="high">
-<span class="stamp">Ex software engineer</span>
 </div>
 <div>
 <p class="kicker">Portfolio · Torino</p>
@@ -615,7 +600,7 @@
 <div>
 <img class="shot" src="../img/hero.webp" width="1920" height="800" alt="Illustrazione di copertina di Street University" loading="lazy">
 <div class="nums" role="group" aria-label="I numeri del gioco, rigenerati a ogni release">
-<div class="n"><span class="big">1.799</span><span class="cap">commit</span></div>
+<div class="n"><span class="big">1.800</span><span class="cap">commit</span></div>
 <div class="n"><span class="big">1.130</span><span class="cap">ticket su Jira</span></div>
 <div class="n"><span class="big">49</span><span class="cap">release taggate in 23 settimane</span></div>
 <div class="n"><span class="big">8</span><span class="cap">lingue</span></div>
