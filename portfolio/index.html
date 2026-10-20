@@ -3,10 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Street University — portfolio</title>
-<meta name="description" content="A game built by one person directing AI agents, with the method measured and not just told.">
+<title>Ivan Bianco — Senior Technical Project Manager</title>
+<meta name="description" content="Fifteen years of software, four-plus years leading international technical programmes, and a multiplatform game shipped with a team of AI agents. Portfolio of Ivan Bianco, Turin.">
+<meta property="og:title" content="Ivan Bianco — Senior Technical Project Manager">
+<meta property="og:description" content="Fifteen years of software, four-plus years leading international technical programmes, and a multiplatform game shipped with a team of AI agents. Portfolio of Ivan Bianco, Turin.">
+<meta property="og:image" content="https://www.streetuniversitygame.com/portfolio/ivan-bianco-social.jpg">
+<meta property="og:url" content="https://www.streetuniversitygame.com/portfolio/">
+<meta name="twitter:card" content="summary_large_image">
 <style>
-  /* token identici a `template_metodo.html`: se cambiano lì, cambiano qui */
+  /* token identici a `template_metodo.html`: se cambiano lì, cambiano qui.
+     In più solo --band/--on-band/--band-muted/--band-rule, per le fasce a tutta larghezza. */
   @font-face{font-family:"Bebas Neue"; font-weight:400; font-style:normal; font-display:swap; src:url("../fonts/BebasNeue-latin.woff2") format("woff2")}
   :root{
     --disp:"Bebas Neue","Arial Narrow","Roboto Condensed",Impact,sans-serif;
@@ -16,6 +22,7 @@
     --orange:#f48b3a; --on-orange:#10243a; --t-orange:#bd5610;
     --red:#b5123e; --on-red:#fff6ea; --t-red:#b5123e;
     --link:#b5123e;
+    --band:#1e2a44; --on-band:#f5f0e6; --band-muted:#b9c1d3; --band-rule:#34436a;
   }
   @media (prefers-color-scheme: dark){
     :root{
@@ -25,16 +32,17 @@
       --orange:#ff9c57; --on-orange:#0c1a2a; --t-orange:#ff9c57;
       --red:#e2456b; --on-red:#170a10; --t-red:#f0597c;
       --link:#f0597c;
+      --band:#0b1120; --on-band:#f2ecdf; --band-muted:#9ba6bd; --band-rule:#2a3550;
     }
   }
   *{box-sizing:border-box}
   html{-webkit-text-size-adjust:100%}
   body{
-    margin:0; background:var(--bg); color:var(--fg);
+    margin:0; background:var(--bg); color:var(--fg); overflow-x:hidden;
     font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
     font-size:17px; line-height:1.65;
   }
-  .wrap{max-width:900px; margin:0 auto; padding:0 20px}
+  .wrap{max-width:1040px; margin:0 auto; padding:0 20px}
   a{color:var(--link)}
   a:hover{text-decoration:none}
   .skip{position:absolute; left:-9999px}
@@ -51,30 +59,124 @@
   .lang[hidden]{display:none}
 
   main{padding:8px 0 0}
-  h1,h2{font-family:var(--disp); font-weight:400; text-transform:uppercase; text-wrap:balance}
-  h1{margin:4px 0 0; font-size:clamp(2.7rem,8vw,4.6rem); line-height:.92; letter-spacing:.01em}
-  h2{margin:2px 0 0; font-size:2.3rem; line-height:1; letter-spacing:.02em}
+  h1,h2,h3{font-family:var(--disp); font-weight:400; text-transform:uppercase; text-wrap:balance}
+  h2{margin:2px 0 0; font-size:clamp(2.2rem,5vw,3rem); line-height:1; letter-spacing:.02em}
   p{margin:14px 0}
   .kicker{margin:0; font-size:.82rem; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); font-weight:700}
-  header .kicker{margin-top:22px}
   .lead{font-size:1.14rem}
-  .block{margin:56px 0 0}
+  .block{margin:84px 0 0}
+  .sec-head{max-width:720px}
+  .sec-head p{color:var(--muted)}
 
-  /* eroe: a tutta colonna, spigoli vivi, niente ombra */
-  .hero{display:block; width:100%; height:auto; margin:18px 0 0; border-radius:0}
+  /* fascia a tutta larghezza: esce dalla colonna coi margini e ci rientra col padding
+     (un'ombra larga al posto dei margini lasciava un filo chiaro sul bordo sub-pixel) */
+  .band{background:var(--band); color:var(--on-band); margin-left:calc(50% - 50vw); margin-right:calc(50% - 50vw); padding-left:calc(50vw - 50%); padding-right:calc(50vw - 50%)}
+  .band .kicker{color:var(--band-muted)}
+  .band a{color:var(--on-band)}
 
-  /* tre numeri grossi: filetto da 6 px, ruota blu notte / turchese / arancio; il centrale solo contornato */
-  .nums{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:22px 14px; margin:30px 0 0}
+  /* ---- eroe: foto con blocco arancio sfalsato, nome a caratteri pieni ---- */
+  .hero{display:grid; grid-template-columns:minmax(0,5fr) minmax(0,7fr); gap:28px 56px; align-items:center; margin:30px 0 0}
+  .photo{position:relative; margin:0 18px 18px 0}
+  .photo::before{content:""; position:absolute; inset:18px -18px -18px 18px; background:var(--orange)}
+  .photo img{position:relative; display:block; width:100%; height:auto; border-radius:0; background:#2a2a2a}
+  .photo .stamp{
+    position:absolute; left:-10px; bottom:26px; background:var(--red); color:var(--on-red);
+    font-family:var(--disp); font-size:1.25rem; letter-spacing:.06em; line-height:1; padding:8px 14px 6px; text-transform:uppercase;
+  }
+  .hero h1{margin:6px 0 0; font-size:clamp(3.6rem,10vw,7.2rem); line-height:.86; letter-spacing:.01em}
+  .hero h1 span{display:block}
+  .hero h1 span + span{color:var(--t-teal)}
+  .role{margin:14px 0 0; font-family:var(--disp); font-size:clamp(1.6rem,3.6vw,2.3rem); line-height:1.05; letter-spacing:.03em; text-transform:uppercase; color:var(--t-red)}
+  .sub{margin:4px 0 0; font-weight:600; color:var(--muted)}
+  .tags{list-style:none; margin:20px 0 0; padding:0; display:flex; flex-wrap:wrap; gap:8px}
+  .tags li{border:2px solid var(--fg); padding:3px 10px 2px; font-size:.82rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase}
+  .acts{display:flex; flex-wrap:wrap; align-items:center; gap:14px 26px; margin:26px 0 0}
+  .cta{
+    display:inline-block; background:var(--red); color:var(--on-red); text-decoration:none; border-radius:0;
+    font-family:var(--disp); font-weight:400; font-size:1.35rem; text-transform:uppercase; letter-spacing:.05em; line-height:1.2; padding:8px 24px 6px;
+  }
+  .cta.alt{background:transparent; color:var(--fg); box-shadow:inset 0 0 0 2px var(--fg)}
+  .band .cta.alt{color:var(--on-band); box-shadow:inset 0 0 0 2px var(--on-band)}
+  .cta:hover,.cta:focus-visible{outline:3px solid var(--fg); outline-offset:2px}
+  .band .cta:hover,.band .cta:focus-visible{outline-color:var(--on-band)}
+  @media (max-width:760px){
+    .hero{grid-template-columns:1fr}
+    .photo{max-width:340px}
+  }
+
+  /* ---- numeri grossi: filetto da 6 px, ruota turchese / arancio / cremisi / crema ---- */
+  .nums-band{margin-top:84px; padding-top:44px; padding-bottom:46px}
+  .nums{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:26px 18px}
   .nums .n{min-width:0; border-top:6px solid var(--k); padding-top:10px}
-  .nums .n:nth-child(1){--k:var(--navy); --kt:var(--t-navy)}
-  .nums .n:nth-child(2){--k:var(--teal); --kt:var(--t-teal)}
-  .nums .n:nth-child(3){--k:var(--orange); --kt:var(--t-orange)}
-  .nums .big{display:block; font-family:var(--disp); font-size:clamp(3rem,9vw,4.8rem); font-weight:400; line-height:1; color:var(--kt); font-variant-numeric:tabular-nums; white-space:nowrap}
-  .nums .n:nth-child(2) .big{color:transparent; -webkit-text-stroke:2px var(--kt)}
-  .nums .cap{display:block; margin-top:6px; font-size:.76rem; font-weight:600; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); line-height:1.3}
-  @media (max-width:640px){ .nums{grid-template-columns:1fr} }
+  .nums .n:nth-child(1){--k:#3fb1c3}
+  .nums .n:nth-child(2){--k:#f48b3a}
+  .nums .n:nth-child(3){--k:#e2456b}
+  .nums .n:nth-child(4){--k:var(--on-band)}
+  .nums .big{display:block; font-family:var(--disp); font-size:clamp(3rem,7vw,4.6rem); line-height:1; color:var(--on-band); font-variant-numeric:tabular-nums; white-space:nowrap}
+  .nums .n:nth-child(2) .big{color:transparent; -webkit-text-stroke:2px var(--on-band)}
+  .nums .cap{display:block; margin-top:6px; font-size:.76rem; font-weight:600; text-transform:uppercase; letter-spacing:.08em; color:var(--band-muted); line-height:1.35}
+  @media (max-width:760px){ .nums{grid-template-columns:repeat(2,minmax(0,1fr))} }
 
-  /* catena di comando ridotta: nodi a tinta piena, senza ombra */
+  /* ---- il percorso: barra in proporzione ai mesi (flex-grow = mesi) ---- */
+  .track{display:flex; margin:30px 0 0; height:58px}
+  .seg{min-width:0; display:flex; align-items:flex-end; padding:0 8px 7px; overflow:hidden; color:var(--c); background:var(--k)}
+  .seg span{font-family:var(--disp); font-size:1.15rem; line-height:1; letter-spacing:.04em; text-transform:uppercase; white-space:nowrap; overflow:hidden; text-overflow:clip}
+  .seg + .seg{border-left:3px solid var(--bg)}
+  .k-dev1{--k:#a9dbe2; --c:#10243a}
+  .k-dev2{--k:var(--teal); --c:var(--on-teal)}
+  .k-lead{--k:var(--navy); --c:var(--on-navy)}
+  .k-pm{--k:var(--orange); --c:var(--on-orange)}
+  .k-ai{--k:var(--red); --c:var(--on-red)}
+  .track2{display:flex; height:14px; margin:4px 0 0}
+  .track2 .gap{flex:0 0 auto}
+  .track2 .seg{padding:0}
+  .years{display:flex; margin:6px 0 0; font-family:var(--disp); font-size:1.1rem; letter-spacing:.04em; color:var(--muted)}
+  .years span{min-width:0; white-space:nowrap}
+  .years span:last-child{text-align:right}
+  .legend{list-style:none; display:flex; flex-wrap:wrap; gap:6px 20px; margin:16px 0 0; padding:0; font-size:.88rem; color:var(--muted)}
+  .legend li{display:flex; align-items:center; gap:8px}
+  .legend li::before{content:""; width:14px; height:14px; background:var(--k)}
+  @media (max-width:560px){ .seg span{font-size:.95rem} .track{height:48px} }
+
+  /* ---- esperienze: binario a sinistra, quadrato pieno per tappa ---- */
+  .jobs{list-style:none; margin:40px 0 0; padding:0; position:relative}
+  .jobs::before{content:""; position:absolute; left:7px; top:6px; bottom:6px; width:2px; background:var(--rule)}
+  .job{position:relative; display:grid; grid-template-columns:200px minmax(0,1fr); gap:6px 30px; padding:0 0 46px 40px}
+  .job:last-child{padding-bottom:0}
+  .job::before{content:""; position:absolute; left:0; top:8px; width:16px; height:16px; background:var(--k)}
+  .when{font-family:var(--disp); font-size:1.5rem; line-height:1.05; letter-spacing:.03em; color:var(--fg)}
+  .when small{display:block; font-family:inherit; font-size:.95rem; color:var(--muted); letter-spacing:.06em; margin-top:4px}
+  .job h3{margin:0; font-size:2rem; line-height:1; letter-spacing:.02em}
+  .job .org{margin:4px 0 0; font-weight:700}
+  .job .ctx{margin:4px 0 0; color:var(--muted); font-size:.95rem; font-style:italic}
+  .pts{margin:12px 0 0; padding:0; list-style:none; display:grid; gap:8px}
+  .pts li{position:relative; padding-left:20px; line-height:1.5}
+  .pts li::before{content:""; position:absolute; left:0; top:.55em; width:8px; height:8px; background:var(--k)}
+  .chips{display:flex; flex-wrap:wrap; gap:6px; margin:14px 0 0; padding:0; list-style:none}
+  .chips li{background:var(--card); border:1px solid var(--rule); padding:2px 10px; font-size:.8rem; font-weight:700; letter-spacing:.05em; text-transform:uppercase}
+  .chips .lbl{background:none; border:0; padding-left:0; color:var(--muted)}
+  @media (max-width:760px){
+    .job{grid-template-columns:1fr; padding-left:34px}
+  }
+
+  /* ---- adesso: Street University ---- */
+  .now{margin-top:84px; padding-top:56px; padding-bottom:60px}
+  .now h2{color:var(--on-band)}
+  .now .lead{color:var(--on-band)}
+  .now-grid{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:30px 44px; margin:26px 0 0; align-items:start}
+  .shot{display:block; width:100%; height:auto; border-radius:0}
+  .now .nums{grid-template-columns:repeat(2,minmax(0,1fr)); margin:24px 0 0}
+  .now .nums .big{font-size:clamp(2.6rem,6vw,3.6rem)}
+  .did{list-style:none; margin:0; padding:0; display:grid; gap:12px}
+  .did li{position:relative; padding-left:24px; line-height:1.5; color:var(--on-band)}
+  .did li::before{content:""; position:absolute; left:0; top:.5em; width:10px; height:10px; background:#f48b3a}
+  .did b{color:#7fd3df}
+  .chainbox{margin:40px 0 0; background:var(--bg); color:var(--fg); padding:22px 22px 18px}
+  .chainbox h3{margin:0; font-size:1.6rem; letter-spacing:.03em}
+  .more{display:flex; flex-wrap:wrap; gap:14px 26px; margin:30px 0 0; align-items:center}
+  @media (max-width:760px){ .now-grid{grid-template-columns:1fr} }
+
+  /* catena di comando ridotta (stessi nodi di /metodo/): nodi a tinta piena, senza ombra */
   .viz{margin:14px 0 6px}
   .viz-svg{display:block; width:100%; height:auto; overflow:visible}
   .viz-v .viz-svg{max-width:420px; margin:0 auto}
@@ -93,31 +195,49 @@
   svg .ah{fill:var(--fg)}
   .caption{font-size:.95rem; color:var(--muted); margin:10px 0 0}
 
-  /* tre prove: filetto superiore da 6 px, senza scatola */
-  .proofs{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:22px 18px; margin:26px 0 0}
-  .proof{min-width:0; border-top:6px solid var(--k); padding-top:10px}
-  .proof:nth-child(1){--k:var(--navy)}
-  .proof:nth-child(2){--k:var(--teal)}
-  .proof:nth-child(3){--k:var(--orange)}
-  .proof h3{margin:0; font-family:var(--disp); font-weight:400; text-transform:uppercase; font-size:1.7rem; line-height:1.05; letter-spacing:.02em}
-  .proof p{margin:8px 0 0; font-size:.95rem; line-height:1.5}
-  @media (max-width:700px){ .proofs{grid-template-columns:1fr} }
+  /* ---- altri progetti: filetto superiore da 6 px, senza scatola ---- */
+  .cards{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:26px 22px; margin:30px 0 0}
+  .card{min-width:0; border-top:6px solid var(--k); padding-top:12px}
+  .card:nth-child(1){--k:var(--teal)}
+  .card:nth-child(2){--k:var(--orange)}
+  .card:nth-child(3){--k:var(--navy)}
+  .card h3{margin:0; font-size:1.75rem; line-height:1.02; letter-spacing:.02em}
+  .card p{margin:8px 0 0; font-size:.95rem; line-height:1.55}
+  .card .metric{display:block; margin:12px 0 0; font-family:var(--disp); font-size:2.6rem; line-height:1; color:var(--t-teal)}
+  .card .metric small{display:block; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif; font-size:.74rem; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); line-height:1.35; margin-top:4px}
+  @media (max-width:820px){ .cards{grid-template-columns:1fr} }
 
-  /* cosa so fare */
-  .skills{list-style:none; margin:20px 0 0; padding:0; display:grid; gap:12px}
-  .skills li{position:relative; padding-left:26px; line-height:1.5}
-  .skills li::before{content:""; position:absolute; left:0; top:.5em; width:11px; height:11px; background:var(--navy)}
+  /* ---- competenze: tre colonne di gettoni ---- */
+  .skills{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:26px 22px; margin:30px 0 0}
+  .skills > div{min-width:0}
+  .skills h3{margin:0 0 10px; font-size:1.5rem; letter-spacing:.03em; padding-bottom:6px; border-bottom:6px solid var(--k)}
+  .skills > div:nth-child(1){--k:var(--orange)}
+  .skills > div:nth-child(2){--k:var(--teal)}
+  .skills > div:nth-child(3){--k:var(--red)}
+  .skills ul{list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; gap:8px}
+  .skills li{background:var(--card); border:1px solid var(--rule); padding:4px 11px; font-size:.9rem; line-height:1.35}
+  @media (max-width:820px){ .skills{grid-template-columns:1fr} }
 
-  /* contatti: pulsante cremisi rettangolare */
-  .acts{display:flex; flex-wrap:wrap; align-items:center; gap:14px 28px; margin:18px 0 0}
-  .cta{
-    display:inline-block; background:var(--red); color:var(--on-red); text-decoration:none; border-radius:0;
-    font-family:var(--disp); font-weight:400; font-size:1.35rem; text-transform:uppercase; letter-spacing:.05em; line-height:1.2; padding:8px 24px 6px;
-  }
-  .cta:hover,.cta:focus-visible{outline:3px solid var(--fg); outline-offset:2px}
-  .more{display:flex; flex-wrap:wrap; gap:8px 28px; margin:34px 0 0}
+  /* ---- formazione: quattro tessere ---- */
+  .certs{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:16px; margin:30px 0 0}
+  .cert{min-width:0; background:var(--card); border:1px solid var(--rule); border-top:6px solid var(--k); padding:14px 16px 16px}
+  .cert:nth-child(1){--k:var(--navy)}
+  .cert:nth-child(2){--k:var(--teal)}
+  .cert:nth-child(3){--k:var(--orange)}
+  .cert:nth-child(4){--k:var(--red)}
+  .cert b{display:block; font-family:var(--disp); font-weight:400; font-size:1.9rem; line-height:1; letter-spacing:.03em}
+  .cert span{display:block; margin-top:8px; font-size:.9rem; line-height:1.4}
+  .cert small{display:block; margin-top:6px; font-size:.8rem; color:var(--muted)}
+  .langs{margin:18px 0 0; color:var(--muted)}
+  @media (max-width:820px){ .certs{grid-template-columns:repeat(2,minmax(0,1fr))} }
 
-  footer{margin:60px 0 0; padding:22px 0 40px; border-top:1px solid var(--rule); font-size:.9rem; color:var(--muted)}
+  /* ---- contatti: fascia di chiusura ---- */
+  .close{margin-top:84px; padding-top:56px; padding-bottom:60px}
+  .close h2{font-size:clamp(2.8rem,7vw,4.4rem); color:var(--on-band)}
+  .close p{max-width:720px; color:var(--band-muted)}
+  .close .cta:not(.alt){background:#e2456b; color:#170a10}
+
+  footer{margin:0; padding:22px 0 40px; border-top:1px solid var(--rule); font-size:.9rem; color:var(--muted)}
   .footlinks{display:flex; flex-wrap:wrap; gap:6px 22px}
   footer p{margin:10px 0}
 </style>
@@ -136,57 +256,210 @@
 </div>
 <main id="main-en">
 
-<header>
-<img class="hero" src="../img/hero.webp" width="1920" height="800" alt="Key art of Street University">
-<p class="kicker">Portfolio</p>
-<h1>A game shipped by one person directing AI agents</h1>
-<p class="lead">Street University is a cartoonish top-down roguelike, in closed beta on Android and iOS. I designed it, I directed the AI agents that wrote it, and I measured the method while it was running.</p>
+<header class="hero">
+<div class="photo">
+<img src="ivan-bianco.webp" width="640" height="962" alt="Portrait of Ivan Bianco" fetchpriority="high">
+<span class="stamp">Ex software engineer</span>
+</div>
+<div>
+<p class="kicker">Portfolio · Turin, Italy</p>
+<h1><span>Ivan</span><span>Bianco</span></h1>
+<p class="role">Senior Technical Project Manager</p>
+<p class="sub">15 years of software engineering · 4+ years of international delivery</p>
+<p class="lead">I spent fifteen years writing software for enterprise platforms, then moved to the other side of the table: today I run international technical programmes, with budgets, suppliers and demanding clients. Alongside my job, I designed and shipped a multiplatform game by directing a team of AI agents as if they were suppliers. I bridge the people who build, the people who decide and the people who pay.</p>
+<ul class="tags">
+<li>PSPO I</li>
+<li>AI-900</li>
+<li>Agile · Waterfall</li>
+<li>Italian · English C1</li>
+</ul>
+<div class="acts">
+<a class="cta" href="mailto:ivan.bianco@icloud.com">Write to me</a>
+<a class="cta alt" href="https://www.linkedin.com/in/ivan-bianco-709b1bb/" rel="noopener">LinkedIn</a>
+</div>
+</div>
 </header>
 
-<section class="block" aria-label="Three numbers that give the size of the work">
-<div class="nums" role="group" aria-label="Three numbers that give the size of the work">
-<div class="n"><span class="big">1,761</span><span class="cap">commits</span></div>
-<div class="n"><span class="big">1,101</span><span class="cap">tickets tracked</span></div>
-<div class="n"><span class="big">88,725</span><span class="cap">lines of game code</span></div>
+<section class="band nums-band" aria-label="Four numbers from my career">
+<div class="nums" role="group" aria-label="Four numbers from my career">
+<div class="n"><span class="big">15</span><span class="cap">years building software</span></div>
+<div class="n"><span class="big">24+</span><span class="cap">technical projects led end to end</span></div>
+<div class="n"><span class="big">8</span><span class="cap">countries, from Italy to Mexico</span></div>
+<div class="n"><span class="big">€500K–1M</span><span class="cap">budget per project</span></div>
 </div>
 </section>
 
-<section class="block" id="chain-en" aria-labelledby="chain-title-en">
-<h2 id="chain-title-en">How the work flows</h2>
-<div class="viz viz-h"><svg class="viz-svg viz-i4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 170" role="img" aria-label="Diagram: the author, a first AI session that orchestrates, and two rosters of agents that build."><defs><marker id="i4-ah-ch-en" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path class="ah" d="M0,0 L10,5 L0,10 z"/></marker><marker id="i4-ag-ch-en" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path class="ah ah-gate" d="M0,0 L10,5 L0,10 z"/></marker></defs><rect class="node node-author" x="0" y="40" width="170" height="90"/><text class="node-name on-navy"><tspan x="12.0" y="90.2">The author</tspan></text><rect class="node node-bridge" x="355" y="10" width="150" height="150"/><text class="node-name on-teal"><tspan x="365.0" y="90.2">First bridge</tspan></text><rect class="node node-roster" x="620" y="0" width="260" height="70"/><text class="node-name on-orange"><tspan x="632.0" y="40.2">Claude roster</tspan></text><rect class="node node-codex" x="620" y="100" width="260" height="70"/><text class="node-name"><tspan x="632.0" y="140.2">Codex roster</tspan></text><line class="arrow" x1="174" y1="70" x2="351" y2="70" marker-end="url(#i4-ah-ch-en)"/><line class="arrow" x1="351" y1="100" x2="174" y2="100" marker-end="url(#i4-ah-ch-en)"/><line class="arrow" x1="509" y1="20" x2="616" y2="20" marker-end="url(#i4-ah-ch-en)"/><line class="arrow" x1="616" y1="50" x2="509" y2="50" marker-end="url(#i4-ah-ch-en)"/><line class="arrow" x1="509" y1="120" x2="616" y2="120" marker-end="url(#i4-ah-ch-en)"/><line class="arrow" x1="616" y1="150" x2="509" y2="150" marker-end="url(#i4-ah-ch-en)"/></svg></div>
-<div class="viz viz-v"><svg class="viz-svg viz-i4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 232" role="img" aria-label="Diagram: the author, a first AI session that orchestrates, and two rosters of agents that build."><defs><marker id="i4-ah-cv-en" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path class="ah" d="M0,0 L10,5 L0,10 z"/></marker><marker id="i4-ag-cv-en" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path class="ah ah-gate" d="M0,0 L10,5 L0,10 z"/></marker></defs><rect class="node node-author" x="0" y="0" width="360" height="44"/><text class="node-name on-navy"><tspan x="12.0" y="26.4">The author</tspan></text><rect class="node node-bridge" x="0" y="92" width="360" height="44"/><text class="node-name on-teal"><tspan x="12.0" y="118.4">First bridge</tspan></text><rect class="node node-roster" x="0" y="188" width="172" height="44"/><text class="node-name on-orange"><tspan x="10.0" y="214.4">Claude roster</tspan></text><rect class="node node-codex" x="188" y="188" width="172" height="44"/><text class="node-name"><tspan x="198.0" y="214.4">Codex roster</tspan></text><line class="arrow" x1="100" y1="47" x2="100" y2="89" marker-end="url(#i4-ah-cv-en)"/><line class="arrow" x1="260" y1="89" x2="260" y2="47" marker-end="url(#i4-ah-cv-en)"/><line class="arrow" x1="40" y1="139" x2="40" y2="185" marker-end="url(#i4-ah-cv-en)"/><line class="arrow" x1="130" y1="185" x2="130" y2="139" marker-end="url(#i4-ah-cv-en)"/><line class="arrow" x1="228" y1="139" x2="228" y2="185" marker-end="url(#i4-ah-cv-en)"/><line class="arrow" x1="318" y1="185" x2="318" y2="139" marker-end="url(#i4-ah-cv-en)"/></svg></div>
-<p class="caption">I decide. A first AI session splits the work into lots, two rosters of agents build them, and every lot passes a gate before it comes back to me.</p>
+<section class="block" id="path-en" aria-labelledby="path-title-en">
+<div class="sec-head">
+<p class="kicker">Career</p>
+<h2 id="path-title-en">From code to delivery</h2>
+<p>Nearly twenty years in one line: first analysis and code, then leading teams on a SaaS platform, then programmes with budgets and clients across eight countries. Since May 2026, a product of my own on top.</p>
+</div>
+<div role="img" aria-label="Timeline from 2007 to today, in proportion to the months: analyst and developer 2007–2012, senior developer 2012–2016, team and delivery lead 2016–2021, senior project manager from 2021, Street University from May 2026.">
+<div class="track">
+<div class="seg k-dev1" style="flex:61 1 0"><span>Analyst</span></div>
+<div class="seg k-dev2" style="flex:55 1 0"><span>Senior Dev</span></div>
+<div class="seg k-lead" style="flex:62 1 0"><span>Team lead</span></div>
+<div class="seg k-pm" style="flex:59 1 0"><span>Senior PM</span></div>
+</div>
+<div class="track2">
+<div class="gap" style="flex:232 1 0"></div>
+<div class="seg k-ai" style="flex:5 1 0"></div>
+</div>
+<div class="years">
+<span style="flex:61 1 0">2007</span>
+<span style="flex:55 1 0">2012</span>
+<span style="flex:62 1 0">2016</span>
+<span style="flex:59 1 0">2021</span>
+<span style="flex:0 0 auto">Today</span>
+</div>
+</div>
+<ul class="legend">
+<li style="--k:#a9dbe2">Analysis and development</li>
+<li style="--k:var(--teal)">Senior development</li>
+<li style="--k:var(--navy)">Team &amp; delivery lead</li>
+<li style="--k:var(--orange)">Project management</li>
+<li style="--k:var(--red)">Street University, alongside the job</li>
+</ul>
+
+<ol class="jobs">
+<li class="job" style="--k:var(--orange)">
+<div class="when">Nov 2021 – today<small>International</small></div>
+<div>
+<h3>Senior Project Manager</h3>
+<p class="org">Proaudio Group</p>
+<p class="ctx">International technical programmes for enterprise and media clients: recording studios, mastering rooms, professional acoustic spaces.</p>
+<ul class="pts">
+<li><b>24+ projects end to end in 8 countries</b> (IT, FR, DE, ES, PL, CH, USA, MX), budgets from €500K to €1M; the latest, worth €400K, closed in 9 months with a 30% margin.</li>
+<li><b>Weekly governance</b> across parallel projects: milestone progress reports, numbered meeting minutes (up to N80), variations, delays and dependencies tracked before they turn into escalations.</li>
+<li><b>Budget and project P&amp;L</b>, end-to-end procurement, international suppliers and subcontractors, logistics and customs; multidisciplinary teams planned week by week.</li>
+<li><b>Pre-sales and digital tools</b>: budget revisions (Sky Studio, reshaped to €200K), tenders (Netflix BOQ), company migration to Microsoft 365, and AI in the project flow for pre-budgeting and reading minutes for early signs of drift.</li>
+</ul>
+<ul class="chips"><li class="lbl">Clients</li><li>Netflix</li><li>Disney</li><li>Sky</li><li>RAI</li></ul>
+</div>
+</li>
+<li class="job" style="--k:var(--navy)">
+<div class="when">Sep 2016 – Nov 2021<small>Turin</small></div>
+<div>
+<h3>Senior Developer · Team &amp; Delivery Lead</h3>
+<p class="org">Skylab Italia → TeamSystem</p>
+<p class="ctx">The group's SaaS HR platform: web, mobile, integrations, enterprise clients.</p>
+<ul class="pts">
+<li>Modules of the HR platform: Performance, Learning, the mobile app, SSO and document-management integrations.</li>
+<li><b>Lead in multi-team Agile settings (~35 people)</b>, with monthly releases for enterprise clients.</li>
+<li>Technical bridge between client, PMs and architects: requirements turned into work for the team, KPI and analytics modules, process re-engineering after the TeamSystem acquisition.</li>
+</ul>
+<ul class="chips"><li class="lbl">Clients</li><li>ENI</li><li>TIM</li><li>Leroy Merlin</li></ul>
+</div>
+</li>
+<li class="job" style="--k:var(--teal)">
+<div class="when">Feb 2012 – Sep 2016<small>Turin</small></div>
+<div>
+<h3>Senior Developer</h3>
+<p class="org">Espritec / Levia</p>
+<p class="ctx">Software for logistics.</p>
+<ul class="pts">
+<li>Fleet management, route optimisation and real-time monitoring.</li>
+<li>Integrations between on-board hardware and the backend, with continuous data streams; requirements and progress discussed directly with clients.</li>
+</ul>
+<ul class="chips"><li class="lbl">Integrations</li><li>PTV</li><li>Transics</li></ul>
+</div>
+</li>
+<li class="job" style="--k:#a9dbe2">
+<div class="when">2007 – 2012<small>Turin</small></div>
+<div>
+<h3>Analyst · Developer</h3>
+<p class="org">Acus · Proxima-Centauri</p>
+<ul class="pts">
+<li>Energy-billing reconciliation (integrity and reconciliation of billing data), idea management, a quoting module for the construction sector.</li>
+</ul>
+<ul class="chips"><li class="lbl">Clients</li><li>E.ON</li></ul>
+</div>
+</li>
+</ol>
 </section>
 
-<section class="block" id="proofs-en" aria-labelledby="proofs-title-en">
-<h2 id="proofs-title-en">Three proofs</h2>
-<div class="proofs">
-<div class="proof"><h3>A closed beta on both stores</h3><p>Real testers install it from Google Play and from TestFlight, on their own phones.</p></div>
-<div class="proof"><h3>49 releases in 22 weeks</h3><p>From the first commit on 14 May 2026 to today, each release tagged and with its own changelog.</p></div>
-<div class="proof"><h3>A method that is measured, not told</h3><p>Rejections, costs and failed checks are counted by a script and published with everything else.</p></div>
+<section class="band now" id="now-en" aria-labelledby="now-title-en">
+<div class="sec-head">
+<p class="kicker">What I'm doing now · since May 2026</p>
+<h2 id="now-title-en">Street University: a real product, delivered with AI agents</h2>
+<p class="lead">Alongside my job I am the technical owner and PM of a cartoonish online multiplayer game (Godot 4), in closed beta on Google Play and TestFlight. The code is written by AI agents I direct as suppliers: tickets, closed briefs, testing kept separate from building, and an approval gate on every batch. The game is the use case; the result is a measured way of delivering software with AI.</p>
+</div>
+<div class="now-grid">
+<div>
+<img class="shot" src="../img/hero.webp" width="1920" height="800" alt="Cover art of Street University" loading="lazy">
+<div class="nums" role="group" aria-label="The game&#x27;s numbers, regenerated at every release">
+<div class="n"><span class="big">1,799</span><span class="cap">commits</span></div>
+<div class="n"><span class="big">1,130</span><span class="cap">tickets on Jira</span></div>
+<div class="n"><span class="big">49</span><span class="cap">tagged releases in 23 weeks</span></div>
+<div class="n"><span class="big">8</span><span class="cap">languages</span></div>
+</div>
+</div>
+<ul class="did">
+<li><b>Backlog, sprints and releases</b>: every batch starts from a closed brief and ends with a changelog and a test log.</li>
+<li><b>A team managed like suppliers</b>: four Claude agents with distinct roles (architect, builder, tester, utility) and OpenAI Codex as a second supplier.</li>
+<li><b>One-command release pipeline</b>, from merge to both stores, with automatic guards and human approval gates.</li>
+<li><b>Costs run like a P&amp;L</b>: the token budget is read before spending, reported per sprint and frozen at 90%; the rules saved about 4 million tokens in two weeks.</li>
+<li><b>80 beta testers on two stores</b>: reports and player interviews turned into tickets, with triage and priority per release.</li>
+</ul>
+</div>
+<div class="chainbox">
+<h3 id="chain-title-en">How the work flows</h3>
+<div class="viz viz-h"><svg class="viz-svg viz-i4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 170" role="img" aria-label="Diagram: the author, a first AI session that orchestrates, and two rosters of agents that build."><defs><marker id="i4-ah-ch-en" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path class="ah" d="M0,0 L10,5 L0,10 z"/></marker><marker id="i4-ag-ch-en" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path class="ah ah-gate" d="M0,0 L10,5 L0,10 z"/></marker></defs><rect class="node node-author" x="0" y="40" width="170" height="90"/><text class="node-name on-navy"><tspan x="12.0" y="90.2">The author</tspan></text><rect class="node node-bridge" x="355" y="10" width="150" height="150"/><text class="node-name on-teal"><tspan x="365.0" y="90.2">First bridge</tspan></text><rect class="node node-roster" x="620" y="0" width="260" height="70"/><text class="node-name on-orange"><tspan x="632.0" y="40.2">Claude roster</tspan></text><rect class="node node-codex" x="620" y="100" width="260" height="70"/><text class="node-name"><tspan x="632.0" y="140.2">Codex roster</tspan></text><line class="arrow" x1="174" y1="70" x2="351" y2="70" marker-end="url(#i4-ah-ch-en)"/><line class="arrow" x1="351" y1="100" x2="174" y2="100" marker-end="url(#i4-ah-ch-en)"/><line class="arrow" x1="509" y1="20" x2="616" y2="20" marker-end="url(#i4-ah-ch-en)"/><line class="arrow" x1="616" y1="50" x2="509" y2="50" marker-end="url(#i4-ah-ch-en)"/><line class="arrow" x1="509" y1="120" x2="616" y2="120" marker-end="url(#i4-ah-ch-en)"/><line class="arrow" x1="616" y1="150" x2="509" y2="150" marker-end="url(#i4-ah-ch-en)"/></svg></div>
+<div class="viz viz-v"><svg class="viz-svg viz-i4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 232" role="img" aria-label="Diagram: the author, a first AI session that orchestrates, and two rosters of agents that build."><defs><marker id="i4-ah-cv-en" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path class="ah" d="M0,0 L10,5 L0,10 z"/></marker><marker id="i4-ag-cv-en" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path class="ah ah-gate" d="M0,0 L10,5 L0,10 z"/></marker></defs><rect class="node node-author" x="0" y="0" width="360" height="44"/><text class="node-name on-navy"><tspan x="12.0" y="26.4">The author</tspan></text><rect class="node node-bridge" x="0" y="92" width="360" height="44"/><text class="node-name on-teal"><tspan x="12.0" y="118.4">First bridge</tspan></text><rect class="node node-roster" x="0" y="188" width="172" height="44"/><text class="node-name on-orange"><tspan x="10.0" y="214.4">Claude roster</tspan></text><rect class="node node-codex" x="188" y="188" width="172" height="44"/><text class="node-name"><tspan x="198.0" y="214.4">Codex roster</tspan></text><line class="arrow" x1="100" y1="47" x2="100" y2="89" marker-end="url(#i4-ah-cv-en)"/><line class="arrow" x1="260" y1="89" x2="260" y2="47" marker-end="url(#i4-ah-cv-en)"/><line class="arrow" x1="40" y1="139" x2="40" y2="185" marker-end="url(#i4-ah-cv-en)"/><line class="arrow" x1="130" y1="185" x2="130" y2="139" marker-end="url(#i4-ah-cv-en)"/><line class="arrow" x1="228" y1="139" x2="228" y2="185" marker-end="url(#i4-ah-cv-en)"/><line class="arrow" x1="318" y1="185" x2="318" y2="139" marker-end="url(#i4-ah-cv-en)"/></svg></div>
+<p class="caption">I decide. A first AI session splits the work into batches, two rosters of agents build them, and every batch passes a gate before it comes back to me.</p>
+</div>
+<div class="more">
+<a class="cta" href="/metodo/">Read the full method</a>
+<a class="cta alt" href="/">See the game</a>
+</div>
+</section>
+
+<section class="block" id="projects-en" aria-labelledby="projects-title-en">
+<div class="sec-head">
+<p class="kicker">Side projects</p>
+<h2 id="projects-title-en">Hands on the tools</h2>
+</div>
+<div class="cards">
+<div class="card"><h3>A RAG assistant for project minutes</h3><p>Answers questions about a project from its meeting minutes, in Italian or English, citing the sources, and builds the risk and variation register on its own. Hybrid retrieval (BM25 + dense) with a project glossary; it also runs on a local model, so the data never leaves the computer.</p><span class="metric">25% → 100%<small>right source in the top 3 across languages, before and after the glossary (24 test questions)</small></span></div>
+<div class="card"><h3>A course for people who don't code</h3><p>How to work with an agentic assistant: from chat to agent, context and memory, the brief, skills and commands, agents and orchestration, external tools, the cycle and its gates, what to do when it goes wrong.</p><span class="metric">8<small>modules</small></span></div>
+<div class="card"><h3>Lab at home</h3><p>Large language models running locally (LM Studio, 30B models), and a home automation setup on Home Assistant, MQTT and Zigbee2MQTT. Where I try things out before I recommend them.</p></div>
 </div>
 </section>
 
 <section class="block" id="skills-en" aria-labelledby="skills-title-en">
-<h2 id="skills-title-en">What I can do</h2>
-<ul class="skills">
-<li>Take a game from an idea to a playable build on 5 platforms and in 8 languages, and through store review.</li>
-<li>Direct AI agents as a team: tickets, closed briefs, a gate on every lot, and a written rule for every mistake made once.</li>
-<li>Build the tools around the work: automated probes, a regression suite, scripts that read the cost before spending it.</li>
-<li>Decide from numbers, and say plainly what has not been tested.</li>
-</ul>
+<div class="sec-head">
+<p class="kicker">Skills</p>
+<h2 id="skills-title-en">What I bring</h2>
+</div>
+<div class="skills">
+<div><h3>Delivery &amp; governance</h3><ul><li>Technical project management</li><li>Planning and milestones</li><li>Budget, P&amp;L and risk</li><li>Procurement and vendor management</li><li>Escalations and stakeholders</li><li>Multidisciplinary teams</li></ul></div>
+<div><h3>Product &amp; method</h3><ul><li>Product ownership (PSPO I)</li><li>Requirements analysis</li><li>Backlog and prioritisation</li><li>Release management</li><li>Agile / Scrum and Waterfall</li></ul></div>
+<div><h3>Technology &amp; AI</h3><ul><li>Backend architectures, APIs, integrations</li><li>Jira, Git, release pipelines</li><li>Python, Godot</li><li>AI agents, LLMs, MCP connectors</li><li>Azure (AI-900)</li><li>Microsoft 365, Teams, SharePoint</li></ul></div>
+</div>
 </section>
 
-<section class="block" id="contact-en" aria-labelledby="contact-title-en">
-<h2 id="contact-title-en">Get in touch</h2>
-<p>Write to me, or find me on LinkedIn.</p>
-<div class="acts">
-<a class="cta" href="mailto:info@streetuniversitygame.com">info@streetuniversitygame.com</a>
-<a href="https://www.linkedin.com/in/ivan-bianco-709b1bb/" rel="noopener">LinkedIn</a>
+<section class="block" id="edu-en" aria-labelledby="edu-title-en">
+<div class="sec-head">
+<p class="kicker">Education</p>
+<h2 id="edu-title-en">Degree and certifications</h2>
 </div>
-<div class="more">
-<a href="/metodo/">Read the full method</a>
-<a href="/">See the game</a>
+<div class="certs">
+<div class="cert"><b>Degree</b><span>BSc in Computer Engineering</span><small>Politecnico di Torino</small></div>
+<div class="cert"><b>PSPO I</b><span>Professional Scrum Product Owner I</span><small>Scrum.org · 2026</small></div>
+<div class="cert"><b>AI-900</b><span>Microsoft Azure AI Fundamentals</span><small>Microsoft · 2026</small></div>
+<div class="cert"><b>PM</b><span>Project Management Principles &amp; Practices</span><small>UC Irvine · 2021</small></div>
+</div>
+<p class="langs">Languages: Italian (native) · English (C1)</p>
+</section>
+
+<section class="band close" id="contact-en" aria-labelledby="contact-title-en">
+<p class="kicker">Contact</p>
+<h2 id="contact-title-en">Let's talk</h2>
+<p>I'm open to Technical Project Manager, Delivery Manager and Technical Product Owner roles, wherever you need someone who really understands the technology: enterprise software, digital transformation, bringing AI into production. Based in Turin, hybrid or remote.</p>
+<div class="acts">
+<a class="cta" href="mailto:ivan.bianco@icloud.com">ivan.bianco@icloud.com</a>
+<a class="cta alt" href="https://www.linkedin.com/in/ivan-bianco-709b1bb/" rel="noopener">LinkedIn</a>
 </div>
 </section>
 
@@ -195,12 +468,11 @@
 <footer>
 <div class="footlinks">
 <a href="/">Back to the game</a>
+<a href="/metodo/">Read the full method</a>
 <a href="/changelog/">Changelog</a>
 <a href="/privacy/">Privacy Policy</a>
-<a href="mailto:info@streetuniversitygame.com">info@streetuniversitygame.com</a>
 </div>
-<p>The numbers on this page are regenerated by a script at every release; snapshot of 9 October 2026.</p>
-<p>Street University is a work of fiction: any resemblance to real bins is coincidental.</p>
+<p>The Street University numbers on this page are regenerated by a script at every release; snapshot of 20 October 2026.</p>
 </footer>
 </div><div class="lang" data-lang="it">
 <a class="skip" href="#main-it">Vai al contenuto</a>
@@ -210,57 +482,210 @@
 </div>
 <main id="main-it">
 
-<header>
-<img class="hero" src="../img/hero.webp" width="1920" height="800" alt="Illustrazione di copertina di Street University">
-<p class="kicker">Portfolio</p>
-<h1>Un gioco pubblicato da una persona che dirige agenti IA</h1>
-<p class="lead">Street University è un roguelike cartoonesco con visuale dall'alto, in beta chiusa su Android e iOS. L'ho progettato, ho diretto gli agenti IA che l'hanno scritto, e ho misurato il metodo mentre girava.</p>
+<header class="hero">
+<div class="photo">
+<img src="ivan-bianco.webp" width="640" height="962" alt="Ritratto di Ivan Bianco" fetchpriority="high">
+<span class="stamp">Ex software engineer</span>
+</div>
+<div>
+<p class="kicker">Portfolio · Torino</p>
+<h1><span>Ivan</span><span>Bianco</span></h1>
+<p class="role">Senior Technical Project Manager</p>
+<p class="sub">15 anni di sviluppo software · 4+ anni di delivery internazionale</p>
+<p class="lead">Ho passato quindici anni a scrivere software per piattaforme enterprise, poi sono passato dall'altra parte del tavolo: oggi guido programmi tecnici internazionali, con budget, fornitori e clienti esigenti. In parallelo al lavoro ho progettato e pubblicato un gioco multipiattaforma dirigendo un team di agenti AI come fossero fornitori. Faccio da ponte fra chi costruisce, chi decide e chi paga.</p>
+<ul class="tags">
+<li>PSPO I</li>
+<li>AI-900</li>
+<li>Agile · Waterfall</li>
+<li>Italiano · Inglese C1</li>
+</ul>
+<div class="acts">
+<a class="cta" href="mailto:ivan.bianco@icloud.com">Scrivimi</a>
+<a class="cta alt" href="https://www.linkedin.com/in/ivan-bianco-709b1bb/" rel="noopener">LinkedIn</a>
+</div>
+</div>
 </header>
 
-<section class="block" aria-label="Tre numeri che danno la misura del lavoro">
-<div class="nums" role="group" aria-label="Tre numeri che danno la misura del lavoro">
-<div class="n"><span class="big">1.761</span><span class="cap">commit</span></div>
-<div class="n"><span class="big">1.101</span><span class="cap">ticket tracciati</span></div>
-<div class="n"><span class="big">88.725</span><span class="cap">righe di codice del gioco</span></div>
+<section class="band nums-band" aria-label="Quattro numeri della mia carriera">
+<div class="nums" role="group" aria-label="Quattro numeri della mia carriera">
+<div class="n"><span class="big">15</span><span class="cap">anni a costruire software</span></div>
+<div class="n"><span class="big">24+</span><span class="cap">progetti tecnici guidati end-to-end</span></div>
+<div class="n"><span class="big">8</span><span class="cap">paesi, dall'Italia al Messico</span></div>
+<div class="n"><span class="big">€500K–1M</span><span class="cap">budget per progetto</span></div>
 </div>
 </section>
 
-<section class="block" id="chain-it" aria-labelledby="chain-title-it">
-<h2 id="chain-title-it">Come scorre il lavoro</h2>
+<section class="block" id="path-it" aria-labelledby="path-title-it">
+<div class="sec-head">
+<p class="kicker">Carriera</p>
+<h2 id="path-title-it">Dal codice alla regia</h2>
+<p>Quasi vent'anni in una riga: prima analisi e codice, poi la guida dei team su una piattaforma SaaS, poi programmi con budget e clienti in otto paesi. Da maggio 2026, in più, un prodotto tutto mio.</p>
+</div>
+<div role="img" aria-label="Linea del tempo dal 2007 a oggi, in proporzione ai mesi: analista e sviluppatore 2007–2012, senior developer 2012–2016, team e delivery lead 2016–2021, senior project manager dal 2021, Street University da maggio 2026.">
+<div class="track">
+<div class="seg k-dev1" style="flex:61 1 0"><span>Analista</span></div>
+<div class="seg k-dev2" style="flex:55 1 0"><span>Senior Dev</span></div>
+<div class="seg k-lead" style="flex:62 1 0"><span>Team lead</span></div>
+<div class="seg k-pm" style="flex:59 1 0"><span>Senior PM</span></div>
+</div>
+<div class="track2">
+<div class="gap" style="flex:232 1 0"></div>
+<div class="seg k-ai" style="flex:5 1 0"></div>
+</div>
+<div class="years">
+<span style="flex:61 1 0">2007</span>
+<span style="flex:55 1 0">2012</span>
+<span style="flex:62 1 0">2016</span>
+<span style="flex:59 1 0">2021</span>
+<span style="flex:0 0 auto">Oggi</span>
+</div>
+</div>
+<ul class="legend">
+<li style="--k:#a9dbe2">Analisi e sviluppo</li>
+<li style="--k:var(--teal)">Sviluppo senior</li>
+<li style="--k:var(--navy)">Team &amp; delivery lead</li>
+<li style="--k:var(--orange)">Project management</li>
+<li style="--k:var(--red)">Street University, in parallelo</li>
+</ul>
+
+<ol class="jobs">
+<li class="job" style="--k:var(--orange)">
+<div class="when">Nov 2021 – oggi<small>Internazionale</small></div>
+<div>
+<h3>Senior Project Manager</h3>
+<p class="org">Proaudio Group</p>
+<p class="ctx">Programmi tecnici internazionali per clienti enterprise e media: studi di registrazione, sale mastering, ambienti acustici professionali.</p>
+<ul class="pts">
+<li><b>24+ progetti end-to-end in 8 paesi</b> (IT, FR, DE, ES, PL, CH, USA, MX), budget da €500K a €1M; l'ultimo, da €400K, chiuso in 9 mesi con il 30% di margine.</li>
+<li><b>Governance settimanale</b> su commesse parallele: SAL per milestone, verbali numerati (fino a N80), varianti, ritardi e dipendenze tracciati prima che diventino escalation.</li>
+<li><b>Budget e P&amp;L di commessa</b>, procurement end-to-end, fornitori e subappaltatori internazionali, logistica e dogane; team multidisciplinari pianificati settimana per settimana.</li>
+<li><b>Pre-sales e strumenti digitali</b>: revisioni di budget (Sky Studio, rimodulato a €200K), gare (BOQ Netflix), migrazione aziendale a Microsoft 365, e AI nel flusso di commessa per il pre-budget e per leggere nei verbali le deviazioni in anticipo.</li>
+</ul>
+<ul class="chips"><li class="lbl">Clienti</li><li>Netflix</li><li>Disney</li><li>Sky</li><li>RAI</li></ul>
+</div>
+</li>
+<li class="job" style="--k:var(--navy)">
+<div class="when">Set 2016 – Nov 2021<small>Torino</small></div>
+<div>
+<h3>Senior Developer · Team &amp; Delivery Lead</h3>
+<p class="org">Skylab Italia → TeamSystem</p>
+<p class="ctx">La piattaforma SaaS HR del gruppo: web, mobile, integrazioni, clienti enterprise.</p>
+<ul class="pts">
+<li>Moduli della piattaforma HR: Performance, Formazione, app mobile, integrazioni SSO e documentale.</li>
+<li><b>Lead in contesti Agile multi-team (~35 persone)</b>, con rilasci mensili per clienti enterprise.</li>
+<li>Ponte tecnico fra cliente, PM e architetti: requisiti tradotti in attività per il team, moduli KPI e analytics, re-engineering dei processi dopo l'acquisizione da parte di TeamSystem.</li>
+</ul>
+<ul class="chips"><li class="lbl">Clienti</li><li>ENI</li><li>TIM</li><li>Leroy Merlin</li></ul>
+</div>
+</li>
+<li class="job" style="--k:var(--teal)">
+<div class="when">Feb 2012 – Set 2016<small>Torino</small></div>
+<div>
+<h3>Senior Developer</h3>
+<p class="org">Espritec / Levia</p>
+<p class="ctx">Software per la logistica.</p>
+<ul class="pts">
+<li>Gestione flotte, ottimizzazione dei percorsi e monitoraggio in tempo reale.</li>
+<li>Integrazioni fra l'hardware di bordo e il backend, con flussi di dati continui; requisiti e avanzamento discussi direttamente con i clienti.</li>
+</ul>
+<ul class="chips"><li class="lbl">Integrazioni</li><li>PTV</li><li>Transics</li></ul>
+</div>
+</li>
+<li class="job" style="--k:#a9dbe2">
+<div class="when">2007 – 2012<small>Torino</small></div>
+<div>
+<h3>Analista · Sviluppatore</h3>
+<p class="org">Acus · Proxima-Centauri</p>
+<ul class="pts">
+<li>Quadratura della fatturazione energetica (integrità e riconciliazione dei dati di billing), idea management, un modulo di preventivazione per l'edilizia.</li>
+</ul>
+<ul class="chips"><li class="lbl">Clienti</li><li>E.ON</li></ul>
+</div>
+</li>
+</ol>
+</section>
+
+<section class="band now" id="now-it" aria-labelledby="now-title-it">
+<div class="sec-head">
+<p class="kicker">Cosa sto facendo adesso · da maggio 2026</p>
+<h2 id="now-title-it">Street University: un prodotto vero, consegnato con agenti AI</h2>
+<p class="lead">In parallelo al lavoro sono owner tecnico e PM di un gioco multiplayer online dal tono cartoonesco (Godot 4), in beta chiusa su Google Play e TestFlight. Il codice lo scrivono agenti AI che dirigo come fornitori: ticket, brief chiusi, collaudo separato dallo sviluppo e un gate di approvazione su ogni lotto. Il gioco è il caso d'uso; il risultato è un metodo misurato per consegnare software con l'AI.</p>
+</div>
+<div class="now-grid">
+<div>
+<img class="shot" src="../img/hero.webp" width="1920" height="800" alt="Illustrazione di copertina di Street University" loading="lazy">
+<div class="nums" role="group" aria-label="I numeri del gioco, rigenerati a ogni release">
+<div class="n"><span class="big">1.799</span><span class="cap">commit</span></div>
+<div class="n"><span class="big">1.130</span><span class="cap">ticket su Jira</span></div>
+<div class="n"><span class="big">49</span><span class="cap">release taggate in 23 settimane</span></div>
+<div class="n"><span class="big">8</span><span class="cap">lingue</span></div>
+</div>
+</div>
+<ul class="did">
+<li><b>Backlog, sprint e rilasci</b>: ogni lotto parte da un brief chiuso e finisce con changelog e test log.</li>
+<li><b>Un team gestito come fornitori</b>: quattro agenti Claude con ruoli distinti (architetto, builder, collaudatore, utility) e OpenAI Codex come secondo fornitore.</li>
+<li><b>Pipeline di release a un comando</b>, dal merge ai due store, con guardie automatiche e gate di approvazione umani.</li>
+<li><b>Costi gestiti come un P&amp;L</b>: il budget in token si legge prima di spendere, si consuntiva per sprint e si congela al 90%; le regole hanno risparmiato circa 4 milioni di token in due settimane.</li>
+<li><b>80 beta tester su due store</b>: segnalazioni e interviste ai giocatori trasformate in ticket, con triage e priorità per release.</li>
+</ul>
+</div>
+<div class="chainbox">
+<h3 id="chain-title-it">Come scorre il lavoro</h3>
 <div class="viz viz-h"><svg class="viz-svg viz-i4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 170" role="img" aria-label="Schema: l&#x27;autore, una prima sessione IA che orchestra, e due roster di agenti che costruiscono."><defs><marker id="i4-ah-ch-it" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path class="ah" d="M0,0 L10,5 L0,10 z"/></marker><marker id="i4-ag-ch-it" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path class="ah ah-gate" d="M0,0 L10,5 L0,10 z"/></marker></defs><rect class="node node-author" x="0" y="40" width="170" height="90"/><text class="node-name on-navy"><tspan x="12.0" y="90.2">L'autore</tspan></text><rect class="node node-bridge" x="355" y="10" width="150" height="150"/><text class="node-name on-teal"><tspan x="365.0" y="90.2">Primo ponte</tspan></text><rect class="node node-roster" x="620" y="0" width="260" height="70"/><text class="node-name on-orange"><tspan x="632.0" y="40.2">Roster Claude</tspan></text><rect class="node node-codex" x="620" y="100" width="260" height="70"/><text class="node-name"><tspan x="632.0" y="140.2">Roster Codex</tspan></text><line class="arrow" x1="174" y1="70" x2="351" y2="70" marker-end="url(#i4-ah-ch-it)"/><line class="arrow" x1="351" y1="100" x2="174" y2="100" marker-end="url(#i4-ah-ch-it)"/><line class="arrow" x1="509" y1="20" x2="616" y2="20" marker-end="url(#i4-ah-ch-it)"/><line class="arrow" x1="616" y1="50" x2="509" y2="50" marker-end="url(#i4-ah-ch-it)"/><line class="arrow" x1="509" y1="120" x2="616" y2="120" marker-end="url(#i4-ah-ch-it)"/><line class="arrow" x1="616" y1="150" x2="509" y2="150" marker-end="url(#i4-ah-ch-it)"/></svg></div>
 <div class="viz viz-v"><svg class="viz-svg viz-i4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 232" role="img" aria-label="Schema: l&#x27;autore, una prima sessione IA che orchestra, e due roster di agenti che costruiscono."><defs><marker id="i4-ah-cv-it" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path class="ah" d="M0,0 L10,5 L0,10 z"/></marker><marker id="i4-ag-cv-it" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path class="ah ah-gate" d="M0,0 L10,5 L0,10 z"/></marker></defs><rect class="node node-author" x="0" y="0" width="360" height="44"/><text class="node-name on-navy"><tspan x="12.0" y="26.4">L'autore</tspan></text><rect class="node node-bridge" x="0" y="92" width="360" height="44"/><text class="node-name on-teal"><tspan x="12.0" y="118.4">Primo ponte</tspan></text><rect class="node node-roster" x="0" y="188" width="172" height="44"/><text class="node-name on-orange"><tspan x="10.0" y="214.4">Roster Claude</tspan></text><rect class="node node-codex" x="188" y="188" width="172" height="44"/><text class="node-name"><tspan x="198.0" y="214.4">Roster Codex</tspan></text><line class="arrow" x1="100" y1="47" x2="100" y2="89" marker-end="url(#i4-ah-cv-it)"/><line class="arrow" x1="260" y1="89" x2="260" y2="47" marker-end="url(#i4-ah-cv-it)"/><line class="arrow" x1="40" y1="139" x2="40" y2="185" marker-end="url(#i4-ah-cv-it)"/><line class="arrow" x1="130" y1="185" x2="130" y2="139" marker-end="url(#i4-ah-cv-it)"/><line class="arrow" x1="228" y1="139" x2="228" y2="185" marker-end="url(#i4-ah-cv-it)"/><line class="arrow" x1="318" y1="185" x2="318" y2="139" marker-end="url(#i4-ah-cv-it)"/></svg></div>
 <p class="caption">Io decido. Una prima sessione IA divide il lavoro in lotti, due roster di agenti li costruiscono, e ogni lotto passa un gate prima di tornare da me.</p>
+</div>
+<div class="more">
+<a class="cta" href="/metodo/">Leggi il metodo per intero</a>
+<a class="cta alt" href="/">Guarda il gioco</a>
+</div>
 </section>
 
-<section class="block" id="proofs-it" aria-labelledby="proofs-title-it">
-<h2 id="proofs-title-it">Tre prove</h2>
-<div class="proofs">
-<div class="proof"><h3>Una beta chiusa sui due store</h3><p>Tester veri lo installano da Google Play e da TestFlight, sui loro telefoni.</p></div>
-<div class="proof"><h3>49 release in 22 settimane</h3><p>Dal primo commit del 14 maggio 2026 a oggi, ogni release col suo tag e il suo changelog.</p></div>
-<div class="proof"><h3>Un metodo misurato, non raccontato</h3><p>Bocciature, costi e controlli falliti li conta uno script, e si pubblicano insieme a tutto il resto.</p></div>
+<section class="block" id="projects-it" aria-labelledby="projects-title-it">
+<div class="sec-head">
+<p class="kicker">Altri progetti</p>
+<h2 id="projects-title-it">Le mani sugli strumenti</h2>
+</div>
+<div class="cards">
+<div class="card"><h3>Un assistente RAG sui verbali di commessa</h3><p>Risponde alle domande su una commessa partendo dai verbali, in italiano o in inglese, cita le fonti e costruisce da solo il registro di rischi e varianti. Retrieval ibrido (BM25 + denso) con un glossario di progetto; gira anche su un modello locale, senza che i dati escano dal computer.</p><span class="metric">25% → 100%<small>fonte giusta fra le prime 3 fra lingue diverse, prima e dopo il glossario (24 domande di prova)</small></span></div>
+<div class="card"><h3>Un corso per chi non programma</h3><p>Come si lavora con un assistente agentico: dalla chat all'agente, contesto e memoria, il brief, skill e comandi, agenti e orchestrazione, strumenti esterni, il ciclo e i suoi gate, cosa fare quando va storto.</p><span class="metric">8<small>moduli</small></span></div>
+<div class="card"><h3>Laboratorio di casa</h3><p>Modelli linguistici in locale (LM Studio, modelli da 30B) e una domotica su Home Assistant, MQTT e Zigbee2MQTT. Il posto dove provo le cose prima di consigliarle.</p></div>
 </div>
 </section>
 
 <section class="block" id="skills-it" aria-labelledby="skills-title-it">
-<h2 id="skills-title-it">Cosa so fare</h2>
-<ul class="skills">
-<li>Portare un gioco da un'idea a una build giocabile su 5 piattaforme e in 8 lingue, e attraverso la revisione degli store.</li>
-<li>Dirigere agenti IA come una squadra: ticket, brief chiusi, un gate su ogni lotto, e una regola scritta per ogni errore fatto una volta.</li>
-<li>Costruire gli strumenti intorno al lavoro: sonde automatiche, una suite di regressione, script che leggono il costo prima di spenderlo.</li>
-<li>Decidere dai numeri, e dire chiaro che cosa non è stato provato.</li>
-</ul>
+<div class="sec-head">
+<p class="kicker">Competenze</p>
+<h2 id="skills-title-it">Cosa porto</h2>
+</div>
+<div class="skills">
+<div><h3>Delivery e governance</h3><ul><li>Technical project management</li><li>Pianificazione e milestone</li><li>Budget, P&amp;L e rischi</li><li>Procurement e vendor management</li><li>Escalation e stakeholder</li><li>Team multidisciplinari</li></ul></div>
+<div><h3>Prodotto e metodo</h3><ul><li>Product ownership (PSPO I)</li><li>Analisi dei requisiti</li><li>Backlog e prioritizzazione</li><li>Release management</li><li>Agile / Scrum e Waterfall</li></ul></div>
+<div><h3>Tecnica e AI</h3><ul><li>Architetture backend, API, integrazioni</li><li>Jira, Git, pipeline di rilascio</li><li>Python, Godot</li><li>Agenti AI, LLM, connettori MCP</li><li>Azure (AI-900)</li><li>Microsoft 365, Teams, SharePoint</li></ul></div>
+</div>
 </section>
 
-<section class="block" id="contact-it" aria-labelledby="contact-title-it">
-<h2 id="contact-title-it">Contatti</h2>
-<p>Scrivimi, oppure cercami su LinkedIn.</p>
-<div class="acts">
-<a class="cta" href="mailto:info@streetuniversitygame.com">info@streetuniversitygame.com</a>
-<a href="https://www.linkedin.com/in/ivan-bianco-709b1bb/" rel="noopener">LinkedIn</a>
+<section class="block" id="edu-it" aria-labelledby="edu-title-it">
+<div class="sec-head">
+<p class="kicker">Formazione</p>
+<h2 id="edu-title-it">Laurea e certificazioni</h2>
 </div>
-<div class="more">
-<a href="/metodo/">Leggi il metodo per intero</a>
-<a href="/">Guarda il gioco</a>
+<div class="certs">
+<div class="cert"><b>Laurea</b><span>Laurea triennale in Ingegneria Informatica</span><small>Politecnico di Torino</small></div>
+<div class="cert"><b>PSPO I</b><span>Professional Scrum Product Owner I</span><small>Scrum.org · 2026</small></div>
+<div class="cert"><b>AI-900</b><span>Microsoft Azure AI Fundamentals</span><small>Microsoft · 2026</small></div>
+<div class="cert"><b>PM</b><span>Project Management Principles &amp; Practices</span><small>UC Irvine · 2021</small></div>
+</div>
+<p class="langs">Lingue: italiano (madrelingua) · inglese (C1)</p>
+</section>
+
+<section class="band close" id="contact-it" aria-labelledby="contact-title-it">
+<p class="kicker">Contatti</p>
+<h2 id="contact-title-it">Parliamone</h2>
+<p>Sono aperto a ruoli da Technical Project Manager, Delivery Manager e Technical Product Owner, dove serve qualcuno che capisca davvero la tecnica: software enterprise, digital transformation, l'AI portata in produzione. Base a Torino, ibrido o remoto.</p>
+<div class="acts">
+<a class="cta" href="mailto:ivan.bianco@icloud.com">ivan.bianco@icloud.com</a>
+<a class="cta alt" href="https://www.linkedin.com/in/ivan-bianco-709b1bb/" rel="noopener">LinkedIn</a>
 </div>
 </section>
 
@@ -269,12 +694,11 @@
 <footer>
 <div class="footlinks">
 <a href="/">Torna al gioco</a>
+<a href="/metodo/">Leggi il metodo per intero</a>
 <a href="/changelog/">Novità e changelog</a>
 <a href="/privacy/">Informativa sulla privacy</a>
-<a href="mailto:info@streetuniversitygame.com">info@streetuniversitygame.com</a>
 </div>
-<p>I numeri di questa pagina li rigenera uno script a ogni release; scatto del 9 ottobre 2026.</p>
-<p>Street University è un'opera di fantasia: ogni somiglianza con bidoni reali è casuale.</p>
+<p>I numeri di Street University in questa pagina li rigenera uno script a ogni release; scatto del 20 ottobre 2026.</p>
 </footer>
 </div><!-- /corpo -->
 </div>
