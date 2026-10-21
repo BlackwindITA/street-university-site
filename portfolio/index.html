@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Ivan Bianco — Senior Technical Project Manager</title>
+<title>Ivan Bianco — Senior Delivery Manager · AI Adoption and Applied AI</title>
 <meta name="description" content="Fifteen years of software, four-plus years leading international technical programmes, and a multiplatform game in the making with a team of AI agents. Portfolio of Ivan Bianco, Turin.">
-<meta property="og:title" content="Ivan Bianco — Senior Technical Project Manager">
+<meta property="og:title" content="Ivan Bianco — Senior Delivery Manager · AI Adoption and Applied AI">
 <meta property="og:description" content="Fifteen years of software, four-plus years leading international technical programmes, and a multiplatform game in the making with a team of AI agents. Portfolio of Ivan Bianco, Turin.">
 <meta property="og:image" content="https://www.streetuniversitygame.com/portfolio/ivan-bianco-social.jpg">
 <meta property="og:url" content="https://www.streetuniversitygame.com/portfolio/">
@@ -197,7 +197,7 @@
   .caption{font-size:.95rem; color:var(--muted); margin:10px 0 0}
 
   /* ---- altri progetti: filetto superiore da 6 px, senza scatola ---- */
-  .cards{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:26px 22px; margin:30px 0 0}
+  .cards{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:26px 22px; margin:30px 0 0}
   .card{min-width:0; border-top:6px solid var(--k); padding-top:12px}
   .card:nth-child(1){--k:var(--teal)}
   .card:nth-child(2){--k:var(--orange)}
@@ -275,7 +275,7 @@
 </div>
 <div class="intro">
 <h1><span>Ivan</span><span>Bianco</span></h1>
-<p class="role">Senior Technical Project Manager</p>
+<p class="role">Senior Delivery Manager · AI Adoption and Applied AI</p>
 <p class="sub">15 years of software engineering · 4+ years of international delivery</p>
 <p class="lead">I spent fifteen years writing software for enterprise platforms, then moved to the other side of the table: today I run international technical programmes, with budgets, suppliers and demanding clients. Alongside my job, I am designing and building a multiplatform game, still ongoing, by directing a team of AI agents as if they were suppliers. I bridge the people who build, the people who decide and the people who pay.</p>
 <ul class="tags">
@@ -344,7 +344,8 @@
 <li><b>24+ projects end to end in 8 countries</b> (IT, FR, DE, ES, PL, CH, USA, MX), budgets from €500K to €1M; the latest, worth €400K, closed in 9 months with a 30% margin.</li>
 <li><b>Weekly governance</b> across parallel projects: milestone progress reports, numbered meeting minutes (up to N80), variations, delays and dependencies tracked before they turn into escalations.</li>
 <li><b>Budget and project P&amp;L</b>, end-to-end procurement, international suppliers and subcontractors, logistics and customs; multidisciplinary teams planned week by week.</li>
-<li><b>Pre-sales and digital tools</b>: budget revisions, tenders (Netflix BOQ), company migration to Microsoft 365, and AI in the project flow for pre-budgeting and reading minutes for early signs of drift.</li>
+<li><b>Pre-sales and digital tools</b>: budget revisions, tenders (Netflix BOQ), company migration to Microsoft 365 with Teams and SharePoint per project.</li>
+<li><b>AI in the project flow</b>: pre-budgeting and budget tracking, reading minutes for early signs of drift, and a fully local RAG assistant (Qwen3.8-27B on the company Mac Studio via LM Studio, no data leaving the company) over 1,317 emails from 3 projects in IT/EN/FR: 10/10 correct answers on held-out test questions, source email cited, nothing invented.</li>
 </ul>
 <ul class="chips"><li class="lbl">Clients</li><li>Netflix</li><li>Disney</li><li>Sky</li><li>RAI</li></ul>
 </div>
@@ -400,7 +401,7 @@
 <div>
 <img class="shot" src="../img/hero.webp" width="1920" height="800" alt="Cover art of Street University" loading="lazy">
 <div class="nums" role="group" aria-label="The game&#x27;s numbers, regenerated at every release">
-<div class="n"><span class="big">1,804</span><span class="cap">commits</span></div>
+<div class="n"><span class="big">1,805</span><span class="cap">commits</span></div>
 <div class="n"><span class="big">1,130</span><span class="cap">tickets on Jira</span></div>
 <div class="n"><span class="big">49</span><span class="cap">tagged releases in 23 weeks</span></div>
 <div class="n"><span class="big">8</span><span class="cap">languages</span></div>
@@ -411,7 +412,7 @@
 <li><b>A team managed like suppliers</b>: four Claude agents with distinct roles (architect, builder, tester, utility) and OpenAI Codex as a second supplier.</li>
 <li><b>One-command release pipeline</b>, from merge to both stores, with automatic guards and human approval gates.</li>
 <li><b>Costs run like a P&amp;L</b>: the token budget is read before spending, reported per sprint and frozen at 90%; the rules saved about 4 million tokens in two weeks.</li>
-<li><b>80 beta testers on two stores</b>: reports and player interviews turned into tickets, with triage and priority per release.</li>
+<li><b>80 beta testers on two stores</b>: onboarding, session telemetry and an incident loop on Jira; reports and player interviews turned into tickets, with triage and priority per release.</li>
 </ul>
 </div>
 <div class="chainbox">
@@ -432,7 +433,6 @@
 <h2 id="projects-title-en">Hands on the tools</h2>
 </div>
 <div class="cards">
-<div class="card"><h3>A RAG assistant for project minutes</h3><p>Answers questions about a project from its meeting minutes, in Italian or English, citing the sources, and builds the risk and variation register on its own. Hybrid retrieval (BM25 + dense) with a project glossary; it also runs on a local model, so the data never leaves the computer.</p><span class="metric">25% → 100%<small>right source in the top 3 across languages, before and after the glossary (24 test questions)</small></span></div>
 <div class="card"><h3>A course for people who don't code</h3><p>How to work with an agentic assistant: from chat to agent, context and memory, the brief, skills and commands, agents and orchestration, external tools, the cycle and its gates, what to do when it goes wrong.</p><span class="metric">8<small>modules</small></span></div>
 <div class="card"><h3>Lab at home</h3><p>Large language models running locally (LM Studio, 30B models), and a home automation setup on Home Assistant, MQTT and Zigbee2MQTT. Where I try things out before I recommend them.</p></div>
 </div>
@@ -446,7 +446,7 @@
 <div class="skills">
 <div><h3>Delivery &amp; governance</h3><ul><li>Technical project management</li><li>Planning and milestones</li><li>Budget, P&amp;L and risk</li><li>Procurement and vendor management</li><li>Escalations and stakeholders</li><li>Multidisciplinary teams</li></ul></div>
 <div><h3>Product &amp; method</h3><ul><li>Product ownership (PSPO I)</li><li>Requirements analysis</li><li>Backlog and prioritisation</li><li>Release management</li><li>Agile / Scrum and Waterfall</li></ul></div>
-<div><h3>Technology &amp; AI</h3><ul><li>Backend architectures, APIs, integrations</li><li>Jira, Git, release pipelines</li><li>Python, Godot</li><li>AI agents, LLMs, MCP connectors</li><li>Azure (AI-900)</li><li>Microsoft 365, Teams, SharePoint</li></ul></div>
+<div><h3>Technology &amp; AI</h3><ul><li>Backend architectures, APIs, integrations</li><li>Jira, Git, release pipelines</li><li>Python, Godot, local LLMs (LM Studio)</li><li>AI agents, RAG and evals, MCP connectors</li><li>Azure (AI-900)</li><li>Microsoft 365, Teams, SharePoint</li></ul></div>
 </div>
 </section>
 
@@ -467,7 +467,7 @@
 <section class="band close" id="contact-en" aria-labelledby="contact-title-en">
 <p class="kicker">Contact</p>
 <h2 id="contact-title-en">Let's talk</h2>
-<p>I'm open to Technical Project Manager, Delivery Manager and Technical Product Owner roles, wherever you need someone who really understands the technology: enterprise software, digital transformation, bringing AI into production. Based in Turin, hybrid or remote.</p>
+<p>I'm open to AI Delivery and AI Transformation, Delivery Manager, Engineering Delivery Manager, Technical Service Delivery and Solutions roles, wherever you need someone who really understands the technology: enterprise software, digital transformation, bringing AI into production. Based in Turin, hybrid or remote.</p>
 <div class="acts">
 <a class="cta" href="mailto:ivan.bianco@icloud.com">ivan.bianco@icloud.com</a>
 <a class="cta alt" href="https://www.linkedin.com/in/ivan-bianco-709b1bb/" rel="noopener">LinkedIn</a>
@@ -483,7 +483,7 @@
 <a href="/changelog/">Changelog</a>
 <a href="/privacy/">Privacy Policy</a>
 </div>
-<p>The Street University numbers on this page are regenerated by a script at every release; snapshot of 20 October 2026.</p>
+<p>The Street University numbers on this page are regenerated by a script at every release; snapshot of 21 October 2026.</p>
 </footer>
 <!-- torna in cima: una copia per lingua (sparisce con la sua lingua); senza JavaScript resta nascosto -->
 <button type="button" class="totop" hidden aria-label="Back to top" title="Back to top"><svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M10 4 3 11h4.5v5h5v-5H17z" fill="currentColor"/></svg></button>
@@ -501,7 +501,7 @@
 </div>
 <div class="intro">
 <h1><span>Ivan</span><span>Bianco</span></h1>
-<p class="role">Senior Technical Project Manager</p>
+<p class="role">Senior Delivery Manager · Adozione AI e Applied AI</p>
 <p class="sub">15 anni di sviluppo software · 4+ anni di delivery internazionale</p>
 <p class="lead">Ho passato quindici anni a scrivere software per piattaforme enterprise, poi sono passato dall'altra parte del tavolo: oggi guido programmi tecnici internazionali, con budget, fornitori e clienti esigenti. In parallelo al lavoro sto progettando e pubblicando un gioco multipiattaforma, ancora in corso, dirigendo un team di agenti AI come fossero fornitori. Faccio da ponte fra chi costruisce, chi decide e chi paga.</p>
 <ul class="tags">
@@ -570,7 +570,8 @@
 <li><b>24+ progetti end-to-end in 8 paesi</b> (IT, FR, DE, ES, PL, CH, USA, MX), budget da €500K a €1M; l'ultimo, da €400K, chiuso in 9 mesi con il 30% di margine.</li>
 <li><b>Governance settimanale</b> su commesse parallele: SAL per milestone, verbali numerati (fino a N80), varianti, ritardi e dipendenze tracciati prima che diventino escalation.</li>
 <li><b>Budget e P&amp;L di commessa</b>, procurement end-to-end, fornitori e subappaltatori internazionali, logistica e dogane; team multidisciplinari pianificati settimana per settimana.</li>
-<li><b>Pre-sales e strumenti digitali</b>: revisioni di budget, gare (BOQ Netflix), migrazione aziendale a Microsoft 365, e AI nel flusso di commessa per il pre-budget e per leggere nei verbali le deviazioni in anticipo.</li>
+<li><b>Pre-sales e strumenti digitali</b>: revisioni di budget, gare (BOQ Netflix), migrazione aziendale a Microsoft 365 con Teams e SharePoint per commessa.</li>
+<li><b>AI nel flusso di commessa</b>: pre-budget e controllo del budget, lettura dei verbali per vedere le deviazioni in anticipo, e un assistente RAG che gira interamente in locale (Qwen3.8-27B su Mac Studio aziendale, LM Studio, senza che i dati escano dall'azienda) sulle 1.317 mail di 3 commesse in IT/EN/FR: 10 risposte corrette su 10 domande di verifica mai usate per tararlo, con la mail di origine citata e nulla di inventato.</li>
 </ul>
 <ul class="chips"><li class="lbl">Clienti</li><li>Netflix</li><li>Disney</li><li>Sky</li><li>RAI</li></ul>
 </div>
@@ -626,7 +627,7 @@
 <div>
 <img class="shot" src="../img/hero.webp" width="1920" height="800" alt="Illustrazione di copertina di Street University" loading="lazy">
 <div class="nums" role="group" aria-label="I numeri del gioco, rigenerati a ogni release">
-<div class="n"><span class="big">1.804</span><span class="cap">commit</span></div>
+<div class="n"><span class="big">1.805</span><span class="cap">commit</span></div>
 <div class="n"><span class="big">1.130</span><span class="cap">ticket su Jira</span></div>
 <div class="n"><span class="big">49</span><span class="cap">release taggate in 23 settimane</span></div>
 <div class="n"><span class="big">8</span><span class="cap">lingue</span></div>
@@ -637,7 +638,7 @@
 <li><b>Un team gestito come fornitori</b>: quattro agenti Claude con ruoli distinti (architetto, builder, collaudatore, utility) e OpenAI Codex come secondo fornitore.</li>
 <li><b>Pipeline di release a un comando</b>, dal merge ai due store, con guardie automatiche e gate di approvazione umani.</li>
 <li><b>Costi gestiti come un P&amp;L</b>: il budget in token si legge prima di spendere, si consuntiva per sprint e si congela al 90%; le regole hanno risparmiato circa 4 milioni di token in due settimane.</li>
-<li><b>80 beta tester su due store</b>: segnalazioni e interviste ai giocatori trasformate in ticket, con triage e priorità per release.</li>
+<li><b>80 beta tester su due store</b>: onboarding, telemetria delle sessioni e gestione degli incidenti su Jira; segnalazioni e interviste ai giocatori trasformate in ticket, con triage e priorità per release.</li>
 </ul>
 </div>
 <div class="chainbox">
@@ -658,7 +659,6 @@
 <h2 id="projects-title-it">Le mani sugli strumenti</h2>
 </div>
 <div class="cards">
-<div class="card"><h3>Un assistente RAG sui verbali di commessa</h3><p>Risponde alle domande su una commessa partendo dai verbali, in italiano o in inglese, cita le fonti e costruisce da solo il registro di rischi e varianti. Retrieval ibrido (BM25 + denso) con un glossario di progetto; gira anche su un modello locale, senza che i dati escano dal computer.</p><span class="metric">25% → 100%<small>fonte giusta fra le prime 3 fra lingue diverse, prima e dopo il glossario (24 domande di prova)</small></span></div>
 <div class="card"><h3>Un corso per chi non programma</h3><p>Come si lavora con un assistente agentico: dalla chat all'agente, contesto e memoria, il brief, skill e comandi, agenti e orchestrazione, strumenti esterni, il ciclo e i suoi gate, cosa fare quando va storto.</p><span class="metric">8<small>moduli</small></span></div>
 <div class="card"><h3>Laboratorio di casa</h3><p>Modelli linguistici in locale (LM Studio, modelli da 30B) e una domotica su Home Assistant, MQTT e Zigbee2MQTT. Il posto dove provo le cose prima di consigliarle.</p></div>
 </div>
@@ -672,7 +672,7 @@
 <div class="skills">
 <div><h3>Delivery e governance</h3><ul><li>Technical project management</li><li>Pianificazione e milestone</li><li>Budget, P&amp;L e rischi</li><li>Procurement e vendor management</li><li>Escalation e stakeholder</li><li>Team multidisciplinari</li></ul></div>
 <div><h3>Prodotto e metodo</h3><ul><li>Product ownership (PSPO I)</li><li>Analisi dei requisiti</li><li>Backlog e prioritizzazione</li><li>Release management</li><li>Agile / Scrum e Waterfall</li></ul></div>
-<div><h3>Tecnica e AI</h3><ul><li>Architetture backend, API, integrazioni</li><li>Jira, Git, pipeline di rilascio</li><li>Python, Godot</li><li>Agenti AI, LLM, connettori MCP</li><li>Azure (AI-900)</li><li>Microsoft 365, Teams, SharePoint</li></ul></div>
+<div><h3>Tecnica e AI</h3><ul><li>Architetture backend, API, integrazioni</li><li>Jira, Git, pipeline di rilascio</li><li>Python, Godot, LLM in locale (LM Studio)</li><li>Agenti AI, RAG ed evals, connettori MCP</li><li>Azure (AI-900)</li><li>Microsoft 365, Teams, SharePoint</li></ul></div>
 </div>
 </section>
 
@@ -693,7 +693,7 @@
 <section class="band close" id="contact-it" aria-labelledby="contact-title-it">
 <p class="kicker">Contatti</p>
 <h2 id="contact-title-it">Parliamone</h2>
-<p>Sono aperto a ruoli da Technical Project Manager, Delivery Manager e Technical Product Owner, dove serve qualcuno che capisca davvero la tecnica: software enterprise, digital transformation, l'AI portata in produzione. Base a Torino, ibrido o remoto.</p>
+<p>Sono aperto a ruoli in AI Delivery e AI Transformation, Delivery Manager, Engineering Delivery Manager, Technical Service Delivery e Solutions, dove serve qualcuno che capisca davvero la tecnica: software enterprise, digital transformation, l'AI portata in produzione. Base a Torino, ibrido o remoto.</p>
 <div class="acts">
 <a class="cta" href="mailto:ivan.bianco@icloud.com">ivan.bianco@icloud.com</a>
 <a class="cta alt" href="https://www.linkedin.com/in/ivan-bianco-709b1bb/" rel="noopener">LinkedIn</a>
@@ -709,7 +709,7 @@
 <a href="/changelog/">Novità e changelog</a>
 <a href="/privacy/">Informativa sulla privacy</a>
 </div>
-<p>I numeri di Street University in questa pagina li rigenera uno script a ogni release; scatto del 20 ottobre 2026.</p>
+<p>I numeri di Street University in questa pagina li rigenera uno script a ogni release; scatto del 21 ottobre 2026.</p>
 </footer>
 <!-- torna in cima: una copia per lingua (sparisce con la sua lingua); senza JavaScript resta nascosto -->
 <button type="button" class="totop" hidden aria-label="Torna all&#x27;inizio" title="Torna all&#x27;inizio"><svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M10 4 3 11h4.5v5h5v-5H17z" fill="currentColor"/></svg></button>
