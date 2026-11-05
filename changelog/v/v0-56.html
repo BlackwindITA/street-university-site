@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>v0.56 — Novità Street University</title>
+<meta name="description" content="Dettaglio tecnico della versione v0.56 di Street University, generato dal changelog di sviluppo.">
+<link rel="canonical" href="https://www.streetuniversitygame.com/changelog/v/v0-56.html">
+<link rel="icon" type="image/png" href="../../img/favicon-64.png">
+<link rel="apple-touch-icon" href="../../img/apple-touch-icon.png">
+<style>
+:root{
+  --bg:#f7f5f0; --fg:#1c1a17; --muted:#5c574f; --rule:#d9d3c7;
+  --accent:#b4531a; --card:#ffffff; --tag-bg:#efe9dd; --shadow:0 2px 10px rgba(28,26,23,.08);
+  --novita-bg:#fff4e8; --novita-border:#e8b98a;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#16151a; --fg:#ece9e3; --muted:#a09a90; --rule:#34313a;
+    --accent:#ff9d5c; --card:#1f1e25; --tag-bg:#26242d; --shadow:0 2px 14px rgba(0,0,0,.5);
+    --novita-bg:#2a2115; --novita-border:#6b4423;
+  }
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--bg); color:var(--fg);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  font-size:17px; line-height:1.6;
+}
+.wrap{max-width:760px; margin:0 auto; padding:0 18px 60px}
+a{color:var(--accent)}
+code{background:var(--tag-bg); padding:.1em .35em; border-radius:4px; font-size:.9em; word-break:break-word}
+header.top{padding:28px 0 6px; text-align:center}
+header.top .back{font-size:.92rem; color:var(--muted); text-decoration:none}
+header.top h1{margin:14px 0 4px; font-size:1.7rem}
+header.top p.sub{margin:0; color:var(--muted); font-size:1rem}
+.stats{margin:18px 0 0; display:flex; gap:8px; flex-wrap:wrap; justify-content:center}
+.stats span{
+  background:var(--tag-bg); border:1px solid var(--rule); border-radius:999px;
+  padding:4px 12px; font-size:.82rem; color:var(--muted);
+}
+main{padding:20px 0 0}
+section.version{
+  background:var(--card); border:1px solid var(--rule); border-radius:14px;
+  padding:18px 18px 16px; margin:0 0 22px; box-shadow:var(--shadow);
+}
+section.version h2{
+  margin:0 0 2px; font-size:1.25rem; display:flex; align-items:baseline; gap:8px; flex-wrap:wrap;
+}
+section.version h2 .ver{color:var(--accent); font-weight:800}
+section.version .dates{margin:0 0 14px; font-size:.85rem; color:var(--muted)}
+.novita-list{list-style:none; margin:0; padding:0}
+.novita-list li{
+  background:var(--novita-bg); border:1px solid var(--novita-border); border-radius:10px;
+  padding:9px 12px; margin:0 0 8px; font-size:.96rem;
+}
+.novita-empty{color:var(--muted); font-size:.9rem; font-style:italic; margin:0 0 8px}
+.detail-link{
+  display:inline-block; margin-top:6px; font-size:.88rem; font-weight:600;
+  text-decoration:none;
+}
+.version-page header.top .back{display:block; margin-bottom:4px}
+.entry{margin:14px 0 0; padding-top:12px; border-top:1px dashed var(--rule)}
+.entry:first-of-type{border-top:none; padding-top:0}
+.entry h3{margin:0 0 6px; font-size:1rem}
+.entry h3 .date{color:var(--muted); font-weight:400; font-size:.85rem; display:block}
+.entry ul, .entry ol{margin:6px 0; padding-left:1.25em}
+.entry li{margin:0 0 8px}
+.entry p{margin:6px 0}
+.tbl-wrap{overflow-x:auto; margin:8px 0}
+table{border-collapse:collapse; font-size:.85rem; width:100%}
+th,td{border:1px solid var(--rule); padding:5px 8px; text-align:left; white-space:nowrap}
+footer.bottom{margin:30px 0 0; padding-top:18px; border-top:1px solid var(--rule); color:var(--muted); font-size:.85rem; text-align:center}
+</style>
+</head>
+<body class="version-page">
+<div class="wrap">
+  <header class="top">
+    <a class="back" href="../">← Novità</a>
+    <h1><span class="ver">v0.56</span></h1>
+    <p class="sub">2026-11-05 · 1 voce/i di changelog</p>
+  </header>
+  <main>
+    <ul class="novita-list"><li>Caduta dell'host più solida</li><li>Metro condivisa</li><li>Il limbo</li><li>Lobby nuova</li><li>Poliziotto posseduto che arresta</li></ul>
+    <section class="version">
+    <div class="entry"><h3>Release 0.56: note in-game in otto lingue, versione a 0.56 (`/rilascio-beta`)<span class="date">2026-11-05</span></h3><p>Giro di rilascio beta lanciato da Ivan con <code>/rilascio-beta</code>. Delta dall'ultimo tag di release <code>v0.55-metro-insieme-invita-fantasmi-ospedale</code>: voci di CHANGELOG 382-436 (380, 381 e 391 chiudono il giro della 0.55). Il grosso è il multiplayer, e in testa a note e tag (scelta di Ivan in chat) ci sono i fix della caduta dell'host: poi limbo, metro condivisa, lobby rifatta.</p><ul><li>✅ Sezione <strong>v0.56</strong> in cima a <code>files/homeless_city/assets/release_notes_it.txt</code> più le 7 gemelle (<code>_en</code>, <code>_fr</code>, <code>_es</code>, <code>_de</code>, <code>_ru</code>, <code>_zh</code>, <code>_pt</code>): 9 voci nel formato SU-721 <code>- TITOLO: testo</code>, sezioni vecchie intatte. Termini presi dai CSV e dalle note già uscite (salon/sala per la lobby in francese e spagnolo, MENU PRINCIPALE e gemelli da <code>HUD_MENU_PRINCIPALE</code>, la mire/carta de ajuste/Testbild della 0.54). Nessuna emoji e nessuna parentesi quadra nelle sezioni nuove, controllato a mano (l'audit non guarda i <code>.txt</code>).</li><li>📌 Voce <strong>SOLO CON LA 0.56</strong>: la guardia RPC di <code>prepare_release.sh</code> segnala in <code>NetworkManager.gd</code> le nuove <code>_cl_tunnel_event</code>, <code>_cl_tunnel_train</code>, <code>_srv_tunnel_event</code>, <code>_srv_tunnel_train</code> e in <code>Player.gd</code> <code>_net_tunnel_state</code>, <code>_net_tunnel_swarm</code> (metro condivisa, SU-1127…1130). Una 0.55 con una 0.56 non gioca: versione minima multiplayer <strong>0.56</strong>. Le RPC delle sonde (<code>probe_possess_foes_mp.gd</code>, <code>probe_su1057_mp.gd</code>) non entrano nei pacchetti di gioco.</li><li>📌 Fuori dalle note le cose che il giocatore non vede o che non sono in gioco: l'uomo-orchestra rifatto (SU-1139 aspetta il giudizio di Ivan, l'installazione è SU-1140), le pagine del sito (<code>/portfolio/</code>, <code>/metodo/</code>, home), la catena iOS su Xcode 27 (SU-1037), le opzioni solo dev (SU-1147), le sonde e la suite di regressione.</li><li>✅ <code>config/version</code> di <code>files/homeless_city/project.godot</code> a <strong>0.56</strong>, e <code>version/code</code> <strong>56</strong> nei due preset Android di <code>files/homeless_city/export_presets.cfg</code> (riallineato dal pre-volo <code>export_all.sh --env stage mac win aab --controlla</code>: include_filter, template Android con le patch EOS, keystore, tutti OK).</li><li>⚠️ <strong>SU-1143 resta aperto:</strong> il crash Android della 0.55 segnalato il 14/10 non è identificato né curato in questa build.</li><li>[NOVITA'] <strong>Caduta dell'host più solida</strong> — online una sospensione breve dell'host non chiude più la partita, l'erede è uno solo, e a fine partita un host sparito non caccia nessuno dal giornale.</li><li>[NOVITA'] <strong>Metro condivisa</strong> — in multiplayer corridoio, banchina, treni, folla, zombie e gatti sono gli stessi per tutti, le monete sono di chi le tocca per primo, e chi muore sotto resta giù da fantasma.</li><li>[NOVITA'] <strong>Il limbo</strong> — al cambio di host, al posto del monoscopio, un bianco infinito con piccioni, panini, gatti dal cielo e pecore da contare, col menu di pausa.</li><li>[NOVITA'] <strong>Lobby nuova</strong> — voci in griglia, quartiere dalla metro vera, personaggio dalla schermata vera, conto alla rovescia a vista.</li><li>[NOVITA'] <strong>Poliziotto posseduto che arresta</strong> — da fantasma corre e toglie una vita a chi tocca.</li></ul></div>
+    </section>
+  </main>
+  <footer class="bottom">
+    <p><a href="../">← Torna a tutte le novità</a></p>
+  </footer>
+</div>
+</body>
+</html>
